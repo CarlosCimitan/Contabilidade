@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "8cvYXZdhz/U=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Eduardo\\Desktop\\Projeto Contabilidade\\Contabilidade\\ContabilidadeApi\\ContabilidadeApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eduardo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "C:\\Users\\Eduardo\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
