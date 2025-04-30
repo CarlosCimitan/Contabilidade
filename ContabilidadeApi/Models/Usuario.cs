@@ -10,7 +10,7 @@ namespace ContabilidadeApi.Models
         public byte[] SenhaHash { get; set; }
         public byte[] SenhaSalt { get; set; }
         public CargoEnum Cargo { get; set; }
-        public int IdEmpresa { get; set; }
+        public int EmpresaId { get; set; }
         public Empresa Empresa { get; set; }
 
     }

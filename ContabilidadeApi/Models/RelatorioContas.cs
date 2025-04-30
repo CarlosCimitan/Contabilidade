@@ -6,7 +6,7 @@ namespace ContabilidadeApi.Models
     {
         public int Id { get; set; }
         public RelatorioEnum Relatorio { get; set; }
-        public int IdContaContabil { get; set; }
+        public int ContaContabilId { get; set; }
         public ContaContabil ContaContabil { get; set; }
     }
 }

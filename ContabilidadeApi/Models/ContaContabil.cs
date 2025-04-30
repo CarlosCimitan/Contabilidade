@@ -11,9 +11,9 @@ namespace ContabilidadeApi.Models
         public string Descricao { get; set; }
         public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }
-        public int IdNaturezaConta { get; set; }
+        public int NaturezaContaId { get; set; }
         public NaturezaContas NaturezaContas { get; set; }
-        public int IdEmpresa { get; set; }
+        public int EmpresaId { get; set; }
         public Empresa Empresa { get; set; }  
     }
 }
