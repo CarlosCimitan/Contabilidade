@@ -167,3 +167,5 @@ C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\refint\
 C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.pdb
 C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.genruntimeconfig.cache
 C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ref\ContabilidadeApi.dll
+C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Eduardo\Desktop\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

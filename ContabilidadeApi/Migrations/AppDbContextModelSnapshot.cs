@@ -180,6 +180,9 @@ namespace ContabilidadeApi.Migrations
                     b.Property<int>("Cargo")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DataCriacaoToken")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
