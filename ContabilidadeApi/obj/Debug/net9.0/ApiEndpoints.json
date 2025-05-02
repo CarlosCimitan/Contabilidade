@@ -16,6 +16,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
+    "Method": "CriarEmpresa",
+    "RelativePath": "api/Empresa/CriarEmpresa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresaCriacaoDto",
+        "Type": "ContabilidadeApi.Dto.EmpresaCriacaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
+    "Method": "GetEmpresa",
+    "RelativePath": "api/Empresa/GetEmpresa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "RegistrarUsuario",
     "RelativePath": "api/Usuario/Registrar",

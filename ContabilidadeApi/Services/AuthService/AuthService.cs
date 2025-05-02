@@ -38,7 +38,7 @@ namespace ContabilidadeApi.Services.AuthService
 
                 var token = _senhaService.CriarToken(usuario);
 
-                response.dados = token;
+                response.Dados = token;
                 response.Mensagem = "Login realizado com sucesso.";
 
                 return response;

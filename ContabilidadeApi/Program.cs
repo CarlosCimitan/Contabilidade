@@ -1,6 +1,7 @@
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Scalar;
 using ContabilidadeApi.Services.AuthService;
+using ContabilidadeApi.Services.EmpresaService;
 using ContabilidadeApi.Services.SenhaService;
 using ContabilidadeApi.Services.UsuarioService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,6 +20,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<IAuth, AuthService>();
 builder.Services.AddScoped<ISenha, SenhaService>();
 builder.Services.AddScoped<IUsuario, UsuarioService>();
+builder.Services.AddScoped<IEmpresa, EmpresaService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
