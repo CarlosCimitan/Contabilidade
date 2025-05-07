@@ -1,5 +1,6 @@
 ﻿using ContabilidadeApi.Dto;
 using ContabilidadeApi.Services.EmpresaService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace ContabilidadeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrador")]
     public class EmpresaController : ControllerBase
     {
         private readonly IEmpresa _empresa;
