@@ -42,6 +42,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
+    "Method": "GetEmpresaPorCnpj",
+    "RelativePath": "api/Empresa/GetEmpresaPorCnpj",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cnpj",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
+    "Method": "GetEmpresaPorNome",
+    "RelativePath": "api/Empresa/GetEmpresaPorNome",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "RegistrarUsuario",
     "RelativePath": "api/Usuario/Registrar",

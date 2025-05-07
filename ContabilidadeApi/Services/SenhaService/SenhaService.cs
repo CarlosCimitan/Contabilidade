@@ -36,6 +36,7 @@ namespace ContabilidadeApi.Services.SenhaService
         {
             List<Claim> claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Role, usuario.Cargo.ToString()),
                 new Claim("Cargo", usuario.Cargo.ToString()),
                 new Claim("Email", usuario.Email),
                 new Claim("Id", usuario.Id.ToString()),
