@@ -14,7 +14,7 @@ namespace ContabilidadeApi.Data
         public DbSet<ContaContabil> ContaContabil { get; set; }
         public DbSet<LancamentoContabil> LancamentoContabil { get; set; }
         public DbSet<LancamentoDebitoCredito> LancamentoDebitoCredito { get; set; }
-        public DbSet<NaturezaContas> NaturezasConta { get; set; }
+        public DbSet<HistoricoContabil> HistoricoContabils { get; set; }
         public DbSet<RelatorioContas> RelatorioConta { get; set; }
 
        
@@ -30,7 +30,14 @@ namespace ContabilidadeApi.Data
                 .HasOne(l => l.ContaContabil)
                 .WithMany()
                 .HasForeignKey(l => l.LancamentoContabilId)
-                .OnDelete(DeleteBehavior.NoAction); 
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<RelatorioContas>()
+                .HasOne(r => r.ContaContabil)
+                .WithOne() 
+                .HasForeignKey<RelatorioContas>(r => r.ContaContabilId);
+
+            base.OnModelCreating(modelBuilder);
         }
     
     }

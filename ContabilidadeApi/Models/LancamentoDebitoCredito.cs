@@ -5,7 +5,7 @@ public class LancamentoDebitoCredito
 {
     public int Id { get; set; }
     public DateTime Data { get; set; }
-    public double Valor { get; set; }
+    public decimal Valor { get; set; }
     public TipoAcaoEnum TipoAcao { get; set; }
 
     
