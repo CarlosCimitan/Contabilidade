@@ -33,5 +33,19 @@ namespace ContabilidadeApi.Controllers
             var usuarios = await _usuario.ListarUsuariosSemEMpresa();
             return Ok(usuarios);
         }
+
+        [HttpPut("EditarUsuario")]
+        public async Task<IActionResult> EditarUsuario(EditarUsuarioDto usuarioDto)
+        {
+            var usuario = await _usuario.EditarUsuario(usuarioDto);
+            return Ok(usuario);
+        }
+        [HttpPut("EditarEmpresaUsuario")]
+        public async Task<IActionResult> EditarEmpresaUsuario(UsuarioEmpresaDto usuarioDto)
+        {
+            var usuario = await _usuario.EditarEmpresaUsuario(usuarioDto);
+            return Ok(usuario);
+        }
+
     }
 }

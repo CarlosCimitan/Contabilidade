@@ -79,9 +79,74 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        //public async Task<ResponseModel<Usuario>> EditarEmpresaUsuario()
-        //{
+        public async Task<ResponseModel<Usuario>> EditarEmpresaUsuario(UsuarioEmpresaDto dto)
+        {
+            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
 
-        //}
+            try
+            {
+                var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == dto.Id);
+
+                if (usuario == null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado.";
+                    return resposta;
+                }
+
+
+                usuario.Id = dto.Id;
+                usuario.EmpresaId = dto.EmpresaId;
+                
+                
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();  
+
+                resposta.Mensagem = "Usuário editado com sucesso.";
+                resposta.Dados = usuario;
+                return resposta;
+            }
+            catch(Exception ex)
+            {
+                resposta.Mensagem = "Erro ao editar empresa do usuário: " + ex.Message;
+                return resposta;
+            }              
+        }
+
+        public async Task<ResponseModel<Usuario>> EditarUsuario(EditarUsuarioDto dto)
+        {
+            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
+            try
+            {
+                var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == dto.Id);
+                if (usuario == null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado.";
+                    return resposta;
+                }
+
+                usuario.Nome = dto.Nome;
+                usuario.Cargo = dto.Cargo;
+                usuario.Email = dto.Email;
+                usuario.EmpresaId = dto.EmpresaId;
+                if (!string.IsNullOrEmpty(dto.Senha) && dto.Senha == dto.ConfirmarSenha)
+                {
+                    _senha.CriarSenhaHash(dto.Senha, out byte[] hash, out byte[] salt);
+                    usuario.SenhaHash = hash;
+                    usuario.SenhaSalt = salt;
+                }
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
+                resposta.Mensagem = "Usuário editado com sucesso.";
+                resposta.Dados = usuario;
+                return resposta;
+
+
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = "Erro ao editar usuário: " + ex.Message;
+                return resposta;
+            }
+        }
     }
 }

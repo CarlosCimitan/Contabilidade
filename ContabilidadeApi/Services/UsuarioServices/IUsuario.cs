@@ -7,5 +7,7 @@ namespace ContabilidadeApi.Services.UsuarioServices
     {
         Task<ResponseModel<Usuario>> CriarUsuario(CriarUsuarioDto dto);
         Task<ResponseModel<List<Usuario>>> ListarUsuariosSemEMpresa();
+        Task<ResponseModel<Usuario>> EditarEmpresaUsuario(UsuarioEmpresaDto dto);
+        Task<ResponseModel<Usuario>> EditarUsuario(EditarUsuarioDto dto);
     }
 }

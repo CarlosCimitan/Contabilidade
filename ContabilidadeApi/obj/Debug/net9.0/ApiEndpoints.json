@@ -107,6 +107,38 @@
   },
   {
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
+    "Method": "EditarEmpresaUsuario",
+    "RelativePath": "api/Usuario/EditarEmpresaUsuario",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioDto",
+        "Type": "ContabilidadeApi.Dto.UsuarioEmpresaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
+    "Method": "EditarUsuario",
+    "RelativePath": "api/Usuario/EditarUsuario",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioDto",
+        "Type": "ContabilidadeApi.Dto.EditarUsuarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "ListarUsuariosSemEMpresa",
     "RelativePath": "api/Usuario/GetUsuarios",
     "HttpMethod": "GET",

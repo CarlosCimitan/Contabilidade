@@ -9,10 +9,12 @@ namespace ContabilidadeApi.Services.ContaContabilServices
     public class ContaContabilService : IContaContabil
     {
         private readonly AppDbContext _context;
+        public IHttpContextAccessor _httpContextAccessor { get; }
 
-        public ContaContabilService(AppDbContext context)
+        public ContaContabilService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -22,6 +24,10 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
             try
             {
+                var user = _httpContextAccessor.HttpContext?.User;
+
+                var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+
                 var codigo = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Codigo == dto.Codigo);
                 var mascara = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Mascara == dto.Mascara);
 
@@ -39,7 +45,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
                     Natureza = dto.Natureza,
-                    EmpresaId = dto.EmpresaId,
+                    EmpresaId = int.Parse( empresaId),
                     Relatorios = dto.Relatorios
 
                 };
