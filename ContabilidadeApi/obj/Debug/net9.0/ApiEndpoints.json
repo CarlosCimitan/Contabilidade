@@ -48,6 +48,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
+    "Method": "GetEmpresas",
+    "RelativePath": "api/Empresa/GetEmpresas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.HistoricoController",
+    "Method": "CriarHistorico",
+    "RelativePath": "api/Historico/CriarHistorico",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ContabilidadeApi.Dto.HistoricoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.LancamentoContabilController",
     "Method": "CriarLancamentoContabil",
     "RelativePath": "api/LancamentoContabil/CriarLancamentoContabil",
@@ -77,6 +103,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
+    "Method": "ListarUsuariosSemEMpresa",
+    "RelativePath": "api/Usuario/GetUsuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

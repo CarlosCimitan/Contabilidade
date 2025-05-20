@@ -27,5 +27,12 @@ namespace ContabilidadeApi.Controllers
             
             
         }
+
+        [HttpGet("GetEmpresas")]
+        public async Task<ActionResult> GetEmpresas()
+        {
+            var empresas = await _empresa.GetEmpresa();
+            return Ok(empresas);
+        }
     }
 }

@@ -16,6 +16,6 @@ namespace ContabilidadeApi.Models
         public Empresa Empresa { get; set; } = null!;
 
         public ICollection<LancamentoDebitoCredito>? DebitosCreditos { get; set; }
-        public ICollection<RelatorioContas>? Relatorios { get; set; }
+        public RelatorioEnum Relatorios { get; set; }
     }
 }

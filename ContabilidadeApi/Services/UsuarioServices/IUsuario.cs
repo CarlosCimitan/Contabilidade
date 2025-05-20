@@ -6,5 +6,6 @@ namespace ContabilidadeApi.Services.UsuarioServices
     public interface IUsuario
     {
         Task<ResponseModel<Usuario>> CriarUsuario(CriarUsuarioDto dto);
+        Task<ResponseModel<List<Usuario>>> ListarUsuariosSemEMpresa();
     }
 }

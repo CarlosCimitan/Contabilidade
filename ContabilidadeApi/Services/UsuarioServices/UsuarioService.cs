@@ -58,5 +58,30 @@ namespace ContabilidadeApi.Services.UsuarioServices
                 return resposta;
             }
         }
+
+        public async Task<ResponseModel<List< Usuario>>> ListarUsuariosSemEMpresa()
+        {
+            ResponseModel<List<Usuario>> resposta = new ResponseModel<List<Usuario>>();
+
+            try
+            {
+                var usuarios = await _context.Usuarios.Where(u => u.EmpresaId == null).ToListAsync();
+
+                resposta.Dados = usuarios;
+                resposta.Mensagem = "Usuarios encontrados";
+
+                return resposta;
+            }
+            catch (Exception ex) 
+            {
+                resposta.Mensagem = ex.Message;
+                return resposta;
+            }
+        }
+
+        //public async Task<ResponseModel<Usuario>> EditarEmpresaUsuario()
+        //{
+
+        //}
     }
 }

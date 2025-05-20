@@ -39,7 +39,9 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
                     Natureza = dto.Natureza,
-                    EmpresaId = dto.EmpresaId
+                    EmpresaId = dto.EmpresaId,
+                    Relatorios = dto.Relatorios
+
                 };
 
                 await _context.ContasContabeis.AddAsync(contaContabil);

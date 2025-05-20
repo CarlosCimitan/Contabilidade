@@ -48,5 +48,27 @@ namespace ContabilidadeApi.Services.EmpresaServices
                 return resposta;
             }
         }
+
+        public async Task<ResponseModel<List<Empresa>>> GetEmpresa()
+        {
+            ResponseModel<List<Empresa>> resposta = new ResponseModel<List<Empresa>>();
+
+            try
+            {
+                var empresas = await _context.Empresas.ToListAsync();
+
+                resposta.Dados = empresas;
+                resposta.Mensagem = "Empresas encontradas";
+
+                return resposta;
+            }
+            catch (Exception ex) 
+            {
+                resposta.Mensagem = ex.Message;
+                return resposta;
+            }
+
+
+        }
     }
 }

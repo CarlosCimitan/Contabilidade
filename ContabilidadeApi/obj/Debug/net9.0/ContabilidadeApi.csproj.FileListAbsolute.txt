@@ -172,3 +172,4 @@ C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Filters.dll
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.sourcelink.json

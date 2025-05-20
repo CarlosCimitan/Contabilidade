@@ -2,6 +2,7 @@ using ContabilidadeApi.Data;
 using ContabilidadeApi.Services.AuthServices;
 using ContabilidadeApi.Services.ContaContabilServices;
 using ContabilidadeApi.Services.EmpresaServices;
+using ContabilidadeApi.Services.HistoricoServices;
 using ContabilidadeApi.Services.LancamentoContabeisServices;
 using ContabilidadeApi.Services.SenhaService;
 using ContabilidadeApi.Services.UsuarioServices;
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IAuth,AuthService>();
 builder.Services.AddScoped<IEmpresa,EmpresaService>();
 builder.Services.AddScoped<IContaContabil,ContaContabilService>();
 builder.Services.AddScoped<ILancamentoContabil,LancamentoContabilService>();
+builder.Services.AddScoped<IHistorico, HistoricoService>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -39,6 +41,16 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTudo", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 
 builder.Services.AddControllers()
@@ -88,7 +100,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-    app.UseAuthentication();
+app.UseCors("PermitirTudo");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

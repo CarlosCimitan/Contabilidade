@@ -1,4 +1,5 @@
 ﻿using ContabilidadeApi.Dto;
+using ContabilidadeApi.Models;
 using ContabilidadeApi.Services.UsuarioServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,12 @@ namespace ContabilidadeApi.Controllers
                 var usuario = await _usuario.CriarUsuario(usuarioDto);
                 return Ok(usuario);
             
+        }
+        [HttpGet("GetUsuarios")]
+         public async Task<ActionResult> ListarUsuariosSemEMpresa()
+        {
+            var usuarios = await _usuario.ListarUsuariosSemEMpresa();
+            return Ok(usuarios);
         }
     }
 }

@@ -6,5 +6,6 @@ namespace ContabilidadeApi.Services.EmpresaServices
     public interface IEmpresa
     {
         Task<ResponseModel<Empresa>> CriarEmpresa(CriarEmpresaDto dto);
+        Task<ResponseModel<List<Empresa>>> GetEmpresa();
     }
 }
