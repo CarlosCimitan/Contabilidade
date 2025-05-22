@@ -2,7 +2,7 @@
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
-using Microsoft.AspNetCore.Http; // importante para IHttpContextAccessor
+using Microsoft.AspNetCore.Http; 
 
 namespace ContabilidadeApi.Services.LancamentoContabeisServices
 {
@@ -47,10 +47,6 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     response.Mensagem = $"Erro: Créditos ({somaCreditos}) e Débitos ({somaDebitos}) devem ser iguais.";
                     return response;
                 }
-
-                
-
-                
 
                 var lancamento = new LancamentoContabil
                 {

@@ -45,8 +45,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
                     Natureza = dto.Natureza,
-                    EmpresaId = int.Parse( empresaId),
-                    Relatorios = dto.Relatorios
+                    EmpresaId = int.Parse(empresaId)
 
                 };
 
