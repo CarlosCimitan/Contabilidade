@@ -11,7 +11,9 @@
         public Usuario? Usuario { get; set; }
 
         public int EmpresaId { get; set; }
-        public Empresa Empresa { get; set; } = null!;
+        public Empresa Empresa { get; set; }
+        public int? HistoricoId { get; set; }
+        public HistoricoContabil? Historico { get; set; }
 
         public ICollection<LancamentoDebitoCredito>? DebitosCreditos { get; set; }
     }

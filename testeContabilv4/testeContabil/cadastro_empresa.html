@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Empresa - Sistema Contábil</title>
+    <link href="CSS/styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Barra de navegação -->
+    <nav class="bg-gray-800 p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+            <a class="text-white text-2xl font-semibold" href="dashboard.html">Sistema Contábil</a>
+            <button class="text-white md:hidden" id="navbar-toggle">
+                <span class="block w-6 h-1 bg-white mb-1"></span>
+                <span class="block w-6 h-1 bg-white mb-1"></span>
+                <span class="block w-6 h-1 bg-white"></span>
+            </button>
+            <div id="navbar" class="hidden md:flex space-x-6">
+                <a href="dashboard.html" class="text-white">Dashboard</a>
+                <a href="cadastro_empresa.html" class="text-white">Cadastro de Empresa</a>
+                <a href="cadastro_usuario.html" class="text-white">Cadastro de Usuário</a>
+
+                <a href="lancamentos.html" class="text-white">Lançamentos</a>
+                <a href="plano_contas.html" class="text-white">Plano de Contas</a>
+                <a href="relatorios.html" class="text-white">Relatórios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo do formulário -->
+    <div class="max-w-xl mx-auto p-8 bg-white shadow-md rounded-lg mt-10 mb-10">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Cadastro de Empresa</h2>
+            <!-- Setas de Navegação -->
+            <div class="flex space-x-1">
+                <button type="button" class="py-1 px-2 border border-gray-300 text-gray-700 rounded-md text-sm">|&lt;</button>
+                <button type="button" class="py-1 px-2 border border-gray-300 text-gray-700 rounded-md text-sm">&lt;</button>
+                <button type="button" class="py-1 px-2 border border-gray-300 text-gray-700 rounded-md text-sm">&gt;</button>
+                <button type="button" class="py-1 px-2 border border-gray-300 text-gray-700 rounded-md text-sm">&gt;|</button>
+            </div>
+        </div>
+
+        <form>
+            <!-- Dados da Empresa -->
+            <div class="mb-6">
+                <label for="nomeEmpresa" class="block text-lg font-medium text-gray-700">Nome da Empresa</label>
+                <input type="text" class="mt-2 p-3 w-full border border-gray-300 rounded-md" id="nomeEmpresa" placeholder="Nome da empresa" required>
+            </div>
+            <div class="mb-6">
+                <label for="cnpj" class="block text-lg font-medium text-gray-700">CNPJ</label>
+                <input type="text" class="mt-2 p-3 w-full border border-gray-300 rounded-md" id="cnpj" placeholder="CNPJ da empresa" required>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="mt-6 flex justify-end space-x-1">
+                <button type="button" id="cancelar" class="py-1 px-1 border border-gray-300 text-gray-700 rounded-md text-sm">Cancelar</button>
+                <button type="submit" id="gravar" class="py-1 px-1 border border-gray-300 text-gray-700 rounded-md text-sm">Gravar</button>
+                <button type="button" id="novo" class="py-1 px-1 border border-gray-300 text-gray-700 rounded-md text-sm">Novo</button>
+                <button type="button" id="novoApartir" class="py-1 px-1 border border-gray-300 text-gray-700 rounded-md text-sm">Novo a partir deste</button>
+                <button type="button" id="editar" class="py-1 px-1 border border-gray-300 text-gray-700 rounded-md text-sm">Editar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/CadastroDeEmpresa.js"></script>
+</body>
+
+</html>
