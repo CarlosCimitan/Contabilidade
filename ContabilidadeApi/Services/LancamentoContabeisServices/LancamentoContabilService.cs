@@ -2,7 +2,8 @@
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
-using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContabilidadeApi.Services.LancamentoContabeisServices
 {
@@ -69,6 +70,31 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
                 response.Dados = lancamento;
                 response.Mensagem = "Lançamento contábil criado com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.InnerException?.Message ?? ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<List<LancamentoContabil>>> GetLancamentoContabeis()
+        {
+            var response = new ResponseModel<List<LancamentoContabil>>();
+            try
+            {
+                var lancamentos = await _context.LancamentosContabeis
+                    .AsNoTracking() 
+                    .Include(l => l.DebitosCreditos!) 
+                    .ThenInclude(dc => dc.ContaContabil)
+                    .Include(l => l.Usuario)
+                    .Include(l => l.Empresa)
+                    .Include(l => l.Historico)
+                    .ToListAsync();
+
+                response.Dados = lancamentos;
+                response.Mensagem = "Lançamentos contábeis recuperados com sucesso.";
                 return response;
             }
             catch (Exception ex)

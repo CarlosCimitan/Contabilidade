@@ -32,14 +32,31 @@ namespace ContabilidadeApi.Services.HistoricoServices
                 {
                     Codigo = dto.Codigo,
                     Descricao = dto.Descricao
-                    
+
                 };
 
                 _context.HistoricosContabeis.Add(historico);
                 await _context.SaveChangesAsync();
 
                 response.Mensagem = "Histórico criado com sucesso.";
-                
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<List<HistoricoContabil>>> GetHistoricos()
+        {
+            var response = new ResponseModel<List<HistoricoContabil>>();
+            try
+            {
+                var historicos = await _context.HistoricosContabeis.ToListAsync();
+                response.Dados = historicos;
+                response.Mensagem = "Históricos obtidos com sucesso.";
                 return response;
             }
             catch (Exception ex)

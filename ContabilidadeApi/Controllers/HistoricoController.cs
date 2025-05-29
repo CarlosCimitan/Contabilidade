@@ -22,11 +22,15 @@ namespace ContabilidadeApi.Controllers
         public async Task<IActionResult> CriarHistorico( HistoricoDto dto)
         {
             
-            var response = await _historico.CriarHistorico(dto);
-            
-            
-                return Ok(response);
-            
+            var response = await _historico.CriarHistorico(dto);                   
+            return Ok(response);
+        }
+
+        [HttpGet("GetHistoricos")]
+        public async Task<IActionResult> GetHistoricos()
+        {
+            var historicos = await _historico.GetHistoricos();
+            return Ok(historicos);
         }
     }
 }

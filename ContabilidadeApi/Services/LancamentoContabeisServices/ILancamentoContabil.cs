@@ -7,5 +7,6 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
     public interface ILancamentoContabil
     {
         Task<ResponseModel<LancamentoContabil>> CriarLancamentoContabil(LancamentoContabilDto dto);
+        Task<ResponseModel<List<LancamentoContabil>>> GetLancamentoContabeis();
     }
 }

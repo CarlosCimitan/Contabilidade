@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     console.log("Página de Cadastro de Usuário carregada.");
 
     // Verifica se o usuário está autenticado
@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = './login.html';
         return;
     }
+    
+// Carrega empresas
+try {
+    const response = await fetch('https://localhost:7292/api/Empresa/GetEmpresas', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (response.ok) {
+        const empresasData = await response.json();
+        console.log('Resposta da API de empresas:', empresasData);
+
+        const empresas = empresasData.dados; // ← Aqui está o ajuste
+        const selectEmpresa = document.getElementById('empresa');
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Selecione uma empresa (opcional)';
+        selectEmpresa.appendChild(defaultOption);
+
+        empresas.forEach(empresa => {
+            const option = document.createElement('option');
+            option.value = empresa.id;
+            option.textContent = empresa.razaoSocial;
+            selectEmpresa.appendChild(option);
+        });
+    } else {
+        console.warn('Não foi possível carregar empresas.');
+    }
+} catch (error) {
+    console.error('Erro ao carregar empresas:', error);
+}
 });
 
 // Menu responsivo
@@ -28,6 +60,7 @@ document.getElementById('gravar').addEventListener('click', async function (even
     const senha = document.getElementById('senhaUsuario').value.trim();
     const confirmarSenha = document.getElementById('confirmarSenhaUsuario').value.trim();
     const cargo = parseInt(document.getElementById('tipoUsuario').value);
+    const empresaIdValue = document.getElementById('empresa').value;
 
     if (!nome || !email || !senha || !confirmarSenha) {
         alert('Por favor, preencha todos os campos obrigatórios.');
@@ -44,10 +77,10 @@ document.getElementById('gravar').addEventListener('click', async function (even
         email,
         senha,
         confirmarSenha,
-        cargo
+        cargo,
+        empresaId: empresaIdValue ? parseInt(empresaIdValue) : 0
     };
 
-    // Recupera o token
     const token = localStorage.getItem('authToken');
 
     try {
@@ -55,7 +88,7 @@ document.getElementById('gravar').addEventListener('click', async function (even
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // ← Aqui está a adição
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(usuarioData)
         });

@@ -3,6 +3,7 @@ using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace ContabilidadeApi.Services.ContaContabilServices
 {
@@ -62,6 +63,44 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 response.Mensagem = ex.Message;
                 return response;
             }
-        } 
+        }
+
+        public async Task<ResponseModel<List<ContaContabil>>> GetContaById(int id)
+        {
+            ResponseModel<List<ContaContabil>> response = new ResponseModel<List<ContaContabil>>();
+            try
+            {
+                var conta = await _context.ContasContabeis
+                    .Where(c => c.Id == id).ToListAsync();
+
+                response.Dados = conta;
+                response.Mensagem = "Conta encontrada com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<List<ContaContabil>>> GetContas()
+        {
+            ResponseModel<List<ContaContabil>> response = new ResponseModel<List<ContaContabil>>();
+            try
+            {
+                var contas = await _context.ContasContabeis.ToListAsync();
+
+                response.Dados = contas;
+                response.Mensagem = "Contas encontradas com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+
+        }
     }
 }

@@ -43,22 +43,10 @@ namespace ContabilidadeApi.Data
                 .Property(r => r.Relatorio)
                 .HasConversion<string>();
             modelBuilder.Entity<LancamentoDebitoCredito>()
-    .HasOne(dc => dc.LancamentoContabil)
-    .WithMany(lc => lc.DebitosCreditos)
-    .HasForeignKey(dc => dc.LancamentoContabilId)
-    .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<LancamentoDebitoCredito>()
                 .HasOne(dc => dc.LancamentoContabil)
-                .WithMany(l => l.DebitosCreditos)
+                .WithMany(lc => lc.DebitosCreditos)
                 .HasForeignKey(dc => dc.LancamentoContabilId)
-                .OnDelete(DeleteBehavior.NoAction); // repetido
-
-            modelBuilder.Entity<LancamentoDebitoCredito>()
-                .HasOne(dc => dc.ContaContabil)
-                .WithMany(cc => cc.DebitosCreditos)
-                .HasForeignKey(dc => dc.ContaContabilId)
-                .OnDelete(DeleteBehavior.NoAction); // repetido também
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<LancamentoDebitoCredito>()
                 .HasOne(dc => dc.ContaContabil)

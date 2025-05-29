@@ -1,178 +1,285 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializações
-    atualizarDiaSemana();
-    
-    // Eventos atualizados com novos IDs
-    document.getElementById('Data').addEventListener('change', atualizarDiaSemana);
-    document.querySelectorAll('.adicionarLinha').forEach(btn => {
-        btn.addEventListener('click', clonarLinha);
-    });
-    document.addEventListener('input', atualizarTotais);
-    
-    // Botões com novos IDs
-    document.getElementById('Cancelar').addEventListener('click', limparFormulario);
-    document.getElementById('Gravar').addEventListener('click', gravarLancamento);
-    document.getElementById('btnListagem').addEventListener('click', listarLancamentos);
+document.addEventListener('DOMContentLoaded', function () {
+  const API_BASE = 'https://localhost:7292/api';
+  window.ENDPOINTS = {
+    LANCAMENTOS: `${API_BASE}/LancamentoContabil/CriarLancamentoContabil`,
+    PLANO_CONTAS: `${API_BASE}/ContaContabil/GetContasContabeisById`,
+    HISTORICOS: `${API_BASE}/Historico/GetHistoricos`,
+    EMPRESAS: `${API_BASE}/Empresa/GetEmpresas`
+  };
 
-    // Menu responsivo (mantido)
-    const toggle = document.getElementById('navbar-toggle');
-    const navbar = document.getElementById('navbar');
-    toggle.addEventListener('click', () => {
-        navbar.classList.toggle('hidden');
+  // Autenticação
+  const token = localStorage.getItem('authToken');
+  if (!token) {
+    alert('Você precisa estar logado para acessar esta página.');
+    window.location.href = './login.html';
+    return;
+  }
+
+  // Helper: fetch com Authorization
+  async function fetchComAuth(url, options = {}) {
+    options.headers = options.headers || {};
+    options.headers['Content-Type'] = 'application/json';
+    options.headers['Authorization'] = `Bearer ${token}`;
+    return fetch(url, options);
+  }
+
+  // Inicialização
+  atualizarDiaSemana();
+
+  // Eventos principais
+  document.getElementById('Data').addEventListener('change', atualizarDiaSemana);
+  document.getElementById('adicionarCredito').addEventListener('click', () => clonarLinha('contasCredito'));
+  document.getElementById('adicionarDebito').addEventListener('click', () => clonarLinha('contasDebito'));
+  document.addEventListener('input', atualizarTotais);
+  document.getElementById('Cancelar').addEventListener('click', limparFormulario);
+  document.getElementById('Gravar').addEventListener('click', gravarLancamento);
+
+  // Botões de listagem
+  document.querySelectorAll('#contasCredito button, #contasDebito button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      listarGenerico('Plano de Contas', window.ENDPOINTS.PLANO_CONTAS);
     });
+  });
+
+  // Menu responsivo
+  document.getElementById('navbar-toggle').addEventListener('click', () => {
+    document.getElementById('navbar').classList.toggle('hidden');
+  });
+
+  // Inputs das linhas de crédito e débito (busca conta por ID)
+  document.querySelectorAll('#contasCredito input[type="text"]:first-child, #contasDebito input[type="text"]:first-child')
+    .forEach(input => {
+      input.addEventListener('change', function () {
+        buscarContaContabil(this);
+      });
+    });
+
+  // Preenche descrição do histórico automaticamente
+document.getElementById('ContaContabilId').addEventListener('change', async function () {
+  const codigo = this.value.trim();
+  if (!codigo) return;
+
+  try {
+    const res = await fetch('https://localhost:7292/api/Historico/GetHistoricos', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
+
+    if (!res.ok) {
+      if (res.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        window.location.href = './login.html';
+        return;
+      }
+      throw new Error('Erro ao buscar históricos');
+    }
+
+    const json = await res.json();
+    const historicos = json.dados || [];
+
+    const historico = historicos.find(h => h.codigo == codigo);
+
+    if (historico) {
+      document.getElementById('DescComplementar').value = historico.descricao || '';
+    } else {
+      alert('Histórico não encontrado!');
+      document.getElementById('DescComplementar').value = '';
+    }
+
+  } catch (error) {
+    alert(`Erro ao buscar histórico: ${error.message}`);
+    this.value = '';
+    document.getElementById('DescComplementar').value = '';
+  }
 });
+  // ---------------------------
+  // FUNÇÕES AUXILIARES
+  // ---------------------------
 
-function clonarLinha(event) {
-    const tipoAcao = event.target.getAttribute('data-tipoacao');
+async function buscarContaContabil(input) {
+  const codigo = input.value.trim();
+  const linha = input.closest('.flex.space-x-4');
 
-    // Encontra o botão clicado
-    const botao = event.target;
+  if (!codigo) {
+    limparCamposDaLinha(linha);
+    return;
+  }
 
-    // A div pai (wrapper) onde a linha e o botão estão inseridos
-    const wrapper = botao.parentNode;
-
-    // Encontra a linha de input correspondente ao tipo
-    const linhaOriginal = wrapper.querySelector(`div[data-tipoacao="${tipoAcao}"]`);
-
-    // Clona a linha
-    const clone = linhaOriginal.cloneNode(true);
-
-    // Limpa os inputs (exceto os que são readonly)
-    clone.querySelectorAll('input').forEach(input => {
-        if (!input.readOnly) input.value = '';
+  try {
+    const response = await fetch(`${window.ENDPOINTS.PLANO_CONTAS}/${codigo}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
     });
 
-    // Insere o clone antes do botão
-    wrapper.insertBefore(clone, botao);
+    if (!response.ok) throw new Error('Conta não encontrada');
 
-    atualizarTotais();
+    const json = await response.json();
+    const conta = json.dados?.[0];
+
+    if (!conta) throw new Error('Nenhuma conta retornada');
+
+    const inputs = linha.querySelectorAll('input');
+    inputs[1].value = conta.mascara || '';
+    inputs[2].value = conta.descricao || '';
+  } catch (err) {
+    alert(err.message);
+    input.value = '';
+    limparCamposDaLinha(linha);
+  }
 }
 
 
-// Funções de cálculo e validação
-function atualizarTotais() {
+  function limparCamposDaLinha(linha) {
+    const inputs = linha.querySelectorAll('input');
+    if (inputs.length >= 3) {
+      inputs[1].value = '';
+      inputs[2].value = '';
+    }
+  }
+
+  function atualizarTotais() {
     let totalCredito = 0;
     let totalDebito = 0;
 
-    document.querySelectorAll('[data-tipoacao="Credito"] .Valor').forEach(input => {
-        totalCredito += parseFloat(input.value) || 0;
+    document.querySelectorAll('#contasCredito .valorCredito').forEach(input => {
+      totalCredito += Number(input.value) || 0;
     });
-
-    document.querySelectorAll('[data-tipoacao="Debito"] .Valor').forEach(input => {
-        totalDebito += parseFloat(input.value) || 0;
+    document.querySelectorAll('#contasDebito .valorDebito').forEach(input => {
+      totalDebito += Number(input.value) || 0;
     });
 
     document.getElementById('TotalCredito').value = totalCredito.toFixed(2);
     document.getElementById('TotalDebito').value = totalDebito.toFixed(2);
     document.getElementById('Diferenca').value = (totalCredito - totalDebito).toFixed(2);
-}
+  }
 
-function atualizarDiaSemana() {
-    const dias = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", 
-                 "Quinta-Feira", "Sexta-Feira", "Sábado"];
-    const data = new Date(document.getElementById('Data').value);
-    if (!isNaN(data)) {
-        document.getElementById('DiaSemana').value = dias[data.getDay()];
-    }
-}
-
-function validarLancamento() {
-    const diferenca = parseFloat(document.getElementById('Diferenca').value);
+  function validarLancamento() {
+    const diferenca = Number(document.getElementById('Diferenca').value);
     if (diferenca !== 0) {
-        alert("A diferença entre débitos e créditos deve ser zero!");
-        return false;
+      alert("Erro: Débitos e Créditos devem ser iguais!");
+      return false;
+    }
+    if (!document.getElementById('ContaContabilId').value) {
+      alert("Código do Histórico é obrigatório!");
+      return false;
     }
     return true;
-}
+  }
 
-// Função de gravação alinhada com o C#
-async function gravarLancamento() {
+  async function gravarLancamento() {
     if (!validarLancamento()) return;
-    
-    const lancamento = {
-        Zeramento: document.getElementById('Zeramento').checked,
-        DescComplementar: document.getElementById('DescComplementar').value,
-        DebitosCreditos: []
+
+    const dadosLancamento = {
+      zeramento: document.getElementById('Zeramento').checked,
+      descComplementar: document.getElementById('DescComplementar').value,
+      debitosCreditos: []
     };
 
-    
-
-    // Coleta unificada de débitos/créditos
-    document.querySelectorAll('[data-tipoacao]').forEach(linha => {
-        const tipo = linha.getAttribute('data-tipoacao');
-        const inputs = linha.querySelectorAll('input');
-        lancamento.DebitosCreditos.push({
-            ContaContabilId: parseInt(inputs[0].value),
-            Valor: parseFloat(inputs[3].value),
-            TipoAcao: tipo === 'Credito' ? 1 : 0, // 1 = Crédito, 0 = Débito
-            DescComplementar: inputs[2].value
+    document.querySelectorAll('#contasDebito > .flex.space-x-4').forEach(linha => {
+      const inputs = linha.querySelectorAll('input');
+      if (inputs[0].value && inputs[3].value) {
+        dadosLancamento.debitosCreditos.push({
+          data: new Date().toISOString(),
+          valor: Number(inputs[3].value),
+          tipoAcao: 1,
+          descComplementar: dadosLancamento.descComplementar,
+          contaContabilId: Number(inputs[0].value)
         });
+      }
+    });
+
+    document.querySelectorAll('#contasCredito > .flex.space-x-4').forEach(linha => {
+      const inputs = linha.querySelectorAll('input');
+      if (inputs[0].value && inputs[3].value) {
+        dadosLancamento.debitosCreditos.push({
+          data: new Date().toISOString(),
+          valor: Number(inputs[3].value),
+          tipoAcao: 2,
+          descComplementar: dadosLancamento.descComplementar,
+          contaContabilId: Number(inputs[0].value)
+        });
+      }
     });
 
     try {
-        const response = await fetch('http://localhost:5000/api/LancamentoContabil', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(lancamento)
-        });
+      const res = await fetchComAuth(window.ENDPOINTS.LANCAMENTOS, {
+        method: 'POST',
+        body: JSON.stringify(dadosLancamento)
+      });
 
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.Mensagem || 'Erro na requisição');
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'Erro ao gravar lançamento');
+      }
 
-        alert(result.Mensagem);
-        if(response.ok) limparFormulario();
-        
+      alert('Lançamento gravado com sucesso!');
+      limparFormulario();
     } catch (error) {
-        console.error('Erro:', error);
-        alert(error.message);
+      alert(`Erro: ${error.message}`);
     }
-}
+  }
 
-// Função para limpar formulário
-function limparFormulario() {
-    document.getElementById('Zeramento').checked = false;
-    document.getElementById('DescComplementar').value = '';
-    
-    document.querySelectorAll('[data-tipoacao]').forEach((linha, index) => {
-        if(index > 0) linha.parentNode.remove();
+  function clonarLinha(containerId) {
+    const container = document.getElementById(containerId);
+    const linhas = container.querySelectorAll('.flex.space-x-4');
+    const linhaOriginal = linhas[linhas.length - 1];
+    if (!linhaOriginal) return;
+
+    const novaLinha = linhaOriginal.cloneNode(true);
+    novaLinha.querySelectorAll('input').forEach(input => {
+      if (!input.readOnly) input.value = '';
     });
-    
-    document.querySelectorAll('.ContaContabilId, .Valor').forEach(input => {
-        input.value = '';
+
+    const inputConta = novaLinha.querySelector('input[type="text"]:first-child');
+    if (inputConta) inputConta.addEventListener('change', function () {
+      buscarContaContabil(this);
     });
-    
+
+    const btnListagem = novaLinha.querySelector('button');
+    if (btnListagem) {
+      btnListagem.addEventListener('click', e => {
+        e.preventDefault();
+        listarGenerico('Plano de Contas', window.ENDPOINTS.PLANO_CONTAS);
+      });
+    }
+
+    container.appendChild(novaLinha);
     atualizarTotais();
-}
+  }
 
-// Funções auxiliares
-async function listarLancamentos() {
+  function limparFormulario() {
+    document.querySelectorAll('input:not([readonly]), textarea').forEach(el => el.value = '');
+    document.getElementById('Zeramento').checked = false;
+
+    ['contasCredito', 'contasDebito'].forEach(containerId => {
+      const container = document.getElementById(containerId);
+      const linhas = container.querySelectorAll('.flex.space-x-4');
+      linhas.forEach((linha, idx) => {
+        if (idx > 0) linha.remove();
+      });
+    });
+
+    atualizarTotais();
+  }
+
+  async function listarGenerico(titulo, endpoint) {
     try {
-        const response = await fetch('http://localhost:5000/api/LancamentoContabil', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        });
-        
-        if (!response.ok) throw new Error('Erro ao buscar lançamentos');
-        
-        const lancamentos = await response.json();
-        console.log('Listagem:', lancamentos);
-        alert(`Total de lançamentos: ${lancamentos.length}`);
-        
+      const res = await fetchComAuth(endpoint);
+      if (!res.ok) throw new Error('Erro ao buscar dados');
+      const dados = await res.json();
+      console.table(dados.dados || dados);
+      alert(`${titulo} carregado. Veja o console.`);
     } catch (error) {
-        console.error('Erro:', error);
-        alert("Erro ao listar lançamentos: " + error.message);
+      alert(`Erro: ${error.message}`);
     }
-}
+  }
 
-// Funções não implementadas (mantidas como placeholder)
-function novoApartirDeste() {
-    console.warn('Funcionalidade não implementada');
-}
-
-function editarLancamento() {
-    console.warn('Funcionalidade não implementada');
-}
+  function atualizarDiaSemana() {
+    const dataStr = document.getElementById('Data').value;
+    if (!dataStr) return;
+    const data = new Date(dataStr);
+    const diaSemana = data.toLocaleDateString('pt-BR', { weekday: 'long' });
+    document.getElementById('DiaSemana').value = diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1);
+  }
+});

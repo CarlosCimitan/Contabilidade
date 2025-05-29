@@ -25,10 +25,10 @@ document.getElementById('gravar').addEventListener('click', async function (even
 
     const nomeEmpresa = document.getElementById('nomeEmpresa').value.trim();
     const cnpj = document.getElementById('cnpj').value.trim();
-    const nomeResponsavel = document.getElementById('nomeResponsavel').value.trim();
+
 
     // Validação de campos obrigatórios
-    if (!nomeEmpresa || !cnpj || !nomeResponsavel) {
+    if (!nomeEmpresa || !cnpj) {
         alert('Por favor, preencha todos os campos obrigatórios.');
         return;
     }

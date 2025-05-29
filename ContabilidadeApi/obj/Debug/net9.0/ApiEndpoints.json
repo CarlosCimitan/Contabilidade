@@ -32,6 +32,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
+    "Method": "GetContasContabeis",
+    "RelativePath": "api/ContaContabil/GetContasContabeis",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
+    "Method": "GetContasContabeisById",
+    "RelativePath": "api/ContaContabil/GetContasContabeisById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
     "Method": "CriarEmpresa",
     "RelativePath": "api/Empresa/CriarEmpresa",
@@ -74,6 +100,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.HistoricoController",
+    "Method": "GetHistoricos",
+    "RelativePath": "api/Historico/GetHistoricos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.LancamentoContabilController",
     "Method": "CriarLancamentoContabil",
     "RelativePath": "api/LancamentoContabil/CriarLancamentoContabil",
@@ -87,6 +123,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.LancamentoContabilController",
+    "Method": "GetLancamentosContabeis",
+    "RelativePath": "api/LancamentoContabil/GetLancamentosContabeis",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

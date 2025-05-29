@@ -20,11 +20,24 @@ namespace ContabilidadeApi.Controllers
 
 
         [HttpPost("CriarContaContabil")]
-        public async Task<ActionResult>  CriarContaContabil(CriarContaContabilDto dto)
+        public async Task<ActionResult> CriarContaContabil(CriarContaContabilDto dto)
         {
             var contaContabil = await _contaContabil.CriarContaContaabil(dto);
             return Ok(contaContabil);
 
+        }
+        [HttpGet("GetContasContabeisById")]
+        public async Task<ActionResult> GetContasContabeisById(int id)
+        {
+            var contas = await _contaContabil.GetContaById(id);
+            return Ok(contas);
+        }
+
+        [HttpGet("GetContasContabeis")]
+        public async Task<ActionResult> GetContasContabeis()
+        {
+            var contas = await _contaContabil.GetContas();
+            return Ok(contas);
         }
     }
 }

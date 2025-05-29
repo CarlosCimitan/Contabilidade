@@ -21,10 +21,18 @@ namespace ContabilidadeApi.Controllers
         [HttpPost("CriarLancamentoContabil")]
         public async Task<IActionResult> CriarLancamentoContabil(LancamentoContabilDto lancamentoContabil)
         {
-            
-                var resultado = await _lancamento.CriarLancamentoContabil(lancamentoContabil);
-                return Ok(resultado);
-            
+
+            var resultado = await _lancamento.CriarLancamentoContabil(lancamentoContabil);
+            return Ok(resultado);
+
+        }
+
+        [HttpGet("GetLancamentosContabeis")]
+        public async Task<IActionResult> GetLancamentosContabeis()
+        {
+
+            var lancamentos = await _lancamento.GetLancamentoContabeis();
+            return Ok(lancamentos);
         }
     }
 }
