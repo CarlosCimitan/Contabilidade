@@ -1,4 +1,5 @@
 ﻿using ContabilidadeApi.Dto;
+using ContabilidadeApi.Migrations;
 using ContabilidadeApi.Models;
 using ContabilidadeApi.Services.UsuarioServices;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ namespace ContabilidadeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Aluno,Administrador,AlunoResponsavel")]
+    [Authorize(Roles = "Administrador,AlunoResponsavel")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuario _usuario;
@@ -27,7 +28,7 @@ namespace ContabilidadeApi.Controllers
                 return Ok(usuario);
             
         }
-        [HttpGet("GetUsuarios")]
+        [HttpGet("BuscarUsuariosSemEmpresas")]
          public async Task<ActionResult> ListarUsuariosSemEMpresa()
         {
             var usuarios = await _usuario.ListarUsuariosSemEMpresa();
@@ -44,6 +45,27 @@ namespace ContabilidadeApi.Controllers
         public async Task<IActionResult> EditarEmpresaUsuario(UsuarioEmpresaDto usuarioDto)
         {
             var usuario = await _usuario.EditarEmpresaUsuario(usuarioDto);
+            return Ok(usuario);
+        }
+
+        [HttpPut("RemoverUsuario")]
+        public async Task<ActionResult> ExcluirUsuario(int id)
+        {
+            var usuario = await _usuario.ExcluirUsuario(id);
+            return Ok(usuario);
+        }
+
+        [HttpGet("BuscarUsuarioPorNome")]
+        public async Task<ActionResult> BuscarUsuarioPorNome(string nome)
+        {
+            var usuario = await _usuario.BuscarUsuarioPorNome(nome);
+            return Ok(usuario);
+        }
+
+        [HttpGet("BuscarUsuarioPorEmpresaId")]
+        public async Task<ActionResult> BuscarUsuarioPorEmpresaId(int id)
+        {
+            var usuario = await _usuario.BuscarUsuarioPorEmpresaId(id);
             return Ok(usuario);
         }
 

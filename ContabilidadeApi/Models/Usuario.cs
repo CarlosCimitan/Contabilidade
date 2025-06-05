@@ -7,6 +7,7 @@ namespace ContabilidadeApi.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public CargoEnum Cargo { get; set; }
+        public Boolean Ativo { get; set; } = true;
         public string Email { get; set; }
         public byte[] SenhaHash { get; set; }
         public byte[] SenhaSalt { get; set; }

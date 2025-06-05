@@ -7,5 +7,6 @@ namespace ContabilidadeApi.Services.HistoricoServices
     {
         Task<ResponseModel<HistoricoDto>> CriarHistorico(HistoricoDto dto);
         Task<ResponseModel<List<HistoricoContabil>>> GetHistoricos();
+        Task<ResponseModel<HistoricoContabil>> GetHistoricoById(int id);
     }
 }

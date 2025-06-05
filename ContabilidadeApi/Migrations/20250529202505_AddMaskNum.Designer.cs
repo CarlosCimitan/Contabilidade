@@ -4,6 +4,7 @@ using ContabilidadeApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContabilidadeApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250529202505_AddMaskNum")]
+    partial class AddMaskNum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace ContabilidadeApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -41,9 +41,6 @@ namespace ContabilidadeApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grupo")
                         .HasColumnType("int");
 
                     b.Property<string>("Mascara")
@@ -65,9 +62,6 @@ namespace ContabilidadeApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("saldo")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
@@ -82,9 +76,6 @@ namespace ContabilidadeApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
@@ -110,8 +101,8 @@ namespace ContabilidadeApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -224,9 +215,6 @@ namespace ContabilidadeApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Cargo")
                         .IsRequired()

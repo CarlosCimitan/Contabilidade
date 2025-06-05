@@ -9,5 +9,8 @@ namespace ContabilidadeApi.Services.UsuarioServices
         Task<ResponseModel<List<Usuario>>> ListarUsuariosSemEMpresa();
         Task<ResponseModel<Usuario>> EditarEmpresaUsuario(UsuarioEmpresaDto dto);
         Task<ResponseModel<Usuario>> EditarUsuario(EditarUsuarioDto dto);
+        Task<ResponseModel<Usuario>> ExcluirUsuario(int id);
+        Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorEmpresaId(int id);
+        Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorNome(string nome);
     }
 }

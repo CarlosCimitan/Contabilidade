@@ -3,7 +3,7 @@
     public class HistoricoContabil
     {
         public int Id { get; set; }
-        public int Codigo { get; set; }
+        public Boolean Ativo { get; set; } = true;
         public string Descricao { get; set; }
     }
 }

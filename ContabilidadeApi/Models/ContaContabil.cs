@@ -7,7 +7,11 @@ namespace ContabilidadeApi.Models
         public int Id { get; set; }
         public string Codigo { get; set; } = string.Empty;
         public string Mascara { get; set; } = string.Empty;
+        public long MascaraNumerica { get; set; }
+        public bool Ativo { get; set; } = true;
         public string? Descricao { get; set; }
+        public float saldo { get; set; }
+        public GrupoEnum Grupo { get; set; }
         public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }
         public NaturezaEnum Natureza { get; set; }
