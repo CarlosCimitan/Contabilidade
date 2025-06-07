@@ -23,13 +23,13 @@ namespace ContabilidadeApi.Controllers
         [HttpPost("CriarUsuario")]
         public async Task<IActionResult> CriarUsuario(CriarUsuarioDto usuarioDto)
         {
-            
-                var usuario = await _usuario.CriarUsuario(usuarioDto);
-                return Ok(usuario);
-            
+
+            var usuario = await _usuario.CriarUsuario(usuarioDto);
+            return Ok(usuario);
+
         }
         [HttpGet("BuscarUsuariosSemEmpresas")]
-         public async Task<ActionResult> ListarUsuariosSemEMpresa()
+        public async Task<ActionResult> ListarUsuariosSemEMpresa()
         {
             var usuarios = await _usuario.ListarUsuariosSemEMpresa();
             return Ok(usuarios);
@@ -69,5 +69,12 @@ namespace ContabilidadeApi.Controllers
             return Ok(usuario);
         }
 
+        [HttpGet("GetUsuarios")]
+        public async Task<ActionResult> GetUsuarios()
+        {
+            var usuarios = await _usuario.GetUsuarios();
+            return Ok(usuarios);
+
+        }
     }
 }

@@ -243,6 +243,16 @@
   },
   {
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
+    "Method": "GetUsuarios",
+    "RelativePath": "api/Usuario/GetUsuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "ExcluirUsuario",
     "RelativePath": "api/Usuario/RemoverUsuario",
     "HttpMethod": "PUT",

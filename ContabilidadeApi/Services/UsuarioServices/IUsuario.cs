@@ -12,5 +12,6 @@ namespace ContabilidadeApi.Services.UsuarioServices
         Task<ResponseModel<Usuario>> ExcluirUsuario(int id);
         Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorEmpresaId(int id);
         Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorNome(string nome);
+        Task<ResponseModel<List<Usuario>>> GetUsuarios();
     }
 }
