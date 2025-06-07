@@ -71,7 +71,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
             try
             {
                 var conta = await _context.ContasContabeis
-                    .Where(c => c.Id == id).ToListAsync();
+                    .Where(c => c.Id == id && c.Ativo == true).ToListAsync();
 
                 response.Dados = conta;
                 response.Mensagem = "Conta encontrada com sucesso.";
@@ -89,7 +89,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
             ResponseModel<List<ContaContabil>> response = new ResponseModel<List<ContaContabil>>();
             try
             {
-                var contas = await _context.ContasContabeis.ToListAsync();
+                var contas = await _context.ContasContabeis.Where(c => c.Ativo == true).ToListAsync();
 
                 response.Dados = contas;
                 response.Mensagem = "Contas encontradas com sucesso.";
@@ -101,6 +101,68 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 return response;
             }
 
+        }
+
+        public async Task<ResponseModel<ContaContabil>> EditarContaContabil(EditarContaContabilDto dto)
+        {
+            ResponseModel<ContaContabil> response = new ResponseModel<ContaContabil>();
+            try
+            {
+                var conta = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Id == dto.Id && c.Ativo == true);
+                if (conta == null)
+                {
+                    response.Mensagem = "Conta não encontrada.";
+                    return response;
+                }
+                conta.Codigo = dto.Codigo;
+                conta.Mascara = dto.Mascara;
+                conta.Descricao = dto.Descricao;
+                conta.Situacao = dto.Situacao;
+                conta.TipoConta = dto.TipoConta;
+                conta.Natureza = dto.Natureza;
+
+                _context.ContasContabeis.Update(conta);
+                await _context.SaveChangesAsync();
+
+                response.Dados = conta;
+                response.Mensagem = "Conta editada com sucesso.";
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<ContaContabil>> DeletarContaContabil(int id)
+        {
+            ResponseModel<ContaContabil> response = new ResponseModel<ContaContabil>();
+            try
+            {
+                var conta = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Id == id && c.Ativo == true);
+                if (conta == null)
+                {
+                    response.Mensagem = "Conta não encontrada.";
+                    return response;
+                }
+                
+                conta.Ativo = false;
+
+                _context.ContasContabeis.Update(conta);
+                await _context.SaveChangesAsync();
+                
+                response.Dados = conta;
+                response.Mensagem = "Conta deletada com sucesso.";
+                
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
         }
     }
 }

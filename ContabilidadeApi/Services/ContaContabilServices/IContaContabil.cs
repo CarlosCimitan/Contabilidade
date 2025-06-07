@@ -8,5 +8,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
         Task<ResponseModel<ContaContabil>> CriarContaContaabil(CriarContaContabilDto dto);
         Task<ResponseModel<List<ContaContabil>>> GetContaById(int id);
         Task<ResponseModel<List<ContaContabil>>> GetContas();
+        Task<ResponseModel<ContaContabil>> EditarContaContabil(EditarContaContabilDto dto);
+        Task<ResponseModel<ContaContabil>> DeletarContaContabil(int id);
     }
 }
