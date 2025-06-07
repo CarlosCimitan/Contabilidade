@@ -7,5 +7,7 @@ namespace ContabilidadeApi.Services.EmpresaServices
     {
         Task<ResponseModel<Empresa>> CriarEmpresa(CriarEmpresaDto dto);
         Task<ResponseModel<List<Empresa>>> GetEmpresa();
+        Task<ResponseModel<Empresa>> EditarEmpresa(EditarEmpresaDto dto);
+        Task<ResponseModel<Empresa>> ExcluirEmpresa(int id);
     }
 }

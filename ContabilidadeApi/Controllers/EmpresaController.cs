@@ -21,11 +21,11 @@ namespace ContabilidadeApi.Controllers
         [HttpPost("CriarEmpresa")]
         public async Task<IActionResult> CriarEmpresa(CriarEmpresaDto dto)
         {
-            
-                var empresa = await _empresa.CriarEmpresa(dto);
-                return Ok(empresa);
-            
-            
+
+            var empresa = await _empresa.CriarEmpresa(dto);
+            return Ok(empresa);
+
+
         }
 
         [HttpGet("GetEmpresas")]
@@ -33,6 +33,20 @@ namespace ContabilidadeApi.Controllers
         {
             var empresas = await _empresa.GetEmpresa();
             return Ok(empresas);
+        }
+
+        [HttpPut("EditarEmpresa")]
+        public async Task<IActionResult> EditarEmpresa(EditarEmpresaDto dto)
+        {
+            var empresa = await _empresa.EditarEmpresa(dto);
+            return Ok(empresa);
+        }
+
+        [HttpPut("ExcluirEmpresa")]
+        public async Task<ActionResult> ExcluirEmpresa(int id)
+        {
+            var empresa = await _empresa.ExcluirEmpresa(id);
+            return Ok(empresa);
         }
     }
 }

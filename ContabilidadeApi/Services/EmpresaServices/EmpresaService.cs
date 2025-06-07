@@ -55,20 +55,74 @@ namespace ContabilidadeApi.Services.EmpresaServices
 
             try
             {
-                var empresas = await _context.Empresas.ToListAsync();
+                var empresas = await _context.Empresas.Where(e => e.Ativo == true).ToListAsync();
 
                 resposta.Dados = empresas;
                 resposta.Mensagem = "Empresas encontradas";
 
                 return resposta;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 resposta.Mensagem = ex.Message;
                 return resposta;
             }
+        }
 
+        public async Task<ResponseModel<Empresa>> EditarEmpresa(EditarEmpresaDto dto)
+        {
+            ResponseModel<Empresa> resposta = new ResponseModel<Empresa>();
+            try
+            {
+                var empresa = await _context.Empresas.Where(e => e.Id == dto.Id).FirstOrDefaultAsync();
+                if (empresa == null)
+                {
+                    resposta.Mensagem = "Empresa não encontrada";
+                    return resposta;
+                }
+                empresa.CNPJ = dto.CNPJ;
+                empresa.RazaoSocial = dto.RazaoSocial;
 
+                _context.Empresas.Update(empresa);
+                await _context.SaveChangesAsync();
+
+                resposta.Dados = empresa;
+                resposta.Mensagem = "Empresa editada com sucesso";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                return resposta;
+            }
+        }
+
+        public async Task<ResponseModel<Empresa>> ExcluirEmpresa(int id)
+        {
+            ResponseModel<Empresa> resposta = new ResponseModel<Empresa>();
+            try
+            {
+                var empresa = await _context.Empresas.Where(e => e.Id == id).FirstOrDefaultAsync();
+                if (empresa == null)
+                {
+                    resposta.Mensagem = "Empresa não encontrada";
+                    return resposta;
+                }
+
+                empresa.Ativo = false;
+                
+                _context.Empresas.Update(empresa);
+                await _context.SaveChangesAsync();
+                
+                resposta.Dados = empresa;
+                resposta.Mensagem = "Empresa excluída com sucesso";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                return resposta;
+            }
         }
     }
 }
