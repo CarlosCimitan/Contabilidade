@@ -44,7 +44,7 @@ namespace ContabilidadeApi.Services.HistoricoServices
             var response = new ResponseModel<List<HistoricoContabil>>();
             try
             {
-                var historicos = await _context.HistoricosContabeis.ToListAsync();
+                var historicos = await _context.HistoricosContabeis.Where(h => h.Ativo == true).ToListAsync();
                 response.Dados = historicos;
                 response.Mensagem = "Históricos obtidos com sucesso.";
                 return response;
@@ -61,7 +61,7 @@ namespace ContabilidadeApi.Services.HistoricoServices
             var response = new ResponseModel<HistoricoContabil>();
             try
             {
-                var historico = await _context.HistoricosContabeis.FirstOrDefaultAsync(h => h.Id == id);
+                var historico = await _context.HistoricosContabeis.FirstOrDefaultAsync(h => h.Id == id && h.Ativo == true);
                 if (historico == null)
                 {
                     response.Mensagem = "Histórico não encontrado.";
@@ -69,6 +69,64 @@ namespace ContabilidadeApi.Services.HistoricoServices
                 }
                 response.Dados = historico;
                 response.Mensagem = "Histórico obtido com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<HistoricoContabil>> EditarHistorico(EditarHistoricoDto dto)
+        {
+            var response = new ResponseModel<HistoricoContabil>();
+            try
+            {
+                var historico = await _context.HistoricosContabeis.FirstOrDefaultAsync(h => h.Id == dto.Id && h.Ativo == true);
+                if (historico == null)
+                {
+                    response.Mensagem = "Histórico não encontrado.";
+                    return response;
+                }
+
+                historico.Descricao = dto.Descricao;
+
+                _context.HistoricosContabeis.Update(historico);
+                await _context.SaveChangesAsync();
+
+                response.Dados = historico;
+                response.Mensagem = "Histórico editado com sucesso.";
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<HistoricoContabil>> DeletarHistorico(int id)
+        {
+            var response = new ResponseModel<HistoricoContabil>();
+            try
+            {
+                var historico = await _context.HistoricosContabeis.FirstOrDefaultAsync(h => h.Id == id && h.Ativo == true);
+                if (historico == null)
+                {
+                    response.Mensagem = "Histórico não encontrado.";
+                    return response;
+                }
+
+                historico.Ativo = false;
+
+                _context.HistoricosContabeis.Update(historico);
+                await _context.SaveChangesAsync();
+
+                response.Dados = historico;
+                response.Mensagem = "Histórico deletado com sucesso.";
+
                 return response;
             }
             catch (Exception ex)

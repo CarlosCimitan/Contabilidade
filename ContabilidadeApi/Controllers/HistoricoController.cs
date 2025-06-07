@@ -39,5 +39,18 @@ namespace ContabilidadeApi.Controllers
             var historico = await _historico.GetHistoricoById(id);
             return Ok(historico);
         }
+
+        [HttpPut("EditarHistorico")]
+        public async Task<IActionResult> EditarHistorico(EditarHistoricoDto dto)
+        {
+            var response = await _historico.EditarHistorico(dto);
+            return Ok(response);
+        }
+        [HttpPut("DeletarHistorico")]
+        public async Task<IActionResult> DeletarHistorico(int id)
+        {
+            var response = await _historico.DeletarHistorico(id);
+            return Ok(response);
+        }
     }
 }
