@@ -90,6 +90,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
+    "Method": "GetContasOrdenadasPorMascaraNumerica",
+    "RelativePath": "api/ContaContabil/GetContasOrdenadasPorMascaraNumerica",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
     "Method": "CriarEmpresa",
     "RelativePath": "api/Empresa/CriarEmpresa",

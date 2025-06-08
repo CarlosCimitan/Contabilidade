@@ -5,7 +5,6 @@ namespace ContabilidadeApi.Models
     public class ContaContabil
     {
         public int Id { get; set; }
-        public string Codigo { get; set; } = string.Empty;
         public string Mascara { get; set; } = string.Empty;
         public long MascaraNumerica { get; set; }
         public bool Ativo { get; set; } = true;

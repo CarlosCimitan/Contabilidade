@@ -29,10 +29,9 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
                 var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
 
-                var codigo = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Codigo == dto.Codigo);
                 var mascara = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Mascara == dto.Mascara);
 
-                if (codigo != null && mascara != null)
+                if ( mascara != null)
                 {
                     response.Mensagem = "Já existe uma conta com esse código.";
                     return response;
@@ -40,8 +39,8 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
                 var contaContabil = new ContaContabil
                 {
-                    Codigo = dto.Codigo,
                     Mascara = dto.Mascara,
+                    MascaraNumerica = long.Parse(dto.Mascara.Replace(".","")),
                     Descricao = dto.Descricao,
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
@@ -114,7 +113,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     response.Mensagem = "Conta não encontrada.";
                     return response;
                 }
-                conta.Codigo = dto.Codigo;
+
                 conta.Mascara = dto.Mascara;
                 conta.Descricao = dto.Descricao;
                 conta.Situacao = dto.Situacao;
@@ -164,5 +163,28 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 return response;
             }
         }
+
+        public async Task<ResponseModel<List<ContaContabil>>> GetContasOrdenadasPorMascaraNumerica()
+        {
+            ResponseModel<List<ContaContabil>> response = new ResponseModel<List<ContaContabil>>();
+
+            try
+            {
+                var contas = await _context.ContasContabeis
+                    .Where(c => c.Ativo == true)
+                    .OrderBy(c => c.MascaraNumerica)
+                    .ToListAsync();
+
+                response.Dados = contas;
+                response.Mensagem = "Contas ordenadas por máscara numérica.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
     }
 }

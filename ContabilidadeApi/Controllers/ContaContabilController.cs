@@ -52,5 +52,12 @@ namespace ContabilidadeApi.Controllers
             var contaContabil = await _contaContabil.DeletarContaContabil(id);
             return Ok(contaContabil);
         }
+
+        [HttpGet("GetContasOrdenadasPorMascaraNumerica")]
+        public async Task<ActionResult> GetContasOrdenadasPorMascaraNumerica()
+        {
+            var contas = await _contaContabil.GetContasOrdenadasPorMascaraNumerica();
+            return Ok(contas);
+        }
     }
 }
