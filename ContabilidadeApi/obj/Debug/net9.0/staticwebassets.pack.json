@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Eduardo\\OneDrive\\Área de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\wwwroot\\relatorios\\Relatorio_Diario_20250611.pdf",
+      "PackagePath": "staticwebassets\\relatorios\\Relatorio_Diario_20250611.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\OneDrive\\Área de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\wwwroot\\relatorios\\Relatorio_Diario_20250611.xlsx",
+      "PackagePath": "staticwebassets\\relatorios\\Relatorio_Diario_20250611.xlsx"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\OneDrive\\Área de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\wwwroot\\relatorios\\Relatorio_PDF_20250601_a_20250611.pdf",
+      "PackagePath": "staticwebassets\\relatorios\\Relatorio_PDF_20250601_a_20250611.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ContabilidadeApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ContabilidadeApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.ContabilidadeApi.props",
+      "PackagePath": "build\\ContabilidadeApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.ContabilidadeApi.props",
+      "PackagePath": "buildMultiTargeting\\ContabilidadeApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.ContabilidadeApi.props",
+      "PackagePath": "buildTransitive\\ContabilidadeApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

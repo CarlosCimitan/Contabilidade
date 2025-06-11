@@ -258,6 +258,68 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioDiario",
+    "RelativePath": "api/Relatorio/GerarRelatorioDiarioPDF",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioDiarioXLS",
+    "RelativePath": "api/Relatorio/GerarRelatorioDiarioXls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioMensalPDF",
+    "RelativePath": "api/Relatorio/GerarRelatorioMensalPDF",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dataInicio",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "dataFim",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioMensalXLS",
+    "RelativePath": "api/Relatorio/GerarRelatorioMensalXls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dataInicio",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "dataFim",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "BuscarUsuarioPorEmpresaId",
     "RelativePath": "api/Usuario/BuscarUsuarioPorEmpresaId",

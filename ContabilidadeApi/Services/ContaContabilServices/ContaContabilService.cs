@@ -45,7 +45,8 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
                     Natureza = dto.Natureza,
-                    EmpresaId = int.Parse(empresaId)
+                    EmpresaId = int.Parse(empresaId),
+                    Grupo = dto.Grupo
 
                 };
 
@@ -119,6 +120,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 conta.Situacao = dto.Situacao;
                 conta.TipoConta = dto.TipoConta;
                 conta.Natureza = dto.Natureza;
+                conta.Grupo = dto.Grupo;
 
                 _context.ContasContabeis.Update(conta);
                 await _context.SaveChangesAsync();

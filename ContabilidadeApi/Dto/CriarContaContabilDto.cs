@@ -9,7 +9,8 @@ namespace ContabilidadeApi.Dto
         public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }
         public NaturezaEnum Natureza { get; set; }
- 
+        public GrupoEnum Grupo { get; set; }
+
 
 
 

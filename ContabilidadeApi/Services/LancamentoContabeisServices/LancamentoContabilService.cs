@@ -34,7 +34,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     return response;
                 }
 
-                // Validação créditos x débitos
+             
                 double somaCreditos = dto.DebitosCreditos
                     .Where(dc => dc.TipoAcao == TipoOperacaoEnum.Credito)
                     .Sum(dc => dc.Valor);
@@ -53,7 +53,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
                 var lancamento = new LancamentoContabil
                 {
-                    Zeramento = dto.Zeramento,
+                    Zeramento = false,
                     DescComplementar = dto.DescComplementar,
                     EmpresaId = empresaIdInt,
                     UsuarioId = int.Parse(usuarioId),
@@ -61,86 +61,26 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     DebitosCreditos = new List<LancamentoDebitoCredito>()
                 };
 
-                // Se for zeramento, faz lançamento especial
-                if (dto.Zeramento)
+                foreach (var dc in dto.DebitosCreditos)
                 {
-                    // Busca conta ARE da empresa
-                    var contaAre = await _context.ContasContabeis
-                        .FirstOrDefaultAsync(c => c.EmpresaId == empresaIdInt );
-
-                    if (contaAre == null)
+                    var conta = await _context.ContasContabeis.FindAsync(dc.ContaContabilId);
+                    if (conta == null)
                     {
-                        response.Mensagem = "Conta ARE para zeramento não cadastrada.";
+                        response.Mensagem = $"Conta contábil com ID {dc.ContaContabilId} não encontrada.";
                         return response;
                     }
 
-                    // Somar os saldos das contas de resultado (exemplo: grupo resultado, pode ajustar conforme seu GrupoEnum)
-                    var contasResultado = await _context.ContasContabeis
-                        .Where(c => c.EmpresaId == empresaIdInt && c.Grupo == GrupoEnum.contaResultado)
-                        .ToListAsync();
+                    AtualizarSaldo(conta, dc.TipoAcao, dc.Valor);
+                    _context.ContasContabeis.Update(conta);
 
-                    foreach (var conta in contasResultado)
+                    lancamento.DebitosCreditos.Add(new LancamentoDebitoCredito
                     {
-                        if (conta.saldo == 0)
-                            continue;
-
-                        // Cria lançamentos para transferir saldo para ARE (inverte o saldo para zerar)
-                        var valorParaTransferir = -conta.saldo;
-
-                        var tipoAcao = valorParaTransferir > 0
-                            ? TipoOperacaoEnum.Debito
-                            : TipoOperacaoEnum.Credito;
-
-                        lancamento.DebitosCreditos.Add(new LancamentoDebitoCredito
-                        {
-                            ContaContabilId = conta.Id,
-                            Valor = Math.Abs(valorParaTransferir),
-                            TipoAcao = tipoAcao,
-                            Data = DateTime.Now,
-                            DescComplementar = "Zeramento da conta resultado"
-                        });
-
-                        // Lançamento inverso na conta ARE
-                        lancamento.DebitosCreditos.Add(new LancamentoDebitoCredito
-                        {
-                            ContaContabilId = contaAre.Id,
-                            Valor = Math.Abs(valorParaTransferir),
-                            TipoAcao = tipoAcao == TipoOperacaoEnum.Debito ? TipoOperacaoEnum.Credito : TipoOperacaoEnum.Debito,
-                            Data = DateTime.Now,
-                            DescComplementar = "Compensação zeramento ARE"
-                        });
-
-                        // Atualiza saldo das contas localmente
-                        AtualizarSaldo(conta, tipoAcao, Math.Abs(valorParaTransferir));
-                        AtualizarSaldo(contaAre, tipoAcao == TipoOperacaoEnum.Debito ? TipoOperacaoEnum.Credito : TipoOperacaoEnum.Debito, Math.Abs(valorParaTransferir));
-                        _context.ContasContabeis.Update(conta);
-                        _context.ContasContabeis.Update(contaAre);
-                    }
-                }
-                else
-                {
-                    // Lançamento normal - adiciona conforme o DTO
-                    foreach (var dc in dto.DebitosCreditos)
-                    {
-                        var conta = await _context.ContasContabeis.FindAsync(dc.ContaContabilId);
-                        if (conta == null)
-                        {
-                            response.Mensagem = $"Conta contábil com ID {dc.ContaContabilId} não encontrada.";
-                            return response;
-                        }
-
-                        AtualizarSaldo(conta, dc.TipoAcao, dc.Valor);
-                        _context.ContasContabeis.Update(conta);
-
-                        lancamento.DebitosCreditos.Add(new LancamentoDebitoCredito
-                        {
-                            Data = dc.Data,
-                            Valor = dc.Valor,
-                            TipoAcao = dc.TipoAcao,
-                            DescComplementar = dc.DescComplementar,
-                            ContaContabilId = dc.ContaContabilId
-                        });
-                    }
+                        Data = dc.Data,
+                        Valor = dc.Valor,
+                        TipoAcao = dc.TipoAcao,
+                        DescComplementar = dc.DescComplementar,
+                        ContaContabilId = dc.ContaContabilId
+                    });
                 }
 
                 await _context.LancamentosContabeis.AddAsync(lancamento);
@@ -156,8 +96,8 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                 return response;
             }
         }
-            
-        
+
+
 
         public async Task<ResponseModel<List<LancamentoContabil>>> GetLancamentoContabeis()
         {

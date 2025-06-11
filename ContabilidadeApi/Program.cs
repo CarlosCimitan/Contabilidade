@@ -4,6 +4,7 @@ using ContabilidadeApi.Services.ContaContabilServices;
 using ContabilidadeApi.Services.EmpresaServices;
 using ContabilidadeApi.Services.HistoricoServices;
 using ContabilidadeApi.Services.LancamentoContabeisServices;
+using ContabilidadeApi.Services.RelatorioServices;
 using ContabilidadeApi.Services.SenhaService;
 using ContabilidadeApi.Services.UsuarioServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,8 +35,11 @@ builder.Services.AddScoped<IEmpresa,EmpresaService>();
 builder.Services.AddScoped<IContaContabil,ContaContabilService>();
 builder.Services.AddScoped<ILancamentoContabil,LancamentoContabilService>();
 builder.Services.AddScoped<IHistorico, HistoricoService>();
+builder.Services.AddScoped<IRelatorio, RelatorioService>();
 
 builder.Services.AddHttpContextAccessor();
+
+QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -97,6 +101,8 @@ if (app.Environment.IsDevelopment())
 
 
 }
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 

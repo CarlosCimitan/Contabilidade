@@ -23,7 +23,7 @@ namespace ContabilidadeApi.Services.AuthServices
             try
             {
                 var usuario = await _context.Usuarios
-                    .FirstOrDefaultAsync(x => x.Email == dto.Email );
+                    .FirstOrDefaultAsync(x => x.Email == dto.Email && x.Ativo == true);
 
                 if (usuario == null) 
                 {
