@@ -8,10 +8,12 @@ namespace ContabilidadeApi.Services.HistoricoServices
     public class HistoricoService : IHistorico
     {
         private readonly AppDbContext _context;
+        public IHttpContextAccessor _httpContextAccessor { get; }
 
-        public HistoricoService(AppDbContext context)
+        public HistoricoService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<ResponseModel<HistoricoDto>> CriarHistorico(HistoricoDto dto)
@@ -19,9 +21,25 @@ namespace ContabilidadeApi.Services.HistoricoServices
             var response = new ResponseModel<HistoricoDto>();
             try
             {
+                var user = _httpContextAccessor.HttpContext?.User;
+
+                var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+
+                int empresaIdInt = int.Parse(empresaId);
+
+                var codigo = await _context.HistoricosContabeis
+                    .Where(h => h.Codigo == dto.Codigo && h.EmpresaId == empresaIdInt && h.Ativo == true)
+                    .FirstOrDefaultAsync();
+
+                if (codigo != null)
+                {
+                    response.Mensagem = "Já existe um histórico com esse código.";
+                    return response;
+                }
 
                 HistoricoContabil historico = new HistoricoContabil
                 {
+                    Codigo = dto.Codigo,
                     Descricao = dto.Descricao
                 };
 

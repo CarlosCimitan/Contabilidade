@@ -34,5 +34,12 @@ namespace ContabilidadeApi.Controllers
             var lancamentos = await _lancamento.GetLancamentoContabeis();
             return Ok(lancamentos);
         }
+
+        [HttpPut("DeletarLancamentoContabil/{id}")]
+        public async Task<IActionResult> DeletarLancamentoContabil(int id)
+        {
+            var resultado = await _lancamento.DeletarLancamentoContabil(id);
+            return Ok(resultado);
+        }
     }
 }

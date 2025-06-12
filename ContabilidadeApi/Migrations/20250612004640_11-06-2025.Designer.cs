@@ -4,6 +4,7 @@ using ContabilidadeApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContabilidadeApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612004640_11-06-2025")]
+    partial class _11062025
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +35,6 @@ namespace ContabilidadeApi.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
@@ -56,6 +56,12 @@ namespace ContabilidadeApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RelatorioContasId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RelatorioId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Situacao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,6 +76,10 @@ namespace ContabilidadeApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
+
+                    b.HasIndex("RelatorioContasId");
+
+                    b.HasIndex("RelatorioId");
 
                     b.ToTable("ContasContabeis");
                 });
@@ -112,19 +122,11 @@ namespace ContabilidadeApi.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("EmpresaId");
 
                     b.ToTable("HistoricosContabeis");
                 });
@@ -136,12 +138,6 @@ namespace ContabilidadeApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
@@ -225,8 +221,6 @@ namespace ContabilidadeApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaContabilId");
-
                     b.ToTable("RelatoriosContas");
                 });
 
@@ -282,18 +276,18 @@ namespace ContabilidadeApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Empresa");
-                });
+                    b.HasOne("ContabilidadeApi.Models.RelatorioContas", null)
+                        .WithMany("ContaContabil")
+                        .HasForeignKey("RelatorioContasId");
 
-            modelBuilder.Entity("ContabilidadeApi.Models.HistoricoContabil", b =>
-                {
-                    b.HasOne("ContabilidadeApi.Models.Empresa", "Empresa")
+                    b.HasOne("ContabilidadeApi.Models.RelatorioContas", "Relatorio")
                         .WithMany()
-                        .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RelatorioId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Empresa");
+
+                    b.Navigation("Relatorio");
                 });
 
             modelBuilder.Entity("ContabilidadeApi.Models.LancamentoContabil", b =>
@@ -338,17 +332,6 @@ namespace ContabilidadeApi.Migrations
                     b.Navigation("LancamentoContabil");
                 });
 
-            modelBuilder.Entity("ContabilidadeApi.Models.RelatorioContas", b =>
-                {
-                    b.HasOne("ContabilidadeApi.Models.ContaContabil", "ContaContabil")
-                        .WithMany()
-                        .HasForeignKey("ContaContabilId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContaContabil");
-                });
-
             modelBuilder.Entity("ContabilidadeApi.Models.Usuario", b =>
                 {
                     b.HasOne("ContabilidadeApi.Models.Empresa", "Empresa")
@@ -375,6 +358,11 @@ namespace ContabilidadeApi.Migrations
             modelBuilder.Entity("ContabilidadeApi.Models.LancamentoContabil", b =>
                 {
                     b.Navigation("DebitosCreditos");
+                });
+
+            modelBuilder.Entity("ContabilidadeApi.Models.RelatorioContas", b =>
+                {
+                    b.Navigation("ContaContabil");
                 });
 
             modelBuilder.Entity("ContabilidadeApi.Models.Usuario", b =>

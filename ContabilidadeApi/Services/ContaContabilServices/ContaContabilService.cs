@@ -37,9 +37,20 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     return response;
                 }
 
-                var contaContabil = new ContaContabil
+                int empresaIdInt = int.Parse(empresaId);
+
+                var codigo = await _context.ContasContabeis.Where(c => c.Codigo == dto.Codigo && c.EmpresaId == empresaIdInt && c.Ativo == true)
+                    .FirstOrDefaultAsync();
+                if (codigo != null)
+                {
+                    response.Mensagem = "Já existe uma conta com esse código numérico.";
+                    return response;
+                }
+
+                    var contaContabil = new ContaContabil
                 {
                     Mascara = dto.Mascara,
+                    Codigo = dto.Codigo,
                     MascaraNumerica = long.Parse(dto.Mascara.Replace(".","")),
                     Descricao = dto.Descricao,
                     Situacao = dto.Situacao,

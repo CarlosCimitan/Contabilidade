@@ -51,9 +51,19 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
                 var empresaIdInt = int.Parse(empresaId);
 
-                var lancamento = new LancamentoContabil
+                var codigo = await _context.HistoricosContabeis
+                   .Where(h => h.Codigo == dto.Codigo && h.EmpresaId == empresaIdInt && h.Ativo == true)
+                   .FirstOrDefaultAsync();
+
+                if (codigo != null)
                 {
+                    response.Mensagem = "Já existe um lançamento contábil com esse código.";
+                    return response;
+                }
+
+                    var lancamento = new LancamentoContabil{
                     Zeramento = false,
+                    Codigo = dto.Codigo,
                     DescComplementar = dto.DescComplementar,
                     EmpresaId = empresaIdInt,
                     UsuarioId = int.Parse(usuarioId),
@@ -105,7 +115,8 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
             try
             {
                 var lancamentos = await _context.LancamentosContabeis
-                    .AsNoTracking() 
+                    .AsNoTracking()
+                    .Where(l => l.Ativo == true)
                     .Include(l => l.DebitosCreditos!) 
                     .ThenInclude(dc => dc.ContaContabil)
                     .Include(l => l.Usuario)
@@ -115,6 +126,37 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
                 response.Dados = lancamentos;
                 response.Mensagem = "Lançamentos contábeis recuperados com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.InnerException?.Message ?? ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<LancamentoContabil>> DeletarLancamentoContabil(int id)
+        {
+            var response = new ResponseModel<LancamentoContabil>();
+
+            try
+            {
+                var lancamento = await _context.LancamentosContabeis
+                    .FirstOrDefaultAsync(l => l.Id == id && l.Ativo == true);
+
+                if (lancamento == null)
+                {
+                    response.Mensagem = "Lançamento contábil não encontrado ou já está inativo.";
+                    return response;
+                }
+
+                lancamento.Ativo = false;
+
+                _context.LancamentosContabeis.Update(lancamento);
+                await _context.SaveChangesAsync();
+
+                response.Dados = lancamento;
+                response.Mensagem = "Lançamento contábil excluído (inativado) com sucesso.";
                 return response;
             }
             catch (Exception ex)

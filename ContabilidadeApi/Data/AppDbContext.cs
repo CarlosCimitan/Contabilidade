@@ -19,6 +19,8 @@ namespace ContabilidadeApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.Cargo)
                 .HasConversion<string>();

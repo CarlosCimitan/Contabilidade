@@ -6,6 +6,7 @@ namespace ContabilidadeApi.Dto
     {
         public string Mascara { get; set; } 
         public string? Descricao { get; set; }
+        public int Codigo { get; set; }
         public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }
         public NaturezaEnum Natureza { get; set; }
