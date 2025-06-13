@@ -100,6 +100,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
+    "Method": "GetContasPorTipoRelatorio",
+    "RelativePath": "api/ContaContabil/GetContasPorTipoRelatorio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tipoRelatorio",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
+    "Method": "TransferirSaldoDREParaConta",
+    "RelativePath": "api/ContaContabil/TransferirSaldoDREParaConta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contaDestinoId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
     "Method": "CriarEmpresa",
     "RelativePath": "api/Empresa/CriarEmpresa",
@@ -242,6 +274,22 @@
       {
         "Name": "lancamentoContabil",
         "Type": "ContabilidadeApi.Dto.LancamentoContabilDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.LancamentoContabilController",
+    "Method": "DeletarLancamentoContabil",
+    "RelativePath": "api/LancamentoContabil/DeletarLancamentoContabil/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

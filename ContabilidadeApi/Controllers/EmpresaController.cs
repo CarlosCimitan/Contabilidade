@@ -8,7 +8,7 @@ namespace ContabilidadeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Aluno,Administrador,AlunoResponsavel")]
+    [Authorize(Roles = "Administrador")]
     public class EmpresaController : ControllerBase
     {
         private readonly IEmpresa _empresa;

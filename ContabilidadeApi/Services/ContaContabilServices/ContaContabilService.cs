@@ -1,4 +1,5 @@
 ﻿
+using ContabilidadeApi.CamposEnum;
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
@@ -176,6 +177,92 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 return response;
             }
         }
+
+        public async Task<ResponseModel<List<ContaContabil>>> TransferirSaldoDREParaConta(int contaDestinoId)
+        {
+            ResponseModel<List<ContaContabil>> response = new();
+
+            try
+            {
+                var contaDestino = await _context.ContasContabeis
+                    .FirstOrDefaultAsync(c => c.Id == contaDestinoId && c.Ativo == true);
+
+                if (contaDestino == null)
+                {
+                    response.Mensagem = "Conta de destino não encontrada.";
+                    return response;
+                }
+
+                // Busca contas associadas ao relatório DRE
+                var contasDRE = await _context.RelatoriosContas
+                    .Where(rc => rc.Relatorio == RelatorioEnum.DRE)
+                    .Select(rc => rc.ContaContabil)
+                    .Where(c => c.Ativo == true && c.Id != contaDestinoId)
+                    .ToListAsync();
+
+                if (!contasDRE.Any())
+                {
+                    response.Mensagem = "Nenhuma conta DRE encontrada para transferir saldo.";
+                    return response;
+                }
+
+                double totalTransferido = 0;
+
+                foreach (var conta in contasDRE)
+                {
+                    if (conta.Saldo != 0)
+                    {
+                        totalTransferido += conta.Saldo;
+                        conta.Saldo = 0; // zera a conta
+                        _context.ContasContabeis.Update(conta);
+                    }
+                }
+
+                contaDestino.Saldo += totalTransferido;
+                _context.ContasContabeis.Update(contaDestino);
+
+                await _context.SaveChangesAsync();
+
+                response.Dados = contasDRE.Append(contaDestino).ToList();
+                response.Mensagem = $"Saldo total de {totalTransferido:C} transferido para a conta destino com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+
+
+        public async Task<ResponseModel<List<ContaContabil>>> GetContasPorTipoRelatorio(RelatorioEnum tipoRelatorio)
+        {
+            ResponseModel<List<ContaContabil>> response = new ResponseModel<List<ContaContabil>>();
+
+            try
+            {
+                var contas = await _context.RelatoriosContas
+                    .Where(rc => rc.Relatorio == tipoRelatorio)
+                    .Select(rc => rc.ContaContabil)
+                    .Where(c => c.Ativo == true)
+                    .Distinct()
+                    .ToListAsync();
+
+                response.Dados = contas;
+                response.Mensagem = contas.Count > 0
+                    ? "Contas encontradas com sucesso."
+                    : "Nenhuma conta associada a esse tipo de relatório.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+
 
         public async Task<ResponseModel<List<ContaContabil>>> GetContasOrdenadasPorMascaraNumerica()
         {

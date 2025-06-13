@@ -173,13 +173,13 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
             if (tipo == TipoOperacaoEnum.Debito)
             {
-                conta.saldo += (conta.Natureza == NaturezaEnum.Devedora)
+                conta.Saldo += (conta.Natureza == NaturezaEnum.Devedora)
                     ? valorFloat
                     : -valorFloat;
             }
             else if (tipo == TipoOperacaoEnum.Credito)
             {
-                conta.saldo += (conta.Natureza == NaturezaEnum.Credora)
+                conta.Saldo += (conta.Natureza == NaturezaEnum.Credora)
                     ? valorFloat
                     : -valorFloat;
             }

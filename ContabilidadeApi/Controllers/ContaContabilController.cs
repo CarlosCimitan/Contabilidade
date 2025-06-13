@@ -1,4 +1,5 @@
-﻿using ContabilidadeApi.Dto;
+﻿using ContabilidadeApi.CamposEnum;
+using ContabilidadeApi.Dto;
 using ContabilidadeApi.Services.ContaContabilServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -57,6 +58,19 @@ namespace ContabilidadeApi.Controllers
         public async Task<ActionResult> GetContasOrdenadasPorMascaraNumerica()
         {
             var contas = await _contaContabil.GetContasOrdenadasPorMascaraNumerica();
+            return Ok(contas);
+        }
+        [HttpGet("GetContasPorTipoRelatorio")]
+        public async Task<ActionResult> GetContasPorTipoRelatorio(RelatorioEnum tipoRelatorio)
+        {
+            var contas = await _contaContabil.GetContasPorTipoRelatorio(tipoRelatorio);
+            return Ok(contas);
+        }
+
+        [HttpPost("TransferirSaldoDREParaConta")]
+        public async Task<ActionResult> TransferirSaldoDREParaConta(int contaDestinoId)
+        {
+            var contas = await _contaContabil.TransferirSaldoDREParaConta(contaDestinoId);
             return Ok(contas);
         }
     }
