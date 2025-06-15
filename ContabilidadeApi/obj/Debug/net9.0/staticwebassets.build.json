@@ -1,20 +1,12 @@
 {
   "Version": 1,
-  "Hash": "/wYuK4dZ5Beqw8iIKyscBm5oe3L2whYCMZREhRyazWQ=",
+  "Hash": "kwZA1QdDGZZ0R1IxSShM9QBBm1aNuZ5MZ4d4w+uDQGo=",
   "Source": "ContabilidadeApi",
   "BasePath": "_content/ContabilidadeApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "ContabilidadeApi\\wwwroot",
-      "Source": "ContabilidadeApi",
-      "ContentRoot": "C:\\Users\\Eduardo\\OneDrive\\Área de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\wwwroot\\",
-      "BasePath": "_content/ContabilidadeApi",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": [],
   "Endpoints": []
 }

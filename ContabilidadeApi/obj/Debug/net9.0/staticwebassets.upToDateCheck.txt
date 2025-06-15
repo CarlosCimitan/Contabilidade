@@ -1,3 +1,0 @@
-wwwroot\relatorios\Relatorio_Diario_20250611.pdf
-wwwroot\relatorios\Relatorio_Diario_20250611.xlsx
-wwwroot\relatorios\Relatorio_PDF_20250601_a_20250611.pdf
