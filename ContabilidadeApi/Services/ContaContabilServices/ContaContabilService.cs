@@ -3,6 +3,7 @@ using ContabilidadeApi.CamposEnum;
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
+using ContabilidadeApi.Services.CodigoServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
@@ -11,12 +12,15 @@ namespace ContabilidadeApi.Services.ContaContabilServices
     public class ContaContabilService : IContaContabil
     {
         private readonly AppDbContext _context;
-        public IHttpContextAccessor _httpContextAccessor { get; }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICodigoService _codigoService;
 
-        public ContaContabilService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+
+        public ContaContabilService(AppDbContext context, IHttpContextAccessor httpContextAccessor, ICodigoService codigoService)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _codigoService = codigoService;
         }
 
 
@@ -30,29 +34,34 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
                 var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
 
-                var mascara = await _context.ContasContabeis.FirstOrDefaultAsync(c => c.Mascara == dto.Mascara);
+                var mascaraExiste = await _context.ContasContabeis.AnyAsync(c => c.Ativo && c.Mascara == dto.Mascara);
 
-                if ( mascara != null)
+
+                if (mascaraExiste)
                 {
                     response.Mensagem = "Já existe uma conta com esse código.";
                     return response;
                 }
 
+
                 int empresaIdInt = int.Parse(empresaId);
 
-                var codigo = await _context.ContasContabeis.Where(c => c.Codigo == dto.Codigo && c.EmpresaId == empresaIdInt && c.Ativo == true)
-                    .FirstOrDefaultAsync();
-                if (codigo != null)
+                var proximoCodigo = await _codigoService.GerarProximoCodigoAsync<ContaContabil>(empresaIdInt);
+
+                var codigoExise = await _context.ContasContabeis.AnyAsync(c => c.Ativo && c.EmpresaId == empresaIdInt && c.Codigo == proximoCodigo);
+
+                if (codigoExise)
                 {
-                    response.Mensagem = "Já existe uma conta com esse código numérico.";
+                    response.Mensagem = $"Já existe uma conta com o código {proximoCodigo} para a empresa {empresaIdInt}.";
                     return response;
                 }
 
-                    var contaContabil = new ContaContabil
+                var contaContabil = new ContaContabil
                 {
                     Mascara = dto.Mascara,
-                    Codigo = dto.Codigo,
-                    MascaraNumerica = long.Parse(dto.Mascara.Replace(".","")),
+                    Codigo = proximoCodigo,
+                    Grau = dto.Grau,
+                    MascaraNumerica = long.Parse(dto.Mascara.Replace(".", "").PadRight(9,'0')),
                     Descricao = dto.Descricao,
                     Situacao = dto.Situacao,
                     TipoConta = dto.TipoConta,
@@ -160,15 +169,15 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     response.Mensagem = "Conta não encontrada.";
                     return response;
                 }
-                
+
                 conta.Ativo = false;
 
                 _context.ContasContabeis.Update(conta);
                 await _context.SaveChangesAsync();
-                
+
                 response.Dados = conta;
                 response.Mensagem = "Conta deletada com sucesso.";
-                
+
                 return response;
             }
             catch (Exception ex)
@@ -193,7 +202,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     return response;
                 }
 
-                // Busca contas associadas ao relatório DRE
+
                 var contasDRE = await _context.RelatoriosContas
                     .Where(rc => rc.Relatorio == RelatorioEnum.DRE)
                     .Select(rc => rc.ContaContabil)

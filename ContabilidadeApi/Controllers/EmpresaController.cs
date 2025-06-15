@@ -42,7 +42,7 @@ namespace ContabilidadeApi.Controllers
             return Ok(empresa);
         }
 
-        [HttpPut("ExcluirEmpresa")]
+        [HttpDelete("ExcluirEmpresa")]
         public async Task<ActionResult> ExcluirEmpresa(int id)
         {
             var empresa = await _empresa.ExcluirEmpresa(id);

@@ -1,8 +1,9 @@
 ﻿using ContabilidadeApi.CamposEnum;
+using ContabilidadeApi.Services.CodigoServices.Interfaces;
 
 namespace ContabilidadeApi.Models
 {
-    public class ContaContabil
+    public class ContaContabil : IEntidadeComCodigo
     {
         public int Id { get; set; }
         public string Mascara { get; set; } = string.Empty;

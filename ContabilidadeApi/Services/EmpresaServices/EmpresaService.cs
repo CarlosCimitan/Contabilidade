@@ -19,10 +19,10 @@ namespace ContabilidadeApi.Services.EmpresaServices
             ResponseModel<Empresa> resposta = new ResponseModel<Empresa>();
             try
             {
-                var Cnpj = await _context.Empresas
-                    .FirstOrDefaultAsync(x => x.CNPJ == dto.CNPJ);
+                var cnpjExiste = await _context.Empresas
+                    .AnyAsync(x => x.CNPJ == dto.CNPJ && x.Ativo == true);
 
-                if (Cnpj != null)
+                if (cnpjExiste != null)
                 {
                     resposta.Mensagem = "CNPJ já cadastrado";
                     return resposta;

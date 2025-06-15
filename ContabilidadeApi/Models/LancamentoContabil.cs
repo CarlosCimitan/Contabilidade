@@ -1,6 +1,8 @@
-﻿namespace ContabilidadeApi.Models
+﻿using ContabilidadeApi.Services.CodigoServices.Interfaces;
+
+namespace ContabilidadeApi.Models
 {
-    public class LancamentoContabil
+    public class LancamentoContabil : IEntidadeComCodigo
     {
         public int Id { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;

@@ -48,7 +48,7 @@ namespace ContabilidadeApi.Controllers
             return Ok(usuario);
         }
 
-        [HttpPut("RemoverUsuario")]
+        [HttpDelete("RemoverUsuario")]
         public async Task<ActionResult> ExcluirUsuario(int id)
         {
             var usuario = await _usuario.ExcluirUsuario(id);

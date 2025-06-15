@@ -1,6 +1,8 @@
-﻿namespace ContabilidadeApi.Models
+﻿using ContabilidadeApi.Services.CodigoServices.Interfaces;
+
+namespace ContabilidadeApi.Models
 {
-    public class HistoricoContabil
+    public class HistoricoContabil : IEntidadeComCodigo
     {
         public int Id { get; set; }
         public Boolean Ativo { get; set; } = true;

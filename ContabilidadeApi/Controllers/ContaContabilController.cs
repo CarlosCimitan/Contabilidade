@@ -47,7 +47,7 @@ namespace ContabilidadeApi.Controllers
             var contaContabil = await _contaContabil.EditarContaContabil(dto);
             return Ok(contaContabil);
         }
-        [HttpPut("DeletarContaContabil")]
+        [HttpDelete("DeletarContaContabil")]
         public async Task<ActionResult> DeletarContaContabil(int id)
         {
             var contaContabil = await _contaContabil.DeletarContaContabil(id);

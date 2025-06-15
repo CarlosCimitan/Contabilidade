@@ -25,13 +25,13 @@ namespace ContabilidadeApi.Services.AuthServices
                 var usuario = await _context.Usuarios
                     .FirstOrDefaultAsync(x => x.Email == dto.Email && x.Ativo == true);
 
-                if (usuario == null) 
+                if (usuario == null)
                 {
                     resposta.Mensagem = "Usuário não encontrado";
                     return resposta;
                 }
 
-                if(! _senha.VerificarSenhaHash(dto.Senha, usuario.SenhaHash, usuario.SenhaSalt))
+                if (!_senha.VerificarSenhaHash(dto.Senha, usuario.SenhaHash, usuario.SenhaSalt))
                 {
                     resposta.Mensagem = "Senha incorreta";
                     return resposta;
@@ -46,7 +46,7 @@ namespace ContabilidadeApi.Services.AuthServices
             }
             catch (Exception ex)
             {
-                
+
                 resposta.Mensagem = "Erro ao realizar login";
                 return resposta;
             }

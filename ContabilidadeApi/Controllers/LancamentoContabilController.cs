@@ -35,7 +35,7 @@ namespace ContabilidadeApi.Controllers
             return Ok(lancamentos);
         }
 
-        [HttpPut("DeletarLancamentoContabil/{id}")]
+        [HttpDelete("DeletarLancamentoContabil/{id}")]
         public async Task<IActionResult> DeletarLancamentoContabil(int id)
         {
             var resultado = await _lancamento.DeletarLancamentoContabil(id);

@@ -35,7 +35,7 @@
     "ContainingType": "ContabilidadeApi.Controllers.ContaContabilController",
     "Method": "DeletarContaContabil",
     "RelativePath": "api/ContaContabil/DeletarContaContabil",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -167,7 +167,7 @@
     "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
     "Method": "ExcluirEmpresa",
     "RelativePath": "api/Empresa/ExcluirEmpresa",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -183,6 +183,76 @@
     "ContainingType": "ContabilidadeApi.Controllers.EmpresaController",
     "Method": "GetEmpresas",
     "RelativePath": "api/Empresa/GetEmpresas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetCargosEnum",
+    "RelativePath": "api/Enum/GetCargosEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetGrupoEnum",
+    "RelativePath": "api/Enum/GetGrupoEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetNaturezaEnum",
+    "RelativePath": "api/Enum/GetNaturezaEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetRelatorioEnum",
+    "RelativePath": "api/Enum/GetRelatorioEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetSituacaoEnum",
+    "RelativePath": "api/Enum/GetSituacaoEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetTipoContaEnum",
+    "RelativePath": "api/Enum/GetTipoContaEnum",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.EnumController",
+    "Method": "GetTipoOperacaoEnum",
+    "RelativePath": "api/Enum/GetTipoOperacaoEnum",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -209,7 +279,7 @@
     "ContainingType": "ContabilidadeApi.Controllers.HistoricoController",
     "Method": "DeletarHistorico",
     "RelativePath": "api/Historico/DeletarHistorico",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -283,7 +353,7 @@
     "ContainingType": "ContabilidadeApi.Controllers.LancamentoContabilController",
     "Method": "DeletarLancamentoContabil",
     "RelativePath": "api/LancamentoContabil/DeletarLancamentoContabil/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -471,7 +541,7 @@
     "ContainingType": "ContabilidadeApi.Controllers.UsuarioController",
     "Method": "ExcluirUsuario",
     "RelativePath": "api/Usuario/RemoverUsuario",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [

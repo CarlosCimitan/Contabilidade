@@ -1,6 +1,7 @@
 ﻿using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
+using ContabilidadeApi.Services.CodigoServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContabilidadeApi.Services.HistoricoServices
@@ -8,12 +9,14 @@ namespace ContabilidadeApi.Services.HistoricoServices
     public class HistoricoService : IHistorico
     {
         private readonly AppDbContext _context;
-        public IHttpContextAccessor _httpContextAccessor { get; }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ICodigoService _codigoService;
 
-        public HistoricoService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        public HistoricoService(AppDbContext context, IHttpContextAccessor httpContextAccessor, ICodigoService codigoService)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _codigoService = codigoService;
         }
 
         public async Task<ResponseModel<HistoricoDto>> CriarHistorico(HistoricoDto dto)
@@ -24,23 +27,30 @@ namespace ContabilidadeApi.Services.HistoricoServices
                 var user = _httpContextAccessor.HttpContext?.User;
 
                 var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
-
-                int empresaIdInt = int.Parse(empresaId);
-
-                var codigo = await _context.HistoricosContabeis
-                    .Where(h => h.Codigo == dto.Codigo && h.EmpresaId == empresaIdInt && h.Ativo == true)
-                    .FirstOrDefaultAsync();
-
-                if (codigo != null)
+                if (empresaId == null)
                 {
-                    response.Mensagem = "Já existe um histórico com esse código.";
+                    response.Mensagem = "Empresa não identificada.";
                     return response;
                 }
 
-                HistoricoContabil historico = new HistoricoContabil
+                int empresaIdInt = int.Parse(empresaId);
+
+
+                var proximoCodigo = await _codigoService.GerarProximoCodigoAsync<HistoricoContabil>(empresaIdInt);
+
+                var codigoExiste = await _context.HistoricosContabeis.AnyAsync(h => h.Codigo == proximoCodigo && h.EmpresaId == empresaIdInt && h.Ativo == true);
+
+                if (codigoExiste)
                 {
-                    Codigo = dto.Codigo,
-                    Descricao = dto.Descricao
+                    response.Mensagem = $"Código {proximoCodigo} já existe para a empresa {empresaIdInt} e está ativo.";
+                    return response;
+                }
+
+                    HistoricoContabil historico = new HistoricoContabil
+                {
+                    Codigo = proximoCodigo,
+                    Descricao = dto.Descricao,
+                    EmpresaId = empresaIdInt
                 };
 
                 _context.HistoricosContabeis.Add(historico);

@@ -2,6 +2,7 @@
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Dto;
 using ContabilidadeApi.Models;
+using ContabilidadeApi.Services.CodigoServices.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +12,13 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly AppDbContext _context;
+        private readonly ICodigoService _codigoService;
 
-        public LancamentoContabilService(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        public LancamentoContabilService(AppDbContext context, IHttpContextAccessor httpContextAccessor, ICodigoService codigoService)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _codigoService = codigoService;
         }
 
         public async Task<ResponseModel<LancamentoContabil>> CriarLancamentoContabil(LancamentoContabilDto dto)
@@ -34,7 +37,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     return response;
                 }
 
-             
+
                 double somaCreditos = dto.DebitosCreditos
                     .Where(dc => dc.TipoAcao == TipoOperacaoEnum.Credito)
                     .Sum(dc => dc.Valor);
@@ -49,21 +52,23 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     return response;
                 }
 
-                var empresaIdInt = int.Parse(empresaId);
+                int empresaIdInt = int.Parse(empresaId);
 
-                var codigo = await _context.HistoricosContabeis
-                   .Where(h => h.Codigo == dto.Codigo && h.EmpresaId == empresaIdInt && h.Ativo == true)
-                   .FirstOrDefaultAsync();
+                var proximoCodigo = await _codigoService.GerarProximoCodigoAsync<LancamentoContabil>(empresaIdInt);
 
-                if (codigo != null)
+                var codigoExiste = await _context.LancamentosContabeis
+                    .AnyAsync(l => l.Codigo == proximoCodigo && l.EmpresaId == empresaIdInt && l.Ativo == true);
+
+                if (codigoExiste)
                 {
-                    response.Mensagem = "Já existe um lançamento contábil com esse código.";
+                    response.Mensagem = $"Código {proximoCodigo} já existe para a empresa {empresaIdInt} e está ativo.";
                     return response;
                 }
 
-                    var lancamento = new LancamentoContabil{
+                var lancamento = new LancamentoContabil
+                {
                     Zeramento = false,
-                    Codigo = dto.Codigo,
+                    Codigo = proximoCodigo,
                     DescComplementar = dto.DescComplementar,
                     EmpresaId = empresaIdInt,
                     UsuarioId = int.Parse(usuarioId),
@@ -117,7 +122,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                 var lancamentos = await _context.LancamentosContabeis
                     .AsNoTracking()
                     .Where(l => l.Ativo == true)
-                    .Include(l => l.DebitosCreditos!) 
+                    .Include(l => l.DebitosCreditos!)
                     .ThenInclude(dc => dc.ContaContabil)
                     .Include(l => l.Usuario)
                     .Include(l => l.Empresa)
@@ -186,4 +191,3 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
         }
     }
 }
-    

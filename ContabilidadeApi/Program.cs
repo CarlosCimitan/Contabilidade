@@ -1,7 +1,10 @@
 using ContabilidadeApi.Data;
 using ContabilidadeApi.Services.AuthServices;
+using ContabilidadeApi.Services.CodigoServices;
+using ContabilidadeApi.Services.CodigoServices.Interfaces;
 using ContabilidadeApi.Services.ContaContabilServices;
 using ContabilidadeApi.Services.EmpresaServices;
+using ContabilidadeApi.Services.EnumServices;
 using ContabilidadeApi.Services.HistoricoServices;
 using ContabilidadeApi.Services.LancamentoContabeisServices;
 using ContabilidadeApi.Services.RelatorioServices;
@@ -30,12 +33,14 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddScoped<ISenha, SenhaService>();
 builder.Services.AddScoped<IUsuario, UsuarioService>();
-builder.Services.AddScoped<IAuth,AuthService>();
-builder.Services.AddScoped<IEmpresa,EmpresaService>();
-builder.Services.AddScoped<IContaContabil,ContaContabilService>();
-builder.Services.AddScoped<ILancamentoContabil,LancamentoContabilService>();
+builder.Services.AddScoped<IAuth, AuthService>();
+builder.Services.AddScoped<IEmpresa, EmpresaService>();
+builder.Services.AddScoped<IContaContabil, ContaContabilService>();
+builder.Services.AddScoped<ILancamentoContabil, LancamentoContabilService>();
 builder.Services.AddScoped<IHistorico, HistoricoService>();
 builder.Services.AddScoped<IRelatorio, RelatorioService>();
+builder.Services.AddScoped<ICodigoService, CodicoService>();
+builder.Services.AddScoped<IEnumService, EnumService>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -65,7 +70,7 @@ builder.Services.AddControllers()
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.AddSecurityDefinition("oauth2",new OpenApiSecurityScheme
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
         Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\")",
         Name = "Authorization",
@@ -77,16 +82,16 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
     {
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-    {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]))
-    };
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]))
+        };
 
-    
-});
+
+    });
 
 
 var app = builder.Build();
@@ -102,7 +107,6 @@ if (app.Environment.IsDevelopment())
 
 }
 
-app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
