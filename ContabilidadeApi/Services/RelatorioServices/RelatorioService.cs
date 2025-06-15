@@ -33,8 +33,8 @@ namespace ContabilidadeApi.Services.RelatorioServices
                 return null!;
 
             var relatorio = new StringBuilder();
-            double totalDebito = 0;
-            double totalCredito = 0;
+            decimal totalDebito = 0;
+            decimal totalCredito = 0;
 
             relatorio.AppendLine("RELATÓRIO DIÁRIO DE LANÇAMENTOS");
             relatorio.AppendLine($"Data: {dataHoje:dd/MM/yyyy}");
@@ -95,7 +95,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
             worksheet.Cell(1, 7).Value = "Valor";
 
             int row = 2;
-            double totalDebito = 0, totalCredito = 0;
+            decimal totalDebito = 0, totalCredito = 0;
 
             foreach (var lancamento in lancamentosDoDia)
             {
@@ -152,7 +152,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
             worksheet.Cell(1, 7).Value = "Valor";
 
             int row = 2;
-            double totalDebito = 0, totalCredito = 0;
+            decimal totalDebito = 0, totalCredito = 0;
 
             foreach (var lancamento in lancamentos)
             {
@@ -255,5 +255,67 @@ namespace ContabilidadeApi.Services.RelatorioServices
             documento.GeneratePdf(ms);
             return ms.ToArray();
         }
+
+        public async Task<byte[]> GerarRelatorioContasBalancoPdf()
+        {
+            var contas = await _context.ContasContabeis
+                .Where(c => c.Grau == 1 || c.Grau == 2)
+                .OrderBy(c => c.Mascara)
+                .ToListAsync();
+
+            if (!contas.Any())
+                return null!;
+
+            var relatorio = new StringBuilder();
+            relatorio.AppendLine("RELATÓRIO DE CONTAS CONTÁBEIS - GRAU 1 E 2");
+            relatorio.AppendLine($"Data de Emissão: {DateTime.Now:dd/MM/yyyy HH:mm}");
+            relatorio.AppendLine("==========================================");
+
+            foreach (var conta in contas)
+            {
+                relatorio.AppendLine($"Conta: {conta.Mascara}");
+                relatorio.AppendLine($"Codigo: {conta.Codigo}");
+                relatorio.AppendLine($"Grau: {conta.Grau}");
+                relatorio.AppendLine("------------------------------------------");
+            }
+
+            var pdfBytes = RelatorioDiarioPdf.Gerar("Relatório de Contas Grau 1 e 2", relatorio.ToString());
+            return pdfBytes;
+        }
+
+        public async Task<byte[]> GerarRelatorioContasBalancoXls()
+        {
+            var contas = await _context.ContasContabeis
+                .Where(c => c.Grau == 1 || c.Grau == 2)
+                .OrderBy(c => c.Mascara)
+                .ToListAsync();
+
+            if (!contas.Any())
+                return null!;
+
+            using var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Contas Grau 1 e 2");
+
+            worksheet.Cell(1, 1).Value = "Mascara";
+            worksheet.Cell(1, 2).Value = "Codigo";
+            worksheet.Cell(1, 3).Value = "Grau";
+
+            int row = 2;
+            foreach (var conta in contas)
+            {
+                worksheet.Cell(row, 1).Value = conta.Mascara;
+                worksheet.Cell(row, 2).Value = conta.Codigo;
+                worksheet.Cell(row, 3).Value = conta.Grau;
+                row++;
+            }
+
+            worksheet.Columns().AdjustToContents();
+
+            using var stream = new MemoryStream();
+            workbook.SaveAs(stream);
+            return stream.ToArray();
+        }
+
+
     }
 }

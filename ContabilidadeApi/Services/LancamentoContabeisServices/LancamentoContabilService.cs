@@ -38,15 +38,15 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                 }
 
 
-                double somaCreditos = dto.DebitosCreditos
+                decimal somaCreditos = dto.DebitosCreditos
                     .Where(dc => dc.TipoAcao == TipoOperacaoEnum.Credito)
                     .Sum(dc => dc.Valor);
 
-                double somaDebitos = dto.DebitosCreditos
+                decimal somaDebitos = dto.DebitosCreditos
                     .Where(dc => dc.TipoAcao == TipoOperacaoEnum.Debito)
                     .Sum(dc => dc.Valor);
 
-                if (Math.Abs(somaCreditos - somaDebitos) > 0.0001)
+                if (Math.Abs(somaCreditos - somaDebitos) == 0)
                 {
                     response.Mensagem = $"Erro: Créditos ({somaCreditos}) e Débitos ({somaDebitos}) devem ser iguais.";
                     return response;
@@ -172,21 +172,21 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
         }
 
 
-        private void AtualizarSaldo(ContaContabil conta, TipoOperacaoEnum tipo, double valor)
+        private void AtualizarSaldo(ContaContabil conta, TipoOperacaoEnum tipo, decimal valor)
         {
-            float valorFloat = (float)valor;
+            decimal valorDecimal = (decimal)valor;
 
             if (tipo == TipoOperacaoEnum.Debito)
             {
                 conta.Saldo += (conta.Natureza == NaturezaEnum.Devedora)
-                    ? valorFloat
-                    : -valorFloat;
+                    ? valorDecimal
+                    : -valorDecimal;
             }
             else if (tipo == TipoOperacaoEnum.Credito)
             {
                 conta.Saldo += (conta.Natureza == NaturezaEnum.Credora)
-                    ? valorFloat
-                    : -valorFloat;
+                    ? valorDecimal
+                    : -valorDecimal;
             }
         }
     }

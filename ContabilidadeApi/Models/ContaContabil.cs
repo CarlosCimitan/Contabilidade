@@ -12,7 +12,7 @@ namespace ContabilidadeApi.Models
         public long MascaraNumerica { get; set; }
         public bool Ativo { get; set; } = true;
         public string? Descricao { get; set; }
-        public double Saldo { get; set; }
+        public decimal Saldo { get; set; }
         public GrupoEnum Grupo { get; set; }
         public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }

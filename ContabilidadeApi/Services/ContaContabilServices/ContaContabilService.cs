@@ -39,7 +39,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
                 if (mascaraExiste)
                 {
-                    response.Mensagem = "Já existe uma conta com esse código.";
+                    response.Mensagem = "Já existe uma conta com essa mascara.";
                     return response;
                 }
 
@@ -215,14 +215,14 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     return response;
                 }
 
-                double totalTransferido = 0;
+                decimal totalTransferido = 0;
 
                 foreach (var conta in contasDRE)
                 {
                     if (conta.Saldo != 0)
                     {
                         totalTransferido += conta.Saldo;
-                        conta.Saldo = 0; // zera a conta
+                        conta.Saldo = 0; 
                         _context.ContasContabeis.Update(conta);
                     }
                 }

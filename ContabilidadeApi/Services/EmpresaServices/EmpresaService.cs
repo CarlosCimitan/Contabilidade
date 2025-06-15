@@ -22,7 +22,7 @@ namespace ContabilidadeApi.Services.EmpresaServices
                 var cnpjExiste = await _context.Empresas
                     .AnyAsync(x => x.CNPJ == dto.CNPJ && x.Ativo == true);
 
-                if (cnpjExiste != null)
+                if (cnpjExiste)
                 {
                     resposta.Mensagem = "CNPJ já cadastrado";
                     return resposta;

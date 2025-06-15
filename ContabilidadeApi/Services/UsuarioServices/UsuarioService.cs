@@ -17,15 +17,15 @@ namespace ContabilidadeApi.Services.UsuarioServices
             _senha = senha;
         }
 
-        public async Task<ResponseModel<Usuario>> CriarUsuario(CriarUsuarioDto dto)
+        public async Task<ResponseModel<String>> CriarUsuario(CriarUsuarioDto dto)
         {
-            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
+            ResponseModel<string> resposta = new ResponseModel<string>();
 
             try
             {
-                var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == dto.Email);
+                var usuarioExiste = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == dto.Email);
 
-                if (usuario != null)
+                if (usuarioExiste != null)
                 {
                     resposta.Mensagem = "Usuário já existe.";
                     return resposta;
@@ -33,7 +33,7 @@ namespace ContabilidadeApi.Services.UsuarioServices
 
                 _senha.CriarSenhaHash(dto.Senha, out byte[] hash, out byte[] salt);
 
-                Usuario usuario1 = new Usuario
+                Usuario usuario = new Usuario
                 {
                     Nome = dto.Nome,
                     Cargo = dto.Cargo,
@@ -43,11 +43,11 @@ namespace ContabilidadeApi.Services.UsuarioServices
                     EmpresaId = dto.EmpresaId
                 };
 
-                _context.Add(usuario1);
+                _context.Add(usuario);
                 await _context.SaveChangesAsync();
 
                 resposta.Mensagem = "Usuario Criado com Sucesso";
-                resposta.Dados = usuario1;
+
 
                 return resposta;
 
@@ -60,14 +60,22 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<List<Usuario>>> ListarUsuariosSemEMpresa()
+        public async Task<ResponseModel<List<UsuarioDto>>> ListarUsuariosSemEMpresa()
         {
-            ResponseModel<List<Usuario>> resposta = new ResponseModel<List<Usuario>>();
+            ResponseModel<List<UsuarioDto>> resposta = new ResponseModel<List<UsuarioDto>>();
 
             try
             {
-                var usuarios = await _context.Usuarios.Where(u => u.EmpresaId == null && u.Ativo == true).ToListAsync();
+                var usuarios = await _context.Usuarios
+            .Where(u => u.EmpresaId == null && u.Ativo == true)
+            .Select(u => new UsuarioDto
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Email = u.Email
 
+            })
+            .ToListAsync();
                 resposta.Dados = usuarios;
                 resposta.Mensagem = "Usuarios encontrados";
 
@@ -178,12 +186,22 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorNome(string nome)
+        public async Task<ResponseModel<List<UsuarioDto>>> BuscarUsuarioPorNome(string nome)
         {
-            ResponseModel<List<Usuario>> resposta = new ResponseModel<List<Usuario>>();
+            ResponseModel<List<UsuarioDto>> resposta = new ResponseModel<List<UsuarioDto>>();
             try
             {
-                var usuarios = await _context.Usuarios.Where(u => u.Nome == nome && u.Ativo == true).ToListAsync();
+
+                var usuarios = await _context.Usuarios
+            .Where(u => u.EmpresaId == null && u.Ativo == true)
+            .Select(u => new UsuarioDto
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Email = u.Email
+
+            })
+            .ToListAsync();
                 if (usuarios == null)
                 {
                     resposta.Mensagem = "Nenhum usuario com esse nome encontrado";
@@ -202,12 +220,22 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<List<Usuario>>> BuscarUsuarioPorEmpresaId(int id)
+        public async Task<ResponseModel<List<UsuarioDto>>> BuscarUsuarioPorEmpresaId(int id)
         {
-            ResponseModel<List<Usuario>> resposta = new ResponseModel<List<Usuario>>();
+            ResponseModel<List<UsuarioDto>> resposta = new ResponseModel<List<UsuarioDto>>();
             try
             {
-                var usuarios = await _context.Usuarios.Where(e => e.EmpresaId == id && e.Ativo == true).ToListAsync();
+                var usuarios = await _context.Usuarios
+            .Where(e => e.EmpresaId == id && e.Ativo == true)
+            .Select(u => new UsuarioDto
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Email = u.Email,
+                EmpresaId = u.EmpresaId
+
+            })
+            .ToListAsync();
                 if (usuarios == null)
                 {
                     resposta.Mensagem = "Nenhum usuario com essa empresa encontrado";
@@ -226,12 +254,21 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<List<Usuario>>> GetUsuarios()
+        public async Task<ResponseModel<List<UsuarioDto>>> GetUsuarios()
         {
-            ResponseModel<List<Usuario>> resposta = new ResponseModel<List<Usuario>>();
+            ResponseModel<List<UsuarioDto>> resposta = new ResponseModel<List<UsuarioDto>>();
             try
             {
-                var usuarios = await _context.Usuarios.Where(u => u.Ativo == true).ToListAsync();
+                var usuarios = await _context.Usuarios
+            .Where(u => u.EmpresaId == null && u.Ativo == true)
+            .Select(u => new UsuarioDto
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Email = u.Email
+
+            })
+            .ToListAsync();
                 if (usuarios == null || usuarios.Count == 0)
                 {
                     resposta.Mensagem = "Nenhum usuário encontrado.";

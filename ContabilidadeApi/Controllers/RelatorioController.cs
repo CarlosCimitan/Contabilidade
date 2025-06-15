@@ -51,5 +51,21 @@ namespace ContabilidadeApi.Controllers
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "Relatorio_Mensal.xlsx");
         }
+        [HttpGet("GerarRelatorioContasBalancoPdf")]
+        public async Task<IActionResult> GerarRelatorioContasBalancoPdf()
+        {
+            var fileBytes = await _relatorio.GerarRelatorioContasBalancoPdf();
+            if (fileBytes == null) return NotFound("Nenhum lançamento encontrado.");
+            return File(fileBytes, "application/pdf", "Relatorio_Contas_Balanco.pdf");
+        }
+        [HttpGet("GerarRelatorioContasBalancoXls")]
+        public async Task<IActionResult> GerarRelatorioContasBalancoXls()
+        {
+            var fileBytes = await _relatorio.GerarRelatorioContasBalancoXls();
+            if (fileBytes == null) return NotFound("Nenhum lançamento encontrado.");
+            return File(fileBytes,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Relatorio_Contas_Balanco.xlsx");
+        }
     }
 }

@@ -377,6 +377,26 @@
   },
   {
     "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioContasBalancoPdf",
+    "RelativePath": "api/Relatorio/GerarRelatorioContasBalancoPdf",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
+    "Method": "GerarRelatorioContasBalancoXls",
+    "RelativePath": "api/Relatorio/GerarRelatorioContasBalancoXls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ContabilidadeApi.Controllers.RelatorioController",
     "Method": "GerarRelatorioDiario",
     "RelativePath": "api/Relatorio/GerarRelatorioDiarioPDF",
     "HttpMethod": "GET",

@@ -8,5 +8,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
         Task<byte[]> GerarRelatorioDiarioXls();
         Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim);
         Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim);
+        Task<byte[]> GerarRelatorioContasBalancoPdf();
+        Task<byte[]> GerarRelatorioContasBalancoXls();
     }
 }

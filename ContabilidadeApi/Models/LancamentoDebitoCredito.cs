@@ -6,7 +6,7 @@ namespace ContabilidadeApi.Models
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
         public TipoOperacaoEnum TipoAcao { get; set; }
         public string? DescComplementar { get; set; }
 
