@@ -12,128 +12,21 @@ namespace ContabilidadeApi.Services.RelatorioServices
     public class RelatorioService : IRelatorio
     {
         private readonly AppDbContext _context;
-        private readonly IHttpContextAccessor _httpContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public RelatorioService(AppDbContext context, IHttpContextAccessor httpContext)
         {
             _context = context;
-            _httpContext = httpContext;
+            _httpContextAccessor = httpContext;
         }
 
-        public async Task<byte[]> GerarRelatorioDiarioPDF()
+        public async Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo)
         {
-            DateTime dataHoje = DateTime.Today;
-            DateTime amanha = dataHoje.AddDays(1);
+            var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+            if (!int.TryParse(empresaIdStr, out var empresaId))
+                return null!; 
 
-            var lancamentosDoDia = await _context.LancamentosContabeis
-                .Where(l => l.Data >= dataHoje && l.Data < amanha)
-                .Include(l => l.DebitosCreditos)
-                    .ThenInclude(dc => dc.ContaContabil)
-                .ToListAsync();
-
-            if (!lancamentosDoDia.Any())
-                return null!;
-
-            var relatorio = new StringBuilder();
-            decimal totalDebito = 0;
-            decimal totalCredito = 0;
-
-            relatorio.AppendLine("RELATÓRIO DIÁRIO DE LANÇAMENTOS");
-            relatorio.AppendLine($"Data: {dataHoje:dd/MM/yyyy}");
-            relatorio.AppendLine("=================================");
-
-            foreach (var lancamento in lancamentosDoDia)
-            {
-                relatorio.AppendLine($"Lançamento #{lancamento.Id} - EmpresaId: {lancamento.EmpresaId}");
-                relatorio.AppendLine($"Descrição: {lancamento.DescComplementar}");
-                relatorio.AppendLine($"Data: {lancamento.Data:dd/MM/yyyy}");
-                relatorio.AppendLine("Movimentos:");
-
-                foreach (var mov in lancamento.DebitosCreditos!)
-                {
-                    string tipo = mov.TipoAcao.ToString();
-                    relatorio.AppendLine($" - [{tipo}] Conta: {mov.ContaContabil.Mascara} | Valor: R$ {mov.Valor:F2}");
-
-                    if (mov.TipoAcao == TipoOperacaoEnum.Debito)
-                        totalDebito += mov.Valor;
-                    else
-                        totalCredito += mov.Valor;
-                }
-
-                relatorio.AppendLine("---------------------------------");
-            }
-
-            relatorio.AppendLine("RESUMO DO DIA");
-            relatorio.AppendLine($"Total Débitos: R$ {totalDebito:F2}");
-            relatorio.AppendLine($"Total Créditos: R$ {totalCredito:F2}");
-
-            var pdfBytes = RelatorioDiarioPdf.Gerar("Relatório Diário", relatorio.ToString());
-            return pdfBytes;
-        }
-
-        public async Task<byte[]> GerarRelatorioDiarioXls()
-        {
-            DateTime dataHoje = DateTime.Today;
-            DateTime amanha = dataHoje.AddDays(1);
-
-            var lancamentosDoDia = await _context.LancamentosContabeis
-                .Where(l => l.Data >= dataHoje && l.Data < amanha)
-                .Include(l => l.DebitosCreditos)
-                    .ThenInclude(dc => dc.ContaContabil)
-                .ToListAsync();
-
-            if (!lancamentosDoDia.Any())
-                return null!;
-
-            using var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add("Lançamentos Diários");
-
-            worksheet.Cell(1, 1).Value = "Lançamento ID";
-            worksheet.Cell(1, 2).Value = "Data";
-            worksheet.Cell(1, 3).Value = "EmpresaId";
-            worksheet.Cell(1, 4).Value = "Descrição";
-            worksheet.Cell(1, 5).Value = "Tipo";
-            worksheet.Cell(1, 6).Value = "Conta";
-            worksheet.Cell(1, 7).Value = "Valor";
-
-            int row = 2;
-            decimal totalDebito = 0, totalCredito = 0;
-
-            foreach (var lancamento in lancamentosDoDia)
-            {
-                foreach (var mov in lancamento.DebitosCreditos!)
-                {
-                    worksheet.Cell(row, 1).Value = lancamento.Id;
-                    worksheet.Cell(row, 2).Value = lancamento.Data.ToString("dd/MM/yyyy");
-                    worksheet.Cell(row, 3).Value = lancamento.EmpresaId;
-                    worksheet.Cell(row, 4).Value = lancamento.DescComplementar;
-                    worksheet.Cell(row, 5).Value = mov.TipoAcao.ToString();
-                    worksheet.Cell(row, 6).Value = mov.ContaContabil.Mascara;
-                    worksheet.Cell(row, 7).Value = mov.Valor;
-
-                    if (mov.TipoAcao == TipoOperacaoEnum.Debito)
-                        totalDebito += mov.Valor;
-                    else
-                        totalCredito += mov.Valor;
-
-                    row++;
-                }
-            }
-
-            worksheet.Cell(row + 1, 6).Value = "Total Débito:";
-            worksheet.Cell(row + 1, 7).Value = totalDebito;
-            worksheet.Cell(row + 2, 6).Value = "Total Crédito:";
-            worksheet.Cell(row + 2, 7).Value = totalCredito;
-            worksheet.Columns().AdjustToContents();
-
-            using var stream = new MemoryStream();
-            workbook.SaveAs(stream);
-            return stream.ToArray();
-        }
-
-        public async Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim)
-        {
             var lancamentos = await _context.LancamentosContabeis
-                .Where(l => l.Data >= dataInicio && l.Data <= dataFim)
+                .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
                 .Include(l => l.DebitosCreditos)!
                     .ThenInclude(dc => dc.ContaContabil)
                 .ToListAsync();
@@ -152,12 +45,14 @@ namespace ContabilidadeApi.Services.RelatorioServices
             worksheet.Cell(1, 6).Value = "Conta";
             worksheet.Cell(1, 7).Value = "Valor";
 
+            worksheet.Row(1).Style.Font.Bold = true;
+
             int row = 2;
             decimal totalDebito = 0, totalCredito = 0;
 
             foreach (var lancamento in lancamentos)
             {
-                foreach (var mov in lancamento.DebitosCreditos!)
+                foreach (var mov in lancamento.DebitosCreditos!.Where(dc => dc.ContaContabil.Grau <= grauMaximo))
                 {
                     worksheet.Cell(row, 1).Value = lancamento.Id;
                     worksheet.Cell(row, 2).Value = lancamento.Data.ToString("dd/MM/yyyy");
@@ -166,6 +61,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
                     worksheet.Cell(row, 5).Value = mov.TipoAcao.ToString();
                     worksheet.Cell(row, 6).Value = mov.ContaContabil.Mascara;
                     worksheet.Cell(row, 7).Value = mov.Valor;
+                    worksheet.Cell(row, 7).Style.NumberFormat.Format = "#,##0.00";
 
                     if (mov.TipoAcao == TipoOperacaoEnum.Debito)
                         totalDebito += mov.Valor;
@@ -178,8 +74,11 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
             worksheet.Cell(row + 1, 6).Value = "Total Débito:";
             worksheet.Cell(row + 1, 7).Value = totalDebito;
+            worksheet.Cell(row + 1, 7).Style.NumberFormat.Format = "#,##0.00";
+
             worksheet.Cell(row + 2, 6).Value = "Total Crédito:";
             worksheet.Cell(row + 2, 7).Value = totalCredito;
+            worksheet.Cell(row + 2, 7).Style.NumberFormat.Format = "#,##0.00";
 
             worksheet.Columns().AdjustToContents();
 
@@ -188,12 +87,18 @@ namespace ContabilidadeApi.Services.RelatorioServices
             return stream.ToArray();
         }
 
-        public async Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim)
+
+
+        public async Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
+            var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+            if (!int.TryParse(empresaIdStr, out var empresaId))
+                return null!; 
+
             var lancamentos = await _context.LancamentosContabeis
-                .Where(l => l.Data >= dataInicio && l.Data <= dataFim)
+                .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
                 .Include(l => l.DebitosCreditos)!
                     .ThenInclude(dc => dc.ContaContabil)
                 .ToListAsync();
@@ -208,7 +113,10 @@ namespace ContabilidadeApi.Services.RelatorioServices
                 container.Page(page =>
                 {
                     page.Margin(30);
-                    page.Header().Text($"Relatório Contábil - {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy}").Bold().FontSize(16);
+                    page.Header().Text($"Relatório Contábil - {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy} (Grau ≤ {grauMaximo})")
+                        .Bold()
+                        .FontSize(16);
+
                     page.Content().Table(table =>
                     {
                         table.ColumnsDefinition(columns =>
@@ -233,9 +141,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
                         foreach (var lancamento in lancamentos)
                         {
-                            foreach (var dc in lancamento.DebitosCreditos!)
+                            foreach (var dc in lancamento.DebitosCreditos!.Where(dc => dc.ContaContabil.Grau <= grauMaximo))
                             {
-                                table.Cell().Text(lancamento.Id);
+                                table.Cell().Text(lancamento.Id.ToString());
                                 table.Cell().Text(lancamento.Data.ToString("dd/MM/yyyy"));
                                 table.Cell().Text(dc.ContaContabil.Mascara);
                                 table.Cell().Text(dc.TipoAcao.ToString());
@@ -257,70 +165,163 @@ namespace ContabilidadeApi.Services.RelatorioServices
             return ms.ToArray();
         }
 
-        public async Task<byte[]> GerarRelatorioContasBalancoPdf()
+
+
+        public async Task<byte[]> GerarRelatorioContasBalancoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo)
         {
-            var user = _httpContext.HttpContext?.User;
-            var empresaIdString = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+            QuestPDF.Settings.License = LicenseType.Community;
 
-            if (!int.TryParse(empresaIdString, out int empresaId))
-                return null!;
+            var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+            if (!int.TryParse(empresaIdStr, out var empresaId))
+                return null!; 
 
-            var empresa = await _context.Empresas.FirstOrDefaultAsync(e => e.Id == empresaId);
-            if (empresa == null)
-                return null!;
-
-            var contas = await _context.ContasContabeis
-                .Where(c => (c.Grau == 1 || c.Grau == 2) && c.EmpresaId == empresaId)
-                .OrderBy(c => c.Mascara)
+            var lancamentos = await _context.LancamentosContabeis
+                .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
+                .Include(l => l.DebitosCreditos)!
+                    .ThenInclude(dc => dc.ContaContabil)
                 .ToListAsync();
 
-            if (!contas.Any())
+            if (!lancamentos.Any())
                 return null!;
 
-            var relatorio = new StringBuilder();
-            relatorio.AppendLine("RELATÓRIO DE CONTAS CONTÁBEIS - BALANÇO");
-            relatorio.AppendLine($"Empresa: {empresa.RazaoSocial}  |  CNPJ: {empresa.CNPJ}");
-            relatorio.AppendLine($"Data de Emissão: {DateTime.Now:dd/MM/yyyy HH:mm}");
-            relatorio.AppendLine("==========================================");
+            var saldos = lancamentos
+                .SelectMany(l => l.DebitosCreditos!)
+                .Where(dc =>
+                    (dc.ContaContabil.Mascara.StartsWith("1") || dc.ContaContabil.Mascara.StartsWith("2")) &&
+                    dc.ContaContabil.Grau <= grauMaximo
+                )
+                .GroupBy(dc => new
+                {
+                    dc.ContaContabil.Id,
+                    dc.ContaContabil.Mascara,
+                    dc.ContaContabil.Grau
+                })
+                .Select(g => new
+                {
+                    Mascara = g.Key.Mascara,
+                    Grau = g.Key.Grau,
+                    TotalDebito = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Debito).Sum(x => x.Valor),
+                    TotalCredito = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Credito).Sum(x => x.Valor),
+                    Saldo = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Debito).Sum(x => x.Valor)
+                           - g.Where(x => x.TipoAcao == TipoOperacaoEnum.Credito).Sum(x => x.Valor)
+                })
+                .OrderBy(s => s.Mascara)
+                .ToList();
 
-            foreach (var conta in contas)
+            if (!saldos.Any())
+                return null!;
+
+            using var ms = new MemoryStream();
+
+            var documento = Document.Create(container =>
             {
-                relatorio.AppendLine($"Máscara: {conta.Mascara}");
-                relatorio.AppendLine($"Código: {conta.Codigo}");
-                relatorio.AppendLine($"Grau: {conta.Grau}");
-                relatorio.AppendLine("------------------------------------------");
-            }
+                container.Page(page =>
+                {
+                    page.Margin(30);
 
-            var pdfBytes = RelatorioDiarioPdf.Gerar("Relatório de Contas Grau 1 e 2", relatorio.ToString());
-            return pdfBytes;
+                    page.Header().Text($"BALANÇO PATRIMONIAL").Bold().FontSize(16);
+                    page.Header().Text($"Período: {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy} | Grau até: {grauMaximo}").FontSize(12);
+
+                    page.Content().Table(table =>
+                    {
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.RelativeColumn(2); // Máscara
+                            columns.RelativeColumn(1); // Grau
+                            columns.RelativeColumn(2); // Débito
+                            columns.RelativeColumn(2); // Crédito
+                            columns.RelativeColumn(2); // Saldo
+                        });
+
+                        table.Header(header =>
+                        {
+                            header.Cell().Text("Máscara").Bold();
+                            header.Cell().Text("Grau").Bold();
+                            header.Cell().Text("Total Débito").Bold();
+                            header.Cell().Text("Total Crédito").Bold();
+                            header.Cell().Text("Saldo").Bold();
+                        });
+
+                        foreach (var item in saldos)
+                        {
+                            table.Cell().Text(item.Mascara);
+                            table.Cell().Text(item.Grau.ToString());
+                            table.Cell().Text(item.TotalDebito.ToString("C2"));
+                            table.Cell().Text(item.TotalCredito.ToString("C2"));
+                            table.Cell().Text(item.Saldo.ToString("C2"));
+                        }
+                    });
+
+                    page.Footer().AlignCenter().Text($"Relatório gerado em: {DateTime.Now:dd/MM/yyyy HH:mm}");
+                });
+            });
+
+            documento.GeneratePdf(ms);
+            return ms.ToArray();
         }
 
-        public async Task<byte[]> GerarRelatorioContasBalancoXls()
+        public async Task<byte[]> GerarRelatorioContasBalancoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo)
         {
-            var contas = await _context.ContasContabeis
-                .Where(c => c.Grau == 1 || c.Grau == 2)
-                .OrderBy(c => c.Mascara)
-                .Include(c => c.Empresa)
+            var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
+            if (!int.TryParse(empresaIdStr, out var empresaId))
+                return null!; 
+
+            var lancamentos = await _context.LancamentosContabeis
+                .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
+                .Include(l => l.DebitosCreditos)!
+                    .ThenInclude(dc => dc.ContaContabil)
                 .ToListAsync();
 
-            if (!contas.Any())
+            if (!lancamentos.Any())
+                return null!;
+
+            var saldos = lancamentos
+                .SelectMany(l => l.DebitosCreditos!)
+                .Where(dc =>
+                    (dc.ContaContabil.Mascara.StartsWith("1") || dc.ContaContabil.Mascara.StartsWith("2")) &&
+                    dc.ContaContabil.Grau <= grauMaximo
+                )
+                .GroupBy(dc => new
+                {
+                    dc.ContaContabil.Id,
+                    dc.ContaContabil.Mascara,
+                    dc.ContaContabil.Grau
+                })
+                .Select(g => new
+                {
+                    Mascara = g.Key.Mascara,
+                    Grau = g.Key.Grau,
+                    TotalDebito = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Debito).Sum(x => x.Valor),
+                    TotalCredito = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Credito).Sum(x => x.Valor),
+                    Saldo = g.Where(x => x.TipoAcao == TipoOperacaoEnum.Debito).Sum(x => x.Valor)
+                           - g.Where(x => x.TipoAcao == TipoOperacaoEnum.Credito).Sum(x => x.Valor)
+                })
+                .OrderBy(s => s.Mascara)
+                .ToList();
+
+            if (!saldos.Any())
                 return null!;
 
             using var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add("Balanço");
+            var worksheet = workbook.Worksheets.Add("Balanço Patrimonial");
 
-            worksheet.Cell(1, 1).Value = "Mascara";
-            worksheet.Cell(1, 2).Value = "Codigo";
-            worksheet.Cell(1, 3).Value = "Grau";
-            worksheet.Cell(1, 4).Value = "Empresa";
+            worksheet.Cell(1, 1).Value = $"Relatório de Balanço Patrimonial ({dataInicio:dd/MM/yyyy} a {dataFim:dd/MM/yyyy}) - Grau até {grauMaximo}";
+            worksheet.Range(1, 1, 1, 5).Merge().Style.Font.SetBold().Font.FontSize = 14;
 
-            int row = 2;
-            foreach (var conta in contas)
+            worksheet.Cell(3, 1).Value = "Máscara";
+            worksheet.Cell(3, 2).Value = "Grau";
+            worksheet.Cell(3, 3).Value = "Total Débito";
+            worksheet.Cell(3, 4).Value = "Total Crédito";
+            worksheet.Cell(3, 5).Value = "Saldo";
+
+            int row = 4;
+            foreach (var s in saldos)
             {
-                worksheet.Cell(row, 1).Value = conta.Mascara;
-                worksheet.Cell(row, 2).Value = conta.Codigo;
-                worksheet.Cell(row, 3).Value = conta.Grau;
-                worksheet.Cell(row, 4).Value = conta.Empresa?.RazaoSocial ?? "N/A";
+                worksheet.Cell(row, 1).Value = s.Mascara;
+                worksheet.Cell(row, 2).Value = s.Grau;
+                worksheet.Cell(row, 3).Value = s.TotalDebito;
+                worksheet.Cell(row, 4).Value = s.TotalCredito;
+                worksheet.Cell(row, 5).Value = s.Saldo;
                 row++;
             }
 
@@ -330,7 +331,5 @@ namespace ContabilidadeApi.Services.RelatorioServices
             workbook.SaveAs(stream);
             return stream.ToArray();
         }
-
-
     }
 }

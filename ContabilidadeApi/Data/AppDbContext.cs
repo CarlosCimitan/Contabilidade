@@ -19,14 +19,14 @@ namespace ContabilidadeApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<RelatorioContas>()
+                .HasOne(rc => rc.ContaContabil)
+                .WithMany(c => c.Relatorios)
+                .HasForeignKey(rc => rc.ContaContabilId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.Cargo)
-                .HasConversion<string>();
-
-            modelBuilder.Entity<ContaContabil>()
-                .Property(c => c.Situacao)
                 .HasConversion<string>();
 
             modelBuilder.Entity<ContaContabil>()
@@ -55,8 +55,6 @@ namespace ContabilidadeApi.Data
                 .WithMany(c => c.DebitosCreditos)
                 .HasForeignKey(dc => dc.ContaContabilId)
                 .OnDelete(DeleteBehavior.NoAction);
-
         }
-
     }
 }

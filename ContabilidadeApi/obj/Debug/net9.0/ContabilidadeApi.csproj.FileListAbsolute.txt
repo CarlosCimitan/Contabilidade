@@ -173,6 +173,14 @@ C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Eduardo\Desktop\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.sourcelink.json
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.csproj.AssemblyReference.cache
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.AssemblyInfoInputs.cache
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.AssemblyInfo.cs
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.csproj.CoreCompileInputs.cache
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.sourcelink.json
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\appsettings.json
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\ContabilidadeApi.staticwebassets.endpoints.json
@@ -381,14 +389,6 @@ C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\Contabilidad
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.csproj.AssemblyReference.cache
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.AssemblyInfoInputs.cache
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.AssemblyInfo.cs
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.csproj.CoreCompileInputs.cache
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\ContabilidadeApi.sourcelink.json
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\scopedcss\bundle\ContabilidadeApi.styles.css
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Eduardo\OneDrive\Área de Trabalho\agora vai\Contabilidade\ContabilidadeApi\obj\Debug\net9.0\staticwebassets.development.json

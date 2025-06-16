@@ -13,10 +13,9 @@ namespace ContabilidadeApi.Models
         public bool Ativo { get; set; } = true;
         public string? Descricao { get; set; }
         public decimal Saldo { get; set; }
-        public GrupoEnum Grupo { get; set; }
-        public SituacaoEnum Situacao { get; set; }
         public TipoContaEnum TipoConta { get; set; }
         public NaturezaEnum Natureza { get; set; }
+        public ICollection<RelatorioContas> Relatorios { get; set; } = new List<RelatorioContas>();
 
         public int EmpresaId { get; set; }
         public Empresa Empresa { get; set; } = null!;

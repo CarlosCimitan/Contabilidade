@@ -4,11 +4,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
 {
     public interface IRelatorio
     {
-        Task<byte[]> GerarRelatorioDiarioPDF();
-        Task<byte[]> GerarRelatorioDiarioXls();
-        Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim);
-        Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim);
-        Task<byte[]> GerarRelatorioContasBalancoPdf();
-        Task<byte[]> GerarRelatorioContasBalancoXls();
+        Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo);
+        Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo);
+        Task<byte[]> GerarRelatorioContasBalancoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo);
+        Task<byte[]> GerarRelatorioContasBalancoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo);
     }
 }

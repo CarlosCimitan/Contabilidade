@@ -15,12 +15,25 @@ namespace ContabilidadeApi.Services.CodigoServices
 
         public async Task<int> GerarProximoCodigoAsync<TEntity>(int empresaId) where TEntity : class, IEntidadeComCodigo
         {
-            var ultimoCodigo = await _context.Set<TEntity>()
+            var codigosUsados = await _context.Set<TEntity>()
                 .Where(e => e.EmpresaId == empresaId && EF.Property<bool>(e, "Ativo") == true)
-                .MaxAsync(e => (int?)e.Codigo) ?? -1;
+                .Select(e => e.Codigo)
+                .ToListAsync();
 
-            return ultimoCodigo + 1;
+            if (codigosUsados.Count == 0)
+                return 1;
+
+            codigosUsados.Sort();
+
+            for (int i = 1; i <= codigosUsados.Count; i++)
+            {
+                if (codigosUsados[i - 1] != i)
+                    return i;
+            }
+
+            return codigosUsados.Count + 1;
         }
+
 
     }
 }

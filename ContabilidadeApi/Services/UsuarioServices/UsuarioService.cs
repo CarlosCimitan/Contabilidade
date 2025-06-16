@@ -88,9 +88,9 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<Usuario>> EditarEmpresaUsuario(UsuarioEmpresaDto dto)
+        public async Task<ResponseModel<UsuarioDto>> EditarEmpresaUsuario(UsuarioEmpresaDto dto)
         {
-            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
+            ResponseModel<UsuarioDto> resposta = new ResponseModel<UsuarioDto>();
 
             try
             {
@@ -111,7 +111,6 @@ namespace ContabilidadeApi.Services.UsuarioServices
                 await _context.SaveChangesAsync();
 
                 resposta.Mensagem = "Usuário editado com sucesso.";
-                resposta.Dados = usuario;
                 return resposta;
             }
             catch (Exception ex)
@@ -121,9 +120,9 @@ namespace ContabilidadeApi.Services.UsuarioServices
             }
         }
 
-        public async Task<ResponseModel<Usuario>> EditarUsuario(EditarUsuarioDto dto)
+        public async Task<ResponseModel<UsuarioDto>> EditarUsuario(EditarUsuarioDto dto)
         {
-            ResponseModel<Usuario> resposta = new ResponseModel<Usuario>();
+            ResponseModel<UsuarioDto> resposta = new ResponseModel<UsuarioDto>();
             try
             {
                 var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == dto.Id);
@@ -146,7 +145,6 @@ namespace ContabilidadeApi.Services.UsuarioServices
                 _context.Update(usuario);
                 await _context.SaveChangesAsync();
                 resposta.Mensagem = "Usuário editado com sucesso.";
-                resposta.Dados = usuario;
                 return resposta;
 
 
@@ -260,8 +258,8 @@ namespace ContabilidadeApi.Services.UsuarioServices
             try
             {
                 var usuarios = await _context.Usuarios
-            .Where(u => u.EmpresaId == null && u.Ativo == true)
-            .Select(u => new UsuarioDto
+                    .Where(u => u.EmpresaId != null && u.Ativo == true)
+                    .Select(u => new UsuarioDto
             {
                 Id = u.Id,
                 Nome = u.Nome,

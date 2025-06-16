@@ -19,11 +19,10 @@ namespace ContabilidadeApi.Controllers
         }
 
         [HttpPost("CriarHistorico")]
-        public async Task<IActionResult> CriarHistorico(HistoricoDto dto)
+        public async Task<IActionResult> CriarHistorico(CriarHistoricoContabilDto dto)
         {
-
-            var response = await _historico.CriarHistorico(dto);
-            return Ok(response);
+            var historico = await _historico.CriarHistorico(dto);
+            return Ok(historico);
         }
 
         [HttpGet("GetHistoricos")]
@@ -50,6 +49,13 @@ namespace ContabilidadeApi.Controllers
         public async Task<IActionResult> DeletarHistorico(int id)
         {
             var response = await _historico.DeletarHistorico(id);
+            return Ok(response);
+        }
+      
+        [HttpGet("BuscarHistoricoPorCodigo")]
+        public async Task<IActionResult> BuscarHistoricoPorCodigo(int codigo)
+        {
+            var response = await _historico.GetHistoricosByCodigo(codigo);
             return Ok(response);
         }
     }

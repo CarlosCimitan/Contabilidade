@@ -26,17 +26,6 @@ namespace ContabilidadeApi.Services.EnumServices
                 });
         }
 
-        public IEnumerable<object> ListarGrupo()
-        {
-            return Enum.GetValues(typeof(GrupoEnum))
-                .Cast<GrupoEnum>()
-                .Select(g => new
-                {
-                    Valor = (int)g,
-                    Nome = g.ToString()
-                });
-        }
-
         public IEnumerable<object> ListarNatureza()
         {
             return Enum.GetValues(typeof(NaturezaEnum))
@@ -56,17 +45,6 @@ namespace ContabilidadeApi.Services.EnumServices
                 {
                     Valor = (int)r,
                     Nome = r.ToString()
-                });
-        }
-
-        public IEnumerable<object> ListarSituaca()
-        {
-            return Enum.GetValues(typeof(SituacaoEnum))
-                .Cast<SituacaoEnum>()
-                .Select(s => new
-                {
-                    Valor = (int)s,
-                    Nome = s.ToString()
                 });
         }
 

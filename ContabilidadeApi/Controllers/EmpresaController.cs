@@ -21,11 +21,8 @@ namespace ContabilidadeApi.Controllers
         [HttpPost("CriarEmpresa")]
         public async Task<IActionResult> CriarEmpresa(CriarEmpresaDto dto)
         {
-
             var empresa = await _empresa.CriarEmpresa(dto);
             return Ok(empresa);
-
-
         }
 
         [HttpGet("GetEmpresas")]

@@ -13,6 +13,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
         Task<ResponseModel<ContaContabil>> DeletarContaContabil(int id);
         Task<ResponseModel<List<ContaContabil>>> GetContasOrdenadasPorMascaraNumerica();
         Task<ResponseModel<List<ContaContabil>>> GetContasPorTipoRelatorio(RelatorioEnum tipoRelatorio);
-        Task<ResponseModel<List<ContaContabil>>> TransferirSaldoDREParaConta(int contaDestinoId);
+        Task<ResponseModel<List<ContaContabil>>> Zeramento(int contaDestinoId);
+        Task<ResponseModel<ContaContabil>> GetContaContabilByCodigo(int codigo);
     }
 }

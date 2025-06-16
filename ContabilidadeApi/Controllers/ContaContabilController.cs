@@ -19,14 +19,13 @@ namespace ContabilidadeApi.Controllers
             _contaContabil = contaContabil;
         }
 
-
         [HttpPost("CriarContaContabil")]
         public async Task<ActionResult> CriarContaContabil(CriarContaContabilDto dto)
         {
             var contaContabil = await _contaContabil.CriarContaContaabil(dto);
             return Ok(contaContabil);
-
         }
+
         [HttpGet("GetContasContabeisById")]
         public async Task<ActionResult> GetContasContabeisById(int id)
         {
@@ -47,6 +46,7 @@ namespace ContabilidadeApi.Controllers
             var contaContabil = await _contaContabil.EditarContaContabil(dto);
             return Ok(contaContabil);
         }
+
         [HttpDelete("DeletarContaContabil")]
         public async Task<ActionResult> DeletarContaContabil(int id)
         {
@@ -60,6 +60,7 @@ namespace ContabilidadeApi.Controllers
             var contas = await _contaContabil.GetContasOrdenadasPorMascaraNumerica();
             return Ok(contas);
         }
+
         [HttpGet("GetContasPorTipoRelatorio")]
         public async Task<ActionResult> GetContasPorTipoRelatorio(RelatorioEnum tipoRelatorio)
         {
@@ -67,11 +68,18 @@ namespace ContabilidadeApi.Controllers
             return Ok(contas);
         }
 
-        [HttpPost("TransferirSaldoDREParaConta")]
-        public async Task<ActionResult> TransferirSaldoDREParaConta(int contaDestinoId)
+        [HttpPost("Zeramento")]
+        public async Task<ActionResult> Zeramento(int contaDestinoId)
         {
-            var contas = await _contaContabil.TransferirSaldoDREParaConta(contaDestinoId);
-            return Ok(contas);
+            var resultado = await _contaContabil.Zeramento(contaDestinoId);
+            return Ok(resultado);
+        }
+
+        [HttpGet("GetContaContabilByCodigo")]
+        public async Task<ActionResult> GetContaContabilByCodigo(int codigo)
+        {
+            var conta = await _contaContabil.GetContaContabilByCodigo(codigo);
+            return Ok(conta);
         }
     }
 }

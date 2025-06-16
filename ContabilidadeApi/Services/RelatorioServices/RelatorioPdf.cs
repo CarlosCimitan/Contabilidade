@@ -2,7 +2,7 @@
 
 namespace ContabilidadeApi.Services.RelatorioServices
 {
-    public class RelatorioDiarioPdf
+    public class RelatorioPdf
     {
         public static byte[] Gerar(string titulo, string conteudo)
         {

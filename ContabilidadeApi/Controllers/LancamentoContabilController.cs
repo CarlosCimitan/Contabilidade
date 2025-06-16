@@ -21,16 +21,13 @@ namespace ContabilidadeApi.Controllers
         [HttpPost("CriarLancamentoContabil")]
         public async Task<IActionResult> CriarLancamentoContabil(LancamentoContabilDto lancamentoContabil)
         {
-
             var resultado = await _lancamento.CriarLancamentoContabil(lancamentoContabil);
             return Ok(resultado);
-
         }
 
         [HttpGet("GetLancamentosContabeis")]
         public async Task<IActionResult> GetLancamentosContabeis()
         {
-
             var lancamentos = await _lancamento.GetLancamentoContabeis();
             return Ok(lancamentos);
         }
@@ -39,6 +36,20 @@ namespace ContabilidadeApi.Controllers
         public async Task<IActionResult> DeletarLancamentoContabil(int id)
         {
             var resultado = await _lancamento.DeletarLancamentoContabil(id);
+            return Ok(resultado);
+        }
+
+        [HttpGet("GetLançamentoByCodigo{codigo}")]
+        public async Task<IActionResult> GetLancamentoPorCodigo(int codigo)
+        {
+            var response = await _lancamento.GetLancamentoContabilByCodigo(codigo);
+            return Ok(response);
+        }
+
+        [HttpPut("EditarLancamentoContabil/{id}")]
+        public async Task<IActionResult> EditarLancamentoContabil(int id, LancamentoContabilDto lancamentoContabil)
+        {
+            var resultado = await _lancamento.EditarLancamentoContabil(id, lancamentoContabil);
             return Ok(resultado);
         }
     }
