@@ -263,7 +263,8 @@ namespace ContabilidadeApi.Services.UsuarioServices
             {
                 Id = u.Id,
                 Nome = u.Nome,
-                Email = u.Email
+                Email = u.Email,
+                EmpresaId = u.EmpresaId
 
             })
             .ToListAsync();
