@@ -467,6 +467,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 conta.Descricao = dto.Descricao;
                 conta.TipoConta = dto.TipoConta;
                 conta.Natureza = dto.Natureza;
+                conta.Grau = dto.Grau;
 
                 var relatoriosAntigos = await _context.RelatoriosContas
                     .Where(r => r.ContaContabilId == conta.Id)
