@@ -6,9 +6,7 @@ namespace ContabilidadeApi.Models
 {
     public class ContaContabil : IEntidadeComCodigo
     {
-        [Required]
         public int Id { get; set; }
-        [Required]
         public string Mascara { get; set; } = string.Empty;
         public int Codigo { get; set; } = 1;
         public int Grau { get; set; }
