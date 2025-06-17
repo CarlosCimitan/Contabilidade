@@ -19,11 +19,11 @@ namespace ContabilidadeApi.Services.RelatorioServices
             _httpContextAccessor = httpContext;
         }
 
-        public async Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+        public async Task<byte[]> GerarRelatorioPorPeriodoXls(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
             if (!int.TryParse(empresaIdStr, out var empresaId))
-                return null!; 
+                return null!;
 
             var lancamentos = await _context.LancamentosContabeis
                 .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
@@ -52,7 +52,10 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
             foreach (var lancamento in lancamentos)
             {
-                foreach (var mov in lancamento.DebitosCreditos!.Where(dc => dc.ContaContabil.Grau <= grauMaximo))
+                var movimentos = lancamento.DebitosCreditos!
+                    .Where(dc => !grauMaximo.HasValue || dc.ContaContabil.Grau <= grauMaximo.Value);
+
+                foreach (var mov in movimentos)
                 {
                     worksheet.Cell(row, 1).Value = lancamento.Id;
                     worksheet.Cell(row, 2).Value = lancamento.Data.ToString("dd/MM/yyyy");
@@ -89,13 +92,14 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
 
 
-        public async Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+
+        public async Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
             if (!int.TryParse(empresaIdStr, out var empresaId))
-                return null!; 
+                return null!;
 
             var lancamentos = await _context.LancamentosContabeis
                 .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
@@ -113,20 +117,19 @@ namespace ContabilidadeApi.Services.RelatorioServices
                 container.Page(page =>
                 {
                     page.Margin(30);
-                    page.Header().Text($"Relatório Contábil - {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy} (Grau ≤ {grauMaximo})")
-                        .Bold()
-                        .FontSize(16);
+                    page.Header().Text($"Relatório Contábil - {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy}" +
+                        (grauMaximo.HasValue ? $" (Grau ≤ {grauMaximo})" : "")).Bold().FontSize(16);
 
                     page.Content().Table(table =>
                     {
                         table.ColumnsDefinition(columns =>
                         {
-                            columns.RelativeColumn(1); // ID
-                            columns.RelativeColumn(1); // Data
-                            columns.RelativeColumn(2); // Conta
-                            columns.RelativeColumn(1); // Tipo
-                            columns.RelativeColumn(2); // Valor
-                            columns.RelativeColumn(3); // Descrição
+                            columns.RelativeColumn(1);
+                            columns.RelativeColumn(1);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(1);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(3);
                         });
 
                         table.Header(header =>
@@ -141,7 +144,8 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
                         foreach (var lancamento in lancamentos)
                         {
-                            foreach (var dc in lancamento.DebitosCreditos!.Where(dc => dc.ContaContabil.Grau <= grauMaximo))
+                            foreach (var dc in lancamento.DebitosCreditos!
+                                .Where(dc => !grauMaximo.HasValue || dc.ContaContabil.Grau <= grauMaximo.Value))
                             {
                                 table.Cell().Text(lancamento.Id.ToString());
                                 table.Cell().Text(lancamento.Data.ToString("dd/MM/yyyy"));
@@ -167,13 +171,14 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
 
 
-        public async Task<byte[]> GerarRelatorioContasBalancoPdf(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+
+        public async Task<byte[]> GerarRelatorioContasBalancoPdf(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
             if (!int.TryParse(empresaIdStr, out var empresaId))
-                return null!; 
+                return null!;
 
             var lancamentos = await _context.LancamentosContabeis
                 .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
@@ -188,7 +193,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
                 .SelectMany(l => l.DebitosCreditos!)
                 .Where(dc =>
                     (dc.ContaContabil.Mascara.StartsWith("1") || dc.ContaContabil.Mascara.StartsWith("2")) &&
-                    dc.ContaContabil.Grau <= grauMaximo
+                    (!grauMaximo.HasValue || dc.ContaContabil.Grau <= grauMaximo.Value)
                 )
                 .GroupBy(dc => new
                 {
@@ -220,17 +225,18 @@ namespace ContabilidadeApi.Services.RelatorioServices
                     page.Margin(30);
 
                     page.Header().Text($"BALANÇO PATRIMONIAL").Bold().FontSize(16);
-                    page.Header().Text($"Período: {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy} | Grau até: {grauMaximo}").FontSize(12);
+                    page.Header().Text($"Período: {dataInicio:dd/MM/yyyy} até {dataFim:dd/MM/yyyy}" +
+                        (grauMaximo.HasValue ? $" | Grau até: {grauMaximo}" : "")).FontSize(12);
 
                     page.Content().Table(table =>
                     {
                         table.ColumnsDefinition(columns =>
                         {
-                            columns.RelativeColumn(2); // Máscara
-                            columns.RelativeColumn(1); // Grau
-                            columns.RelativeColumn(2); // Débito
-                            columns.RelativeColumn(2); // Crédito
-                            columns.RelativeColumn(2); // Saldo
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(1);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
                         });
 
                         table.Header(header =>
@@ -260,11 +266,12 @@ namespace ContabilidadeApi.Services.RelatorioServices
             return ms.ToArray();
         }
 
-        public async Task<byte[]> GerarRelatorioContasBalancoXls(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+
+        public async Task<byte[]> GerarRelatorioContasBalancoXls(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
             if (!int.TryParse(empresaIdStr, out var empresaId))
-                return null!; 
+                return null!;
 
             var lancamentos = await _context.LancamentosContabeis
                 .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
@@ -279,7 +286,7 @@ namespace ContabilidadeApi.Services.RelatorioServices
                 .SelectMany(l => l.DebitosCreditos!)
                 .Where(dc =>
                     (dc.ContaContabil.Mascara.StartsWith("1") || dc.ContaContabil.Mascara.StartsWith("2")) &&
-                    dc.ContaContabil.Grau <= grauMaximo
+                    (!grauMaximo.HasValue || dc.ContaContabil.Grau <= grauMaximo.Value)
                 )
                 .GroupBy(dc => new
                 {
@@ -305,7 +312,8 @@ namespace ContabilidadeApi.Services.RelatorioServices
             using var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Balanço Patrimonial");
 
-            worksheet.Cell(1, 1).Value = $"Relatório de Balanço Patrimonial ({dataInicio:dd/MM/yyyy} a {dataFim:dd/MM/yyyy}) - Grau até {grauMaximo}";
+            worksheet.Cell(1, 1).Value = $"Relatório de Balanço Patrimonial ({dataInicio:dd/MM/yyyy} a {dataFim:dd/MM/yyyy})" +
+                                         (grauMaximo.HasValue ? $" - Grau até {grauMaximo}" : "");
             worksheet.Range(1, 1, 1, 5).Merge().Style.Font.SetBold().Font.FontSize = 14;
 
             worksheet.Cell(3, 1).Value = "Máscara";

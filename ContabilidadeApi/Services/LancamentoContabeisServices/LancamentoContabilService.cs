@@ -38,17 +38,31 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                     return response;
                 }
 
-                if (!isAdmin && string.IsNullOrWhiteSpace(empresaIdStr))
-                {
-                    response.Mensagem = "Empresa não encontrada ou inválida no token.";
-                    return response;
-                }
-
                 int usuarioId = int.Parse(usuarioIdStr);
-                int empresaId = 0;
+                int empresaId;
+
                 if (!isAdmin)
                 {
-                    empresaId = int.Parse(empresaIdStr);
+                    if (string.IsNullOrWhiteSpace(empresaIdStr) || !int.TryParse(empresaIdStr, out empresaId))
+                    {
+                        response.Mensagem = "Empresa não encontrada ou inválida no token.";
+                        return response;
+                    }
+                }
+                else
+                {
+                    var contaId = dto.DebitosCreditos.FirstOrDefault()?.ContaContabilId ?? 0;
+
+                    empresaId = await _context.ContasContabeis
+                        .Where(c => c.Id == contaId)
+                        .Select(c => c.EmpresaId)
+                        .FirstOrDefaultAsync();
+
+                    if (empresaId == 0)
+                    {
+                        response.Mensagem = "Empresa não encontrada a partir da conta contábil.";
+                        return response;
+                    }
                 }
 
                 decimal somaCreditos = dto.DebitosCreditos
@@ -78,7 +92,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
 
                 var lancamento = new LancamentoContabil
                 {
-                    Zeramento = false,
+                    Zeramento = dto.Zeramento,
                     Codigo = proximoCodigo,
                     DescComplementar = dto.DescComplementar,
                     EmpresaId = empresaId,
@@ -122,6 +136,7 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                 return response;
             }
         }
+
 
         public async Task<ResponseModel<LancamentoContabil>> EditarLancamentoContabil(int id, LancamentoContabilDto dto)
         {

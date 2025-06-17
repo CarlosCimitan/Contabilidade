@@ -17,28 +17,38 @@ namespace ContabilidadeApi.Controllers
         }
 
         [HttpGet("GerarRelatorioMensalPDF")]
-        public async Task<IActionResult> GerarRelatorioMensalPDF(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+        public async Task<IActionResult> GerarRelatorioMensalPDF(
+     [FromQuery] DateTime dataInicio,
+     [FromQuery] DateTime dataFim,
+     [FromQuery] int? grauMaximo)
         {
             var fileBytes = await _relatorio.GerarRelatorioPorPeriodoPdf(dataInicio, dataFim, grauMaximo);
             if (fileBytes == null) return NotFound("Nenhum lançamento no período.");
+
             return File(fileBytes, "application/pdf", "Relatorio_Mensal.pdf");
         }
 
         [HttpGet("GerarRelatorioMensalXls")]
-        public async Task<IActionResult> GerarRelatorioMensalXLS(DateTime dataInicio, DateTime dataFim, int grauMaximo)
+        public async Task<IActionResult> GerarRelatorioMensalXLS(
+            [FromQuery] DateTime dataInicio,
+            [FromQuery] DateTime dataFim,
+            [FromQuery] int? grauMaximo)
         {
             var fileBytes = await _relatorio.GerarRelatorioPorPeriodoXls(dataInicio, dataFim, grauMaximo);
             if (fileBytes == null) return NotFound("Nenhum lançamento no período.");
-            return File(fileBytes,
+
+            return File(
+                fileBytes,
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "Relatorio_Mensal.xlsx");
+                "Relatorio_Mensal.xlsx"
+            );
         }
 
         [HttpGet("GerarRelatorioContasBalancoPdf")]
         public async Task<IActionResult> GerarRelatorioContasBalancoPdf(
             [FromQuery] DateTime dataInicio,
             [FromQuery] DateTime dataFim,
-            [FromQuery] int grauMaximo = 1)
+            [FromQuery] int? grauMaximo)
         {
             var fileBytes = await _relatorio.GerarRelatorioContasBalancoPdf(dataInicio, dataFim, grauMaximo);
             if (fileBytes == null) return NotFound("Nenhum lançamento encontrado.");
@@ -50,14 +60,16 @@ namespace ContabilidadeApi.Controllers
         public async Task<IActionResult> GerarRelatorioContasBalancoXls(
             [FromQuery] DateTime dataInicio,
             [FromQuery] DateTime dataFim,
-            [FromQuery] int grauMaximo = 1)
+            [FromQuery] int? grauMaximo)
         {
             var fileBytes = await _relatorio.GerarRelatorioContasBalancoXls(dataInicio, dataFim, grauMaximo);
             if (fileBytes == null) return NotFound("Nenhum lançamento encontrado.");
 
-            return File(fileBytes,
+            return File(
+                fileBytes,
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "Relatorio_Contas_Balanco.xlsx");
+                "Relatorio_Contas_Balanco.xlsx"
+            );
         }
     }
 }

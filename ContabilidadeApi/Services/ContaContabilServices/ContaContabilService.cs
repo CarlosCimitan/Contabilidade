@@ -6,6 +6,7 @@ using ContabilidadeApi.Models;
 using ContabilidadeApi.Services.CodigoServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ContabilidadeApi.Services.ContaContabilServices
 {
@@ -24,35 +25,16 @@ namespace ContabilidadeApi.Services.ContaContabilServices
 
         public async Task<ResponseModel<ContaContabil>> CriarContaContaabil(CriarContaContabilDto dto)
         {
-            ResponseModel<ContaContabil> response = new ResponseModel<ContaContabil>();
+            var response = new ResponseModel<ContaContabil>();
 
             try
             {
                 var user = _httpContextAccessor.HttpContext?.User;
                 var empresaId = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
 
-                if (empresaId == null)
+                if (string.IsNullOrWhiteSpace(empresaId))
                 {
                     response.Mensagem = "Empresa não encontrada no token.";
-                    return response;
-                }
-
-                var mascaraExiste = await _context.ContasContabeis.AnyAsync(c => c.Ativo && c.Mascara == dto.Mascara);
-                if (mascaraExiste)
-                {
-                    response.Mensagem = "Já existe uma conta com essa máscara.";
-                    return response;
-                }
-
-                int empresaIdInt = int.Parse(empresaId);
-                var proximoCodigo = await _codigoService.GerarProximoCodigoAsync<ContaContabil>(empresaIdInt);
-
-                var codigoExiste = await _context.ContasContabeis
-                    .AnyAsync(c => c.Ativo && c.EmpresaId == empresaIdInt && c.Codigo == proximoCodigo);
-
-                if (codigoExiste)
-                {
-                    response.Mensagem = $"Já existe uma conta com o código {proximoCodigo} para a empresa {empresaIdInt}.";
                     return response;
                 }
 
@@ -62,12 +44,51 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     return response;
                 }
 
+                // Extrair apenas os dígitos numéricos da máscara
+                var mascaraNumericaStr = new string(dto.Mascara.Where(char.IsDigit).ToArray());
+
+                if (string.IsNullOrWhiteSpace(mascaraNumericaStr))
+                {
+                    response.Mensagem = "Máscara inválida. Deve conter ao menos um número.";
+                    return response;
+                }
+
+                if (!long.TryParse(mascaraNumericaStr.PadRight(9, '0'), out long mascaraNumerica))
+                {
+                    response.Mensagem = "Erro ao converter a máscara para número.";
+                    return response;
+                }
+
+                int empresaIdInt = int.Parse(empresaId);
+
+                var mascaraExiste = await _context.ContasContabeis
+                    .AnyAsync(c => c.Ativo && c.Mascara == dto.Mascara && c.EmpresaId == empresaIdInt);
+
+                if (mascaraExiste)
+                {
+                    response.Mensagem = "Já existe uma conta com essa máscara.";
+                    return response;
+                }
+
+                // Gerar código
+                var proximoCodigo = await _codigoService.GerarProximoCodigoAsync<ContaContabil>(empresaIdInt);
+
+                // Verifica se esse código já está sendo usado por segurança
+                var codigoJaExiste = await _context.ContasContabeis
+                    .AnyAsync(c => c.Ativo && c.EmpresaId == empresaIdInt && c.Codigo == proximoCodigo);
+
+                if (codigoJaExiste)
+                {
+                    response.Mensagem = $"Já existe uma conta com o código {proximoCodigo} para a empresa {empresaIdInt}.";
+                    return response;
+                }
+
                 var contaContabil = new ContaContabil
                 {
                     Mascara = dto.Mascara,
                     Codigo = proximoCodigo,
                     Grau = dto.Grau,
-                    MascaraNumerica = long.Parse(dto.Mascara.Replace(".", "").PadRight(9, '0')),
+                    MascaraNumerica = mascaraNumerica,
                     Descricao = dto.Descricao,
                     TipoConta = dto.TipoConta,
                     Natureza = dto.Natureza,
@@ -86,10 +107,12 @@ namespace ContabilidadeApi.Services.ContaContabilServices
             }
             catch (Exception ex)
             {
-                response.Mensagem = ex.Message;
+                response.Mensagem = $"Erro: {ex.Message}";
                 return response;
             }
         }
+
+
         public async Task<ResponseModel<List<ContaContabil>>> GetContaById(int id)
         {
             var response = new ResponseModel<List<ContaContabil>>();
@@ -255,7 +278,7 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                 if (!isAdmin)
                 {
                     var empresaIdStr = user?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
-                    if (!int.TryParse(empresaIdStr, out int empresaIdParsed))
+                    if (string.IsNullOrWhiteSpace(empresaIdStr) || !int.TryParse(empresaIdStr, out int empresaIdParsed))
                     {
                         response.Mensagem = "Empresa não encontrada ou inválida no token.";
                         return response;
@@ -263,13 +286,12 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     empresaId = empresaIdParsed;
                 }
 
+
                 var contaDestinoQuery = _context.ContasContabeis
                     .Where(c => c.Id == contaDestinoId && c.Ativo);
 
                 if (!isAdmin)
-                {
                     contaDestinoQuery = contaDestinoQuery.Where(c => c.EmpresaId == empresaId);
-                }
 
                 var contaDestino = await contaDestinoQuery.FirstOrDefaultAsync();
 
@@ -279,45 +301,56 @@ namespace ContabilidadeApi.Services.ContaContabilServices
                     return response;
                 }
 
-                var contasGrau6Query = _context.ContasContabeis
-                    .Where(c => c.Ativo && c.Grau == 6 && c.Id != contaDestinoId);
+
+                var contasParaZerarQuery = _context.ContasContabeis
+                    .Where(c => c.Ativo && c.Mascara != null && c.Mascara.StartsWith("6") && c.Id != contaDestinoId);
 
                 if (!isAdmin)
-                {
-                    contasGrau6Query = contasGrau6Query.Where(c => c.EmpresaId == empresaId);
-                }
+                    contasParaZerarQuery = contasParaZerarQuery.Where(c => c.EmpresaId == empresaId);
 
-                var contasGrau6 = await contasGrau6Query.ToListAsync();
+                var contasParaZerar = await contasParaZerarQuery.OrderBy(c => c.Mascara).ToListAsync();
 
-                if (!contasGrau6.Any())
+                if (!contasParaZerar.Any())
                 {
-                    response.Mensagem = "Nenhuma conta com grau 6 encontrada para transferir saldo.";
+                    response.Mensagem = "Nenhuma conta encontrada com máscara iniciando por 6 para transferir saldo.";
                     return response;
                 }
 
-                decimal totalTransferido = contasGrau6.Sum(c => c.Saldo);
+                decimal totalTransferido = contasParaZerar.Sum(c => c.Saldo);
 
                 if (totalTransferido == 0)
                 {
                     response.Mensagem = "Não há saldo para transferir.";
-                    response.Dados = contasGrau6.Append(contaDestino).ToList();
+                    response.Dados = contasParaZerar.Append(contaDestino).ToList();
                     return response;
                 }
 
-                foreach (var conta in contasGrau6)
+
+                foreach (var conta in contasParaZerar)
                 {
-                    conta.Saldo = 0;
+                    conta.Saldo = 0m;
                 }
 
-                _context.ContasContabeis.UpdateRange(contasGrau6);
-
                 contaDestino.Saldo += totalTransferido;
-                _context.ContasContabeis.Update(contaDestino);
 
-                await _context.SaveChangesAsync();
+               
+                var linhasAfetadas = await _context.SaveChangesAsync();
 
-                response.Dados = contasGrau6.Append(contaDestino).ToList();
-                response.Mensagem = $"Saldo total de {totalTransferido:C} transferido para a conta destino com sucesso.";
+                if (linhasAfetadas == 0)
+                {
+                    response.Mensagem = "Nenhuma alteração foi salva no banco.";
+                    return response;
+                }
+
+                await _context.Entry(contaDestino).ReloadAsync();
+                foreach (var conta in contasParaZerar)
+                {
+                    await _context.Entry(conta).ReloadAsync();
+                }
+
+                response.Dados = contasParaZerar.Append(contaDestino).ToList();
+                response.Mensagem = $"Saldo total de {totalTransferido.ToString("C", new CultureInfo("pt-BR"))} transferido para a conta destino com sucesso.";
+
                 return response;
             }
             catch (Exception ex)

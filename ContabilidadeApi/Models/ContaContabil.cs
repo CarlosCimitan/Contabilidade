@@ -1,11 +1,14 @@
 ﻿using ContabilidadeApi.CamposEnum;
 using ContabilidadeApi.Services.CodigoServices.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace ContabilidadeApi.Models
 {
     public class ContaContabil : IEntidadeComCodigo
     {
+        [Required]
         public int Id { get; set; }
+        [Required]
         public string Mascara { get; set; } = string.Empty;
         public int Codigo { get; set; }
         public int Grau { get; set; }
