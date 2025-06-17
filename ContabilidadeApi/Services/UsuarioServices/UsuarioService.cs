@@ -258,7 +258,7 @@ namespace ContabilidadeApi.Services.UsuarioServices
             try
             {
                 var usuarios = await _context.Usuarios
-                    .Where(u => u.EmpresaId != null && u.Ativo == true)
+                    .Where(u =>  u.Ativo == true)
                     .Select(u => new UsuarioDto
             {
                 Id = u.Id,

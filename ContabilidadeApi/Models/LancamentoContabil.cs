@@ -7,7 +7,7 @@ namespace ContabilidadeApi.Models
         public int Id { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
         public bool Zeramento { get; set; } = false;
-        public int Codigo { get; set; }
+        public int Codigo { get; set; } = 1;
         public bool Ativo { get; set; } = true;
         public string? DescComplementar { get; set; }
 
