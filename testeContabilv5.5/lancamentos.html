@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lançamento Contábil - Sistema Contábil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800">
+
+  <!-- Barra de navegação -->
+  <nav class="bg-gray-800 p-4">
+    <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+      <a class="text-white text-2xl font-semibold" href="Listagem.html">Sistema Contábil</a>
+      <button class="text-white md:hidden" id="navbar-toggle">
+        <span class="block w-6 h-1 bg-white mb-1"></span>
+        <span class="block w-6 h-1 bg-white mb-1"></span>
+        <span class="block w-6 h-1 bg-white"></span>
+      </button>
+      <div id="navbar" class="hidden md:flex space-x-6">
+        <a href="Listagem.html" class="text-white">Dashboard</a>
+        <a href="cadastro_empresa.html" class="text-white">Cadastro de Empresa</a>
+        <a href="cadastro_usuario.html" class="text-white">Cadastro de Usuário</a>
+        <div class="relative group">
+          <a href="" class="text-white inline-flex items-center">
+            Lançamentos
+            <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-0 w-48 bg-gray-700 text-white rounded-md shadow-lg hidden group-hover:block z-10">
+            <a href="lancamentos.html" class="block px-4 py-2 hover:bg-gray-600">Lançamento Contábil</a>
+            <a href="historico.html" class="block px-4 py-2 hover:bg-gray-600">Histórico</a>
+          </div>
+        </div>
+        <a href="plano_contas.html" class="text-white">Plano de Contas</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto p-8">
+    <!-- Setas -->
+    <div class="flex justify-end space-x-2">
+      <button type="button" class="py-1 px-2 border border-gray-300 bg-gray-400 rounded-md text-sm">|&lt;</button>
+      <button type="button" class="py-1 px-2 border border-gray-300 bg-gray-400 rounded-md text-sm">&lt;</button>
+      <button type="button" class="py-1 px-2 border border-gray-300 bg-gray-400 rounded-md text-sm">&gt;</button>
+      <button type="button" class="py-1 px-2 border border-gray-300 bg-gray-400 rounded-md text-sm">&gt;|</button>
+    </div>
+
+    <h2 class="text-3xl font-semibold text-gray-800 flex items-center justify-between mt-4">
+      <span>Lançamento Contábil</span>
+    </h2>
+
+    <form>
+      <!-- Campos principais -->
+      <div class="mt-6 flex">
+        <div class="w-1/4 mr-6">
+          <label for="Id" class="block text-lg font-medium bg-gray-400">Número do Lançamento</label>
+          <input type="text" class="mt-2 p-3 w-full border border-gray-300 rounded-md bg-gray-200 text-black placeholder-black" id="Id" readonly>
+        </div>
+        <div class="w-1/4">
+          <label for="Data" class="block text-lg font-medium bg-gray-400">Data de Lançamento</label>
+          <input type="date" class="mt-2 p-3 w-full border border-gray-300 rounded-md text-black placeholder-black" id="Data">
+        </div>
+        <div class="w-1/4 ml-auto">
+          <label for="DiaSemana" class="block text-lg font-medium bg-gray-400">Dia da Semana</label>
+          <input type="text" id="DiaSemana" class="mt-2 p-3 w-full border border-gray-300 rounded-md text-black placeholder-black" readonly>
+        </div>
+        <div class="w-1/4 ml-auto">
+          <label for="UsuarioId" class="block text-lg font-medium bg-gray-400">Usuário</label>
+          <input type="text" id="UsuarioId" class="mt-2 p-3 w-full border border-gray-300 rounded-md bg-gray-200 text-black placeholder-black" readonly>
+        </div>
+      </div>
+      <div>
+        <!-- Conta de Crédito -->
+        <div class="mt-6" id="contasCreditoSection">
+          <label for="contaCredito" class="block text-lg font-medium bg-gray-400 mb-2">Conta de Crédito</label>
+
+          <!-- Wrapper com rolagem -->
+          <div id="contasCreditoWrapper" class="max-h-48 overflow-y-auto scroll-custom flex flex-col space-y-4 p-2 border border-gray-200 rounded-md">
+            <div id="contasCredito" class="flex flex-col space-y-4">
+              <!-- Linha de crédito -->
+                <div class="linha-conta flex space-x-4">
+                  <input type="text"  data-conta-role="credito-id" class="codigoConta p-3 w-1/4 border border-gray-300 rounded-md" placeholder="Código ID" required data-conta-input="id">
+                  <input type="text"  data-conta-role="credito-desc" class="descricaoConta p-3 w-3/4 border border-gray-300 rounded-md" placeholder="Descrição" readonly data-conta-input="descricao">
+                  <input type="text"  data-conta-role="credito-mascara" class="mascaraConta p-3 w-1/4 border border-gray-300 rounded-md" placeholder="Máscara (Ex: 1.1.1.01)" readonly data-conta-input="mascara">
+                  <input type="number" class="p-3 w-1/4 border border-gray-300 rounded-md valorCredito" placeholder="Valor Crédito" required>
+                  <button type="button" id="btnListagemPlanos" data-conta-type="credito" class="py-2 px-5 border border-gray-300 bg-gray-400 rounded-md">Listagem</button>
+                  <button type="button" class="removerLinha py-2 px-5 bg-red-500 text-white rounded-md hover:bg-red-600 hidden">X</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão fora da área com scroll -->
+          <button type="button" id="adicionarCredito" class="py-2 px-4 border border-gray-300 bg-gray-400 rounded-md mt-4 w-1/4 ml-auto block">Adicionar Crédito</button>
+        </div>
+
+        <!-- Conta de Débito -->
+        <div class="mt-6" id="contasDebitoSection">
+          <label for="contaDebito" class="block text-lg font-medium bg-gray-400 mb-2">Conta de Débito</label>
+
+          <!-- Wrapper com rolagem -->
+          <div id="contasDebitoWrapper" class="max-h-48 overflow-y-auto scroll-custom flex flex-col space-y-4 p-2 border border-gray-200 rounded-md">
+            <div id="contasDebito" class="flex flex-col space-y-4">
+              <!-- Linha de débito -->
+              <div class="linha-conta flex space-x-4">
+                  <input type="text" data-conta-role="debito-id" class="codigoConta p-3 w-1/4 border border-gray-300 rounded-md" placeholder="Código ID" required data-conta-input="id">
+                  <input type="text" data-conta-role="debito-desc" class="descricaoConta p-3 w-3/4 border border-gray-300 rounded-md" placeholder="Descrição" readonly data-conta-input="descricao">
+                  <input type="text" data-conta-role="debito-mascara" class="mascaraConta p-3 w-1/4 border border-gray-300 rounded-md" placeholder="Máscara (Ex: 1.1.1.01)" readonly data-conta-input="mascara">
+                  <input type="number" class="p-3 w-1/4 border border-gray-300 rounded-md valorDebito" placeholder="Valor Débito" required>
+                  <button type="button" id="btnListagemPlanos" data-conta-type="debito" class="py-2 px-5 border border-gray-300 bg-gray-400 rounded-md">Listagem</button>
+                  <button type="button" class="removerLinha py-2 px-5 bg-red-500 text-white rounded-md hover:bg-red-600 hidden">X</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão fora da área com scroll -->
+          <button type="button" id="adicionarDebito" class="py-2 px-4 border border-gray-300 bg-gray-400 rounded-md mt-4 w-1/4 ml-auto block">Adicionar Débito</button>
+        </div>
+
+        <!-- Histórico -->
+        <div class="mt-6 flex space-x-4" id="historicicoSelect">
+          <div class="w-1/4">
+            <label for="historicoIdLancamento" class="block text-lg font-medium bg-gray-400">Código ID Histórico</label>
+            <input type="text" id="historicoIdLancamento" class="mt-2 p-3 w-full border border-gray-300 rounded-md">
+            <button type="button" id="btnListagemHistorico" class="py-2 px-5 border border-gray-300 bg-gray-400 rounded-md">Listagem</button>
+          </div>
+          <div class="w-3/4">
+            <label for="descComplementarLancamento" class="block text-lg font-medium bg-gray-400">Descrição Complementar</label>
+            <textarea id="descComplementarLancamento" class="mt-2 p-3 w-full border border-gray-300 rounded-md" rows="3"></textarea>
+          </div>
+        </div>
+
+      <!-- Totais -->
+      <div class="mt-6 grid grid-cols-3 gap-6">
+        <div class="w-full">
+          <label for="TotalDebito" class="block text-lg font-medium bg-gray-400">Valor Total Débito</label>
+          <input type="number" id="TotalDebito" class="mt-2 p-3 w-full border border-gray-300 rounded-md" value="0" readonly>
+        </div>
+        <div class="w-full">
+          <label for="TotalCredito" class="block text-lg font-medium bg-gray-400">Valor Total Crédito</label>
+          <input type="number" id="TotalCredito" class="mt-2 p-3 w-full border border-gray-300 rounded-md" value="0" readonly>
+        </div>
+        <div class="w-full">
+          <label for="Diferenca" class="block text-lg font-medium bg-gray-400">Diferença</label>
+          <input type="number" id="Diferenca" class="mt-2 p-3 w-full border border-gray-300 rounded-md" value="0" readonly>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="mt-7 flex justify-end space-x-1">
+        <button type="button" id="cancelar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Cancelar</button>
+        <button type="button" id="Excluir" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md bg-red-100 hover:bg-red-200">Excluir</button>
+        <button type="button" id="editar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Editar</button>
+        <button type="button" id="Gravar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Gravar</button>
+        <button type="button" id="novo" class="py-2 px-4 border border-gray-300 bg-gray-400 rounded-md">Novo</button>
+
+        <button type="button" id="btnListagemLancamentos" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Listagem</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="JS/lancamentos.js"></script>
+<script src="JS/modalListagem.js"></script>
+  
+</body>
+</html>

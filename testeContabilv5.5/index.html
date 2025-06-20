@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Contábil</title>
+    <link href="CSS/styles.css" rel="stylesheet"> <!-- Verifique este caminho -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-800">
+
+    <!-- Barra de navegação -->
+    <nav class="bg-gray-900 p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+            <a class="text-white text-2xl font-semibold" href="Listagem.html">Sistema Contábil</a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo do formulário de login -->
+    <div class="max-w-xl mx-auto p-8 bg-gray-400 shadow-md rounded-lg mt-10 mb-10">
+        <h2 class="text-3xl font-semibold text-gray-800 text-center mb-8">Login</h2>
+
+        <form id="loginForm">
+            <div class="mb-6">
+                <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
+                <input type="email" id="email" class="mt-2 p-3 w-full border border-gray-300 rounded-md text-black placeholder-black" required>
+            </div>
+            <div class="mb-6">
+                <label for="senha" class="block text-lg font-medium text-gray-700">Senha</label>
+                <input type="password" id="senha" class="mt-2 p-3 w-full border border-gray-300 rounded-md text-black placeholder-black" required>
+            </div>
+
+            <div class="mt-6 text-center">
+                <button type="submit" id="loginBtn" class="py-2 px-4 bg-blue-500 text-white rounded-md">Entrar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="JS/login.js"></script> <!-- Verifique este caminho -->
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de Histórico - Sistema Contábil</title> <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900">
+
+    <nav class="bg-gray-800 p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+      <a class="text-white text-2xl font-semibold" href="Listagem.html">Sistema Contábil</a>
+      <button class="text-white md:hidden" id="navbar-toggle">
+        <span class="block w-6 h-1 bg-white mb-1"></span>
+        <span class="block w-6 h-1 bg-white mb-1"></span>
+        <span class="block w-6 h-1 bg-white"></span>
+      </button>
+      <div id="navbar" class="hidden md:flex space-x-6">
+        <a href="Listagem.html" class="text-white">Dashboard</a>
+                <a href="cadastro_empresa.html" class="text-white">Cadastro de Empresa</a>
+                <a href="cadastro_usuario.html" class="text-white">Cadastro de Usuário</a>
+                <div class="relative group">
+                    <a href="" class="text-white inline-flex items-center">
+                        Lançamentos
+                        <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <div class="absolute left-0 mt-0 w-48 bg-gray-700 text-white rounded-md shadow-lg hidden group-hover:block z-10">
+                        <a href="lancamentos.html" class="block px-4 py-2 hover:bg-gray-600">Lançamento Contábil</a>
+                        <a href="historico.html" class="block px-4 py-2 hover:bg-gray-600">Histórico</a>
+                    </div>
+                </div>
+                <a href="plano_contas.html" class="text-white">Plano de Contas</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto p-8">
+        <h2 class="text-3xl font-semibold text-gray-800 flex items-center justify-between mt-4">
+            <span>Cadastro de Histórico</span> </h2>
+
+      <form id="formHistorico">
+          <input type="hidden" id="historicoId" name="id">
+          
+          <div class="mt-6 flex space-x-4">
+              <div class="w-1/4">
+                  <label for="codigoHistorico" class="block text-lg font-medium bg-gray-400">Código ID</label>
+                  <input type="text" id="codigoHistorico" name="codigo" class="mt-2 p-3 w-full border border-gray-300 rounded-md bg-gray-200 text-black placeholder-black" readonly>
+              </div>
+              <div class="w-3/4">
+                  <label for="descricaoHistorico" class="block text-lg font-medium bg-gray-400">Descrição Complementar</label>
+                  <textarea id="descricaoHistorico" name="descricao"
+                            class="mt-2 p-3 w-full border border-gray-300 rounded-md text-black placeholder-black" rows="3"></textarea>
+              </div>
+          </div>
+
+          <div class="mt-7 flex justify-end space-x-1">
+        <button type="button" id="cancelar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Cancelar</button>
+        <button type="button" id="Excluir" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md bg-red-100 hover:bg-red-200">Excluir</button>
+        <button type="button" id="editar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Editar</button>
+        <button type="button" id="Gravar" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Gravar</button>
+        <button type="button" id="novo" class="py-2 px-4 border border-gray-300 bg-gray-400 rounded-md">Novo</button>
+              <button type="button" id="btnListagem" class="py-2 px-2 border border-gray-300 bg-gray-400 rounded-md">Listagem</button>
+          </div>
+      </form>
+    </div>
+
+    <script src="JS/historico.js"></script> </body>
+    <script src="JS/modalListagem.js"></script>
+</html>

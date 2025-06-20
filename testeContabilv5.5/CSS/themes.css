@@ -1,0 +1,20 @@
+/* themes.css */
+.tema-padrao {
+  --nav-bg: #1e40af;
+  --nav-text: #ffffff;
+}
+
+.tema-escuro {
+  --nav-bg: #1f2937;
+  --nav-text: #f3f4f6;
+}
+
+.tema-azul-pastel {
+  --nav-bg: #3b82f6;
+  --nav-text: #1e3a8a;
+}
+
+.tema-verde {
+  --nav-bg: #10b981;
+  --nav-text: #064e3b;
+}

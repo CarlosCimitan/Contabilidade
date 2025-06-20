@@ -8,7 +8,7 @@ namespace ContabilidadeApi.Models
     {
         public int Id { get; set; }
         public string Mascara { get; set; } = string.Empty;
-        public int Codigo { get; set; } = 1;
+        public int Codigo { get; set; }
         public int Grau { get; set; }
         public long MascaraNumerica { get; set; }
         public bool Ativo { get; set; } = true;

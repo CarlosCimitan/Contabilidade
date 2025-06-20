@@ -3,6 +3,66 @@
   "WorkspaceRootPath": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\contacontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\contacontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\lancamentocontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\lancamentocontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\lancamentocontabeisservices\\lancamentocontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\lancamentocontabeisservices\\lancamentocontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\contacontabilservices\\contacontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\contacontabilservices\\contacontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\historicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\historicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\enumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\enumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\codigoservices\\codicoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\codigoservices\\codicoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\relatoriocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\relatoriocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\lancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\lancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\historicocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\historicocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\contacontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\contacontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\dto\\zerarcontasdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\dto\\zerarcontasdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\dto\\criarempresadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\dto\\criarempresadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\contacontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\contacontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\contacontabilservices\\contacontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\contacontabilservices\\contacontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\contacontabilservices\\icontacontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\lancamentocontabeisservices\\ilancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\lancamentocontabeisservices\\ilancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\lancamentocontabeisservices\\lancamentocontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\lancamentocontabeisservices\\lancamentocontabilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\relatorioservices\\irelatorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,22 +127,6 @@
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\usuarioservices\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\lancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\lancamentocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\models\\historicocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\models\\historicocontabil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\relatoriocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\relatoriocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\services\\codigoservices\\codicoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\services\\codigoservices\\codicoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\dto\\lancamentocontabildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\dto\\lancamentocontabildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -115,10 +147,6 @@
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\dto\\editarempresadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\dto\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\dto\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -129,30 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\lancamentocontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\lancamentocontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\historicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\historicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\enumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\enumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\contacontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\contacontabilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|solutionrelative:contabilidadeapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD087C1D-43E5-4D14-AE25-6884622897CE}|ContabilidadeApi\\ContabilidadeApi.csproj|c:\\users\\eduardo\\onedrive\\\u00E1rea de trabalho\\agora vai\\contabilidade\\contabilidadeapi\\camposenum\\tipooperacaoenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -182,7 +186,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -194,33 +198,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ZerarContasDto.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\ZerarContasDto.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\ZerarContasDto.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\ZerarContasDto.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Dto\\ZerarContasDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T11:36:39.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Empresa.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\Empresa.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\Empresa.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\Empresa.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Models\\Empresa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Program.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Program.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Program.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T11:31:26.33Z",
+              "WhenOpened": "2025-06-17T23:10:47.476Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 4,
+              "Title": "ContaContabilService.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAIwMYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T00:49:09.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LancamentoContabilController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T01:45:05.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "LancamentoContabilService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\LancamentoContabeisServices\\LancamentoContabilService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\LancamentoContabeisServices\\LancamentoContabilService.cs",
@@ -228,11 +245,153 @@
               "RelativeToolTip": "ContabilidadeApi\\Services\\LancamentoContabeisServices\\LancamentoContabilService.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAAAAIkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T01:06:30.391Z"
+              "WhenOpened": "2025-06-16T01:06:30.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ContaContabilController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\ContaContabilController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\ContaContabilController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\ContaContabilController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\ContaContabilController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:09:06.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:08:59.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HistoricoController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\HistoricoController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\HistoricoController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\HistoricoController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\HistoricoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:11:11.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmpresaController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EmpresaController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\EmpresaController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EmpresaController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\EmpresaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:10:37.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EnumController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EnumController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\EnumController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EnumController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\EnumController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:10:52.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CodicoService.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T23:06:16.352Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "RelatorioController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\RelatorioController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\RelatorioController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\RelatorioController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\RelatorioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:12:06.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:12:42.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "LancamentoContabil.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\LancamentoContabil.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\LancamentoContabil.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\LancamentoContabil.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Models\\LancamentoContabil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T23:14:14.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HistoricoContabil.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\HistoricoContabil.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\HistoricoContabil.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\HistoricoContabil.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Models\\HistoricoContabil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T00:55:49.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ContaContabil.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\ContaContabil.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\ContaContabil.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\ContaContabil.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Models\\ContaContabil.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAcwAoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T02:35:10.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "ILancamentoContabil.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\LancamentoContabeisServices\\ILancamentoContabil.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\LancamentoContabeisServices\\ILancamentoContabil.cs",
@@ -244,33 +403,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContaContabilService.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Services\\ContaContabilServices\\ContaContabilService.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAwwPUAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "ZerarContasDto.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\ZerarContasDto.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\ZerarContasDto.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\ZerarContasDto.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Dto\\ZerarContasDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T00:49:09.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T11:36:39.75Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContaContabil.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\ContaContabil.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\ContaContabil.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\ContaContabil.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Models\\ContaContabil.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAcwAcAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "Empresa.cs",
+              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\Empresa.cs",
+              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\Empresa.cs",
+              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\Empresa.cs",
+              "RelativeToolTip": "ContabilidadeApi\\Models\\Empresa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:35:10.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T11:31:26.33Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 17,
               "Title": "CriarEmpresaDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\CriarEmpresaDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\CriarEmpresaDto.cs",
@@ -278,12 +435,11 @@
               "RelativeToolTip": "ContabilidadeApi\\Dto\\CriarEmpresaDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T23:14:21.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T23:14:21.956Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 20,
               "Title": "EnumService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\EnumServices\\EnumService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\EnumServices\\EnumService.cs",
@@ -295,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 21,
               "Title": "IHistorico.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\HistoricoServices\\IHistorico.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\HistoricoServices\\IHistorico.cs",
@@ -307,7 +463,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 18,
               "Title": "IContaContabil.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\ContaContabilServices\\IContaContabil.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\ContaContabilServices\\IContaContabil.cs",
@@ -319,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 24,
               "Title": "IRelatorio.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\RelatorioServices\\IRelatorio.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\RelatorioServices\\IRelatorio.cs",
@@ -331,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 19,
               "Title": "EmpresaService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\EmpresaServices\\EmpresaService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\EmpresaServices\\EmpresaService.cs",
@@ -343,7 +499,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 25,
               "Title": "RelatorioPdf.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\RelatorioServices\\RelatorioPdf.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\RelatorioServices\\RelatorioPdf.cs",
@@ -355,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 22,
               "Title": "HistoricoService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\HistoricoServices\\HistoricoService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\HistoricoServices\\HistoricoService.cs",
@@ -367,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 26,
               "Title": "RelatorioService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\RelatorioServices\\RelatorioService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\RelatorioServices\\RelatorioService.cs",
@@ -379,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 27,
               "Title": "SenhaService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\SenhaService\\SenhaService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\SenhaService\\SenhaService.cs",
@@ -391,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 28,
               "Title": "ISenha.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\SenhaService\\ISenha.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\SenhaService\\ISenha.cs",
@@ -403,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 29,
               "Title": "IUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\UsuarioServices\\IUsuario.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\UsuarioServices\\IUsuario.cs",
@@ -415,43 +571,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "RelatorioController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\RelatorioController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\RelatorioController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\RelatorioController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\RelatorioController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAA9wEgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:12:06.638Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CodicoService.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Services\\CodigoServices\\CodicoService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBUAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T23:06:16.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "LancamentoContabil.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\LancamentoContabil.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\LancamentoContabil.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\LancamentoContabil.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Models\\LancamentoContabil.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T23:14:14.147Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 30,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\UsuarioServices\\UsuarioService.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\UsuarioServices\\UsuarioService.cs",
@@ -463,19 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "HistoricoContabil.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\HistoricoContabil.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Models\\HistoricoContabil.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Models\\HistoricoContabil.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Models\\HistoricoContabil.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T00:55:49.628Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 31,
               "Title": "LancamentoContabilDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\LancamentoContabilDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\LancamentoContabilDto.cs",
@@ -487,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 32,
               "Title": "IEntidadeComCodigo.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Services\\CodigoServices\\Interfaces\\IEntidadeComCodigo.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Services\\CodigoServices\\Interfaces\\IEntidadeComCodigo.cs",
@@ -499,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 33,
               "Title": "CriarHistoricoContabilDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\CriarHistoricoContabilDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\CriarHistoricoContabilDto.cs",
@@ -511,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 35,
               "Title": "EditarEmpresaDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\EditarEmpresaDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\EditarEmpresaDto.cs",
@@ -523,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 34,
               "Title": "EditarHistoricoDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\EditarHistoricoDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\EditarHistoricoDto.cs",
@@ -535,19 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:12:42.143Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 38,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Data\\AppDbContext.cs",
@@ -559,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 37,
               "Title": "EditarContaContabilDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\EditarContaContabilDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\EditarContaContabilDto.cs",
@@ -571,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 36,
               "Title": "UsuarioDto.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Dto\\UsuarioDto.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\Dto\\UsuarioDto.cs",
@@ -583,79 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "LancamentoContabilController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\LancamentoContabilController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T01:45:05.225Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "HistoricoController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\HistoricoController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\HistoricoController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\HistoricoController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\HistoricoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:11:11.909Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "EnumController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EnumController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\EnumController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EnumController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\EnumController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:10:52.636Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "EmpresaController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EmpresaController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\EmpresaController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\EmpresaController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\EmpresaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:10:37.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "ContaContabilController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\ContaContabilController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\ContaContabilController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\ContaContabilController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\ContaContabilController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:09:06.921Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ContabilidadeApi\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ContabilidadeApi\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:08:59.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "TipoOperacaoEnum.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\CamposEnum\\TipoOperacaoEnum.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\CamposEnum\\TipoOperacaoEnum.cs",
@@ -667,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "TipoContaEnum.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\CamposEnum\\TipoContaEnum.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\CamposEnum\\TipoContaEnum.cs",
@@ -679,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "RelatorioEnum.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\CamposEnum\\RelatorioEnum.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\CamposEnum\\RelatorioEnum.cs",
@@ -691,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "NaturezaEnum.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\CamposEnum\\NaturezaEnum.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\CamposEnum\\NaturezaEnum.cs",
@@ -703,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "CargoEnum.cs",
               "DocumentMoniker": "C:\\Users\\Eduardo\\OneDrive\\\u00C1rea de Trabalho\\agora vai\\Contabilidade\\ContabilidadeApi\\CamposEnum\\CargoEnum.cs",
               "RelativeDocumentMoniker": "ContabilidadeApi\\CamposEnum\\CargoEnum.cs",
