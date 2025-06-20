@@ -25,6 +25,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
             if (!int.TryParse(empresaIdStr, out var empresaId))
                 return null!;
 
+            dataInicio = dataInicio.Date;
+            dataFim = dataFim.Date.AddDays(1).AddTicks(-1); 
+
             var lancamentos = await _context.LancamentosContabeis
                 .Where(l => l.Data >= dataInicio && l.Data <= dataFim && l.EmpresaId == empresaId)
                 .Include(l => l.DebitosCreditos)!
@@ -95,6 +98,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
         public async Task<byte[]> GerarRelatorioPorPeriodoPdf(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
+            dataInicio = dataInicio.Date;
+            dataFim = dataFim.Date.AddDays(1).AddTicks(-1);
+
             QuestPDF.Settings.License = LicenseType.Community;
 
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
@@ -174,6 +180,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
         public async Task<byte[]> GerarRelatorioContasBalancoPdf(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
+            dataInicio = dataInicio.Date;
+            dataFim = dataFim.Date.AddDays(1).AddTicks(-1);
+
             QuestPDF.Settings.License = LicenseType.Community;
 
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
@@ -269,6 +278,9 @@ namespace ContabilidadeApi.Services.RelatorioServices
 
         public async Task<byte[]> GerarRelatorioContasBalancoXls(DateTime dataInicio, DateTime dataFim, int? grauMaximo)
         {
+            dataInicio = dataInicio.Date;
+            dataFim = dataFim.Date.AddDays(1).AddTicks(-1);
+
             var empresaIdStr = _httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "EmpresaId")?.Value;
             if (!int.TryParse(empresaIdStr, out var empresaId))
                 return null!;
