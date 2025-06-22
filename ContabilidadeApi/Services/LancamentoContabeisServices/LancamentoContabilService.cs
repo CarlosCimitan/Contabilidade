@@ -104,9 +104,16 @@ namespace ContabilidadeApi.Services.LancamentoContabeisServices
                 foreach (var dc in dto.DebitosCreditos)
                 {
                     var conta = await _context.ContasContabeis.FindAsync(dc.ContaContabilId);
+                    
                     if (conta == null)
                     {
                         response.Mensagem = $"Conta contábil com ID {dc.ContaContabilId} não encontrada.";
+                        return response;
+                    }
+
+                    if (conta.EmpresaId != empresaId)
+                    {
+                        response.Mensagem = $"Conta contábil  não pertence à mesma empresa do lançamento.";
                         return response;
                     }
 

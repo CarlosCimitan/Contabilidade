@@ -99,10 +99,12 @@ namespace ContabilidadeApi.Services.EmpresaServices
 
         public async Task<ResponseModel<Empresa>> ExcluirEmpresa(int id)
         {
-            ResponseModel<Empresa> resposta = new ResponseModel<Empresa>();
+            var resposta = new ResponseModel<Empresa>();
+            using var transacao = await _context.Database.BeginTransactionAsync();
+
             try
             {
-                var empresa = await _context.Empresas.Where(e => e.Id == id).FirstOrDefaultAsync();
+                var empresa = await _context.Empresas.FirstOrDefaultAsync(e => e.Id == id);
                 if (empresa == null)
                 {
                     resposta.Mensagem = "Empresa não encontrada";
@@ -110,19 +112,50 @@ namespace ContabilidadeApi.Services.EmpresaServices
                 }
 
                 empresa.Ativo = false;
-                
+
+                // USUARIOS
+                var usuarios = await _context.Usuarios.Where(u => u.EmpresaId == id && u.Ativo).ToListAsync();
+                usuarios.ForEach(u => u.Ativo = false);
+
+                // CONTAS CONTABEIS
+                var contas = await _context.ContasContabeis.Where(c => c.EmpresaId == id && c.Ativo).ToListAsync();
+                contas.ForEach(c => c.Ativo = false);
+
+
+
+                // HISTORICO CONTABIL
+                var historicos = await _context.HistoricosContabeis
+                    .Where(h => h.EmpresaId == id && h.Ativo).ToListAsync();
+                historicos.ForEach(h => h.Ativo = false);
+
+                // LANCAMENTO CONTABIL
+                var lancamentos = await _context.LancamentosContabeis
+                    .Where(l => l.EmpresaId == id && l.Ativo).ToListAsync();
+                lancamentos.ForEach(l => l.Ativo = false);
+
+                var lancamentoIds = lancamentos.Select(l => l.Id).ToList();
+
+                // Atualização em cascata
                 _context.Empresas.Update(empresa);
+                _context.Usuarios.UpdateRange(usuarios);
+                _context.ContasContabeis.UpdateRange(contas);
+                _context.HistoricosContabeis.UpdateRange(historicos);
+                _context.LancamentosContabeis.UpdateRange(lancamentos);
+
                 await _context.SaveChangesAsync();
-                
+                await transacao.CommitAsync();
+
                 resposta.Dados = empresa;
-                resposta.Mensagem = "Empresa excluída com sucesso";
+                resposta.Mensagem = "Empresa e entidades relacionadas foram excluídas logicamente com sucesso.";
                 return resposta;
             }
             catch (Exception ex)
             {
-                resposta.Mensagem = ex.Message;
+                await transacao.RollbackAsync();
+                resposta.Mensagem = $"Erro: {ex.Message}";
                 return resposta;
             }
         }
+
     }
 }
